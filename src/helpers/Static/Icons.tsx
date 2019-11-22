@@ -15,15 +15,15 @@ export const Logo = (
         y2=".5"
         gradientUnits="objectBoundingBox"
       >
-        <stop offset="0" stop-color="#4299e1" />
-        <stop offset="1" stop-color="#63b3ed" />
+        <stop offset="0" stopColor="#4299e1" />
+        <stop offset="1" stopColor="#63b3ed" />
       </linearGradient>
     </defs>
     <path
       data-name="Path 213"
       d="M67.57 4.28h55.1l7.28 12.2-6.62 13.25H63.95l-7.32-13.25z"
       transform="translate(64.17 4.85)"
-      fill-rule="evenodd"
+      fillRule="evenodd"
       fill="url(#a)"
     />
     <path
@@ -45,7 +45,7 @@ export const Logo = (
       data-name="Path 217"
       d="M98.58 29.7l7.93-8.95-4.84-8.83z"
       fill="#f6ad55"
-      fill-rule="evenodd"
+      fillRule="evenodd"
     />
     <path
       data-name="Path 218"
@@ -81,7 +81,7 @@ export const Logo = (
       data-name="Path 224"
       d="M187.97 7.62h14.48l-6.61 13.2z"
       fill="#f6ad55"
-      fill-rule="evenodd"
+      fillRule="evenodd"
     />
   </svg>
 );

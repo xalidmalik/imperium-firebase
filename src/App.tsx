@@ -6,7 +6,8 @@ import { History } from "./helpers/Static/History";
 import Dashboard from "./pages/Dashboard/Dashboard";
 
 const App: React.FC = () => {
-  const { location } = useContext();
+  console.log("ad" + useContext(History.location));
+  const { location } = History;
   const transition = useTransition(location, location => location.pathname, {
     from: {
       opacity: 1,
