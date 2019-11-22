@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, __RouterContext } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Leftbar from "./containers/Navbar/Leftbar";
 import { History } from "./helpers/Static/History";
 import Dashboard from "./pages/Dashboard/Dashboard";
 
 const App: React.FC = () => {
-  const { location } = History;
+  const { location } = useContext();
   const transition = useTransition(location, location => location.pathname, {
     from: {
       opacity: 1,
@@ -40,9 +40,8 @@ const App: React.FC = () => {
           className="fixed w-layout bg-gray-200 ml-20 flex h-full"
         >
           <Switch location={item}>
-            <Route exact path="/" component={Dashboard}></Route>
-            {/* <Route exact path="/" component={Dashboard} />
-            <Route exact path="/customer" component={CustomerList} />
+            <Route exact path="/" component={Dashboard} />
+            {/* <Route exact path="/customer" component={CustomerList} />
             <Route path="/customer/new" component={CustomerNew} />
             <Route path="/customer/detail" component={CustomerDetail} />
             <Route exact path="/car" component={CarList} />
@@ -50,9 +49,13 @@ const App: React.FC = () => {
             <Route path="/car/detail" component={CarDetail} />
             <Route exact path="/reservation" component={ReservationList} />
             <Route path="/reservation/new" component={ReservationNew} />
-            <Route path="/reservation/detail" component={ReservationDetail} />
-            <Route exact path="/accounting" render={() => <h1>Muhasebe</h1>} />
-            <Route path="/settings/corporate" component={SettingCorporate} /> */}
+            <Route path="/reservation/detail" component={ReservationDetail} /> */}
+            <Route
+              exact
+              path="/reservation/new"
+              render={() => <h1>Muhasebe</h1>}
+            />
+            {/* <Route path="/settings/corporate" component={SettingCorporate} /> */}
           </Switch>
         </animated.div>
       ))}

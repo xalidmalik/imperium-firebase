@@ -9,3 +9,7 @@ export interface IFormValidation {
 export interface INavLinks {
   base: any;
 }
+export interface ICard {
+  base: any;
+  children: any;
+}
