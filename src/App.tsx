@@ -27,7 +27,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // IncrenmentRowVersion("RowVersion", "Car", "ayazarac");
-    GetRecords("Car", "ayazarac").then(va =>
+    GetRecords("Customer", "ayazarac").then(va =>
       console.log("Benim geriye donen degerim: ", va)
     );
   }, []);
