@@ -1,7 +1,7 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
-import { Logo } from "helpers/Static/Icons";
-import { History } from "helpers/Static/History";
+import { Logo } from "../../helpers/Static/Icons";
+import { History } from "../../helpers/Static/History";
 
 export const LeftLayout = (props: any) => {
   const LeftTransition = useSpring({
