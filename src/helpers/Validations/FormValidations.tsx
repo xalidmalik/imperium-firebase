@@ -17,16 +17,25 @@ export const textColorChange = (props: IFormValidation) => {
 };
 
 export const bgColorChange = (props: IFormValidation) => {
-  if ((props.touched && !props.errors && props.values) || (!props.touched && !props.errors && props.values)) {
+  if (
+    (props.touched && !props.errors && props.values) ||
+    (!props.touched && !props.errors && props.values)
+  ) {
     return "bg-green-500";
-  } else if ((props.touched && props.errors && !props.values) || (props.touched && props.errors && props.values)) {
+  } else if (
+    (props.touched && props.errors && !props.values) ||
+    (props.touched && props.errors && props.values)
+  ) {
     return "bg-red-500";
   } else {
     return "bg-gray-500";
   }
 };
-export const errorsChange = (props:IFormValidation) => {
-  if ((props.touched && !props.errors && props.values) || (!props.touched && !props.errors && props.values)) {
+export const errorsChange = (props: IFormValidation) => {
+  if (
+    (props.touched && !props.errors && props.values) ||
+    (!props.touched && !props.errors && props.values)
+  ) {
     return "Başarılı";
   }
   // else if (touched && !errors && !values) {
@@ -37,10 +46,16 @@ export const errorsChange = (props:IFormValidation) => {
   }
 };
 
-export const borderColorChange = (props:IFormValidation) => {
-  if ((props.touched && !props.errors && props.values) || (!props.touched && !props.errors && props.values)) {
+export const borderColorChange = (props: IFormValidation) => {
+  if (
+    (props.touched && !props.errors && props.values) ||
+    (!props.touched && !props.errors && props.values)
+  ) {
     return "border-green-500";
-  } else if ((props.touched && props.errors && !props.values) || (props.touched && props.errors && props.values)) {
+  } else if (
+    (props.touched && props.errors && !props.values) ||
+    (props.touched && props.errors && props.values)
+  ) {
     return "border-red-500";
   } else {
     return "border-gray-300";
