@@ -1,6 +1,6 @@
 import React from "react";
 
-export type DocumentType =
+export type DocumentTypes =
   | "Users"
   | "Customers"
   | "Cars"
