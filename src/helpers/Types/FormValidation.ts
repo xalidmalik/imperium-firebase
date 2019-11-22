@@ -5,6 +5,7 @@ export interface IFormValidation {
   title?: string;
   required?: boolean;
   base?: any;
+  options?: any;
 }
 export interface INavLinks {
   base: any;
