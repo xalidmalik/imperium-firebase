@@ -42,8 +42,6 @@ const App: React.FC = () => {
           className="fixed w-layout bg-gray-200 ml-20 flex h-full"
         >
           <Switch location={item}>
-            <Route exact path="/" component={Dashboard}></Route>
-            <Route exact path="/accounting" render={() => <h1>Muhasebe</h1>} />
             <Route exact path="/" component={Dashboard} />
             {/* <Route exact path="/customer" component={CustomerList} />
             <Route path="/customer/new" component={CustomerNew} />
@@ -53,8 +51,12 @@ const App: React.FC = () => {
             <Route path="/car/detail" component={CarDetail} />
             <Route exact path="/reservation" component={ReservationList} />
             <Route path="/reservation/new" component={ReservationNew} />
-            <Route path="/reservation/detail" component={ReservationDetail} />
-            <Route path="/settings/corporate" component={SettingCorporate} /> */}
+            <Route path="/reservation/detail" component={ReservationDetail} /> */}
+            <Route
+              exact
+              path="/reservation/new"
+              render={() => <h1>Muhasebe</h1>}
+            />
           </Switch>
         </animated.div>
       ))}
