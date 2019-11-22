@@ -1,5 +1,13 @@
+import { IRecord, ICheckRowVersion } from "./../helpers/Types/RecordInterface";
 import React from "react";
 import db from "../firebase/firebaseconfig";
-import { DocumentTypes } from "helpers/Database/DocumentTypes";
 
-const GetRecords = (type: DocumentTypes) => {};
+const GetRecords = (type: IRecord) => {};
+
+const GetSingleRecord = (props: IRecord) => {};
+
+const RemoveRecord = (props: IRecord) => {};
+
+const UpdateRecord = (props: IRecord) => {};
+
+const ChechRowVersion = (props: ICheckRowVersion) => {};
