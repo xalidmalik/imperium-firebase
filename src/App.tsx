@@ -7,7 +7,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import { GetRecords, IncrenmentRowVersion } from "./database";
 
 const App: React.FC = () => {
-  const { location } = History;
+  let context = useHistory<any>();
+  const { location } = context;
   const transition = useTransition(location, location => location.pathname, {
     from: {
       opacity: 1,
@@ -42,8 +43,9 @@ const App: React.FC = () => {
         >
           <Switch location={item}>
             <Route exact path="/" component={Dashboard}></Route>
-            {/* <Route exact path="/" component={Dashboard} />
-            <Route exact path="/customer" component={CustomerList} />
+            <Route exact path="/accounting" render={() => <h1>Muhasebe</h1>} />
+            <Route exact path="/" component={Dashboard} />
+            {/* <Route exact path="/customer" component={CustomerList} />
             <Route path="/customer/new" component={CustomerNew} />
             <Route path="/customer/detail" component={CustomerDetail} />
             <Route exact path="/car" component={CarList} />
@@ -52,7 +54,6 @@ const App: React.FC = () => {
             <Route exact path="/reservation" component={ReservationList} />
             <Route path="/reservation/new" component={ReservationNew} />
             <Route path="/reservation/detail" component={ReservationDetail} />
-            <Route exact path="/accounting" render={() => <h1>Muhasebe</h1>} />
             <Route path="/settings/corporate" component={SettingCorporate} /> */}
           </Switch>
         </animated.div>
