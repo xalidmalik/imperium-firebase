@@ -7,6 +7,8 @@
     "@types/node": "^12.12.11",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
+    "@types/react-router-dom": "^5.1.2",
+    "@types/yup": "^0.26.24",
     "firebase": "^7.5.0",
     "formik": "^2.0.5",
     "react": "^16.12.0",
@@ -15,7 +17,8 @@
     "react-scripts": "3.2.0",
     "react-spring": "^8.0.27",
     "sweetalert2": "^9.3.17",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts start",
