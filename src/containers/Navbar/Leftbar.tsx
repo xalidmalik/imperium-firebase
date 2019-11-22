@@ -1,5 +1,5 @@
 import React from "react";
-import MainLink from "components/NavElements/Elements/MainLink";
+import MainLink from "../../components/NavElements/Elements/MainLink";
 import { mainLink } from "helpers/Static/Links";
 
 const Leftbar = () => {
