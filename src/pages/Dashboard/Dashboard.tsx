@@ -1,5 +1,5 @@
 import React from "react";
-import { LeftLayout, RightLayout } from "components/Layouts/Layouts";
+import { LeftLayout, RightLayout } from "../../components/Layouts/Layouts";
 import { dashboardList } from "../../helpers/Static/Links";
 import SubLink from "../../components/NavElements/Elements/SubLink";
 // import DashboardCalendar from "../containers/Dashboard/DashboardCalendar";

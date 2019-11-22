@@ -1,6 +1,6 @@
 import React from "react";
 import { History } from "../../helpers/Static/History";
-import { IHeaderValidation } from "helpers/Types/HeaderValidation";
+import { IHeaderValidation } from "../../helpers/Types/HeaderValidation";
 import HeaderWrapper from "./HeaderWrapper";
 
 const Header = (props: IHeaderValidation) => {
@@ -22,7 +22,7 @@ const Header = (props: IHeaderValidation) => {
         </h2>
       )}
 
-      {props.lenght ? (
+      {props.length ? (
         <>
           <h4 className="text-base font-normal leading-none justify-between">
             Toplam : {props.length}
