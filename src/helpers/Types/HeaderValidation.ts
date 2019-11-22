@@ -2,7 +2,7 @@ export interface IHeaderValidation {
   titleFirst: string;
   titleSecond?: string;
   titleThird?: string;
-  linkFirst: any;
+  linkFirst?: any;
   linkSecond?: any;
   linkThird?: any;
   btnForm?: string;
