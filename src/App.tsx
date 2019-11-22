@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Leftbar from "./containers/Navbar/Leftbar";
 import { History } from "./helpers/Static/History";
+import { IncrenmentRowVersion, GetRecords } from "database";
 
 const App: React.FC = () => {
   const { location } = History;
@@ -21,6 +22,14 @@ const App: React.FC = () => {
     },
     config: { mass: 1, tension: 300, friction: 40 }
   });
+
+  useEffect(() => {
+    // IncrenmentRowVersion("RowVersion", "Car", "ayazarac");
+    GetRecords("Car", "ayazarac").then(va =>
+      console.log("Benim geriye donen degerim: ", va)
+    );
+  }, []);
+
   return (
     <>
       <Leftbar />
