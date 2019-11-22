@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Leftbar from "./containers/Navbar/Leftbar";
+import { History } from "./helpers/Static/History";
 
 const App: React.FC = () => {
-  const { location } = useHistory();
+  const { location } = History;
   const transition = useTransition(location, location => location.pathname, {
     from: {
       opacity: 1,

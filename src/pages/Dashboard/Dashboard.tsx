@@ -13,10 +13,10 @@ const Dashboard = () => {
         <SubLink base={dashboardList.overview} />
       </LeftLayout>
       <RightLayout>
-        <HeaderDashboard />
+        {/* <HeaderDashboard />
         <CardWrapper classes="w-card bg-white w-full rounded-lg shadow-base mb-4 overflow-hidden">
           <DashboardCalendar />
-        </CardWrapper>
+        </CardWrapper> */}
       </RightLayout>
     </>
   );
