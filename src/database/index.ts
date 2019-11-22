@@ -24,12 +24,12 @@ export const GetRecords = async (
           return d;
         })
       );
-    dbValue.then(data => secureStore.set(`${documentType}-${Code}`, data));
+    dbValue.then(data => secureStore.set(`${documentType}-List-${Code}`, data));
     return dbValue;
   } else {
-    const localData = secureStore.get(`${documentType}-${Code}`);
+    const localData = secureStore.get(`${documentType}-List-${Code}`);
     console.log("Localden dondu agaM");
-    return localData;
+    return localData || [];
   }
 };
 
@@ -42,20 +42,13 @@ const ChechRowVersion = async (code: any, documentType: DocumentTypes) => {
 
   let findedRowVersion = db.collection("RowVersion").doc(code);
   let data: any = await findedRowVersion.get().then(data => data.data());
-
-  let b = secureStore.get(`${documentType}-${code}`);
-
-  let localData: number = b[documentType];
+  let oldSecureStore = secureStore.get(`${"RowVersion"}-${code}`);
+  let localData: number = oldSecureStore[documentType];
   let serverData: number = data[documentType];
-
-  console.log("server : ", serverData);
-  console.log("local: ", localData);
-  secureStore.set(`${documentType}-${code}`, data[documentType]);
-
+  secureStore.set(`${"RowVersion"}-${code}`, data);
   if (localData != serverData) {
     return true;
   } else {
-    // secureStore.set(`${documentType}-${code}`, data[documentType]);
     return false;
   }
 };

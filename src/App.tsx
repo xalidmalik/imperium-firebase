@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
-import { Route, Switch, __RouterContext } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Leftbar from "./containers/Navbar/Leftbar";
-import { History } from "./helpers/Static/History";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import { GetRecords, IncrenmentRowVersion } from "./database";
 
 const App: React.FC = () => {
-  console.log("ad" + useContext(History.location));
-  const { location } = History;
+  let context = useHistory<any>();
+  const { location } = context;
   const transition = useTransition(location, location => location.pathname, {
     from: {
       opacity: 1,
@@ -24,12 +24,12 @@ const App: React.FC = () => {
     config: { mass: 1, tension: 300, friction: 40 }
   });
 
-  // useEffect(() => {
-  //   // IncrenmentRowVersion("RowVersion", "Car", "ayazarac");
-  //   GetRecords("Car", "ayazarac").then(va =>
-  //     console.log("Benim geriye donen degerim: ", va)
-  //   );
-  // }, []);
+  useEffect(() => {
+    // IncrenmentRowVersion("RowVersion", "Car", "ayazarac");
+    GetRecords("Car", "ayazarac").then(va =>
+      console.log("Benim geriye donen degerim: ", va)
+    );
+  }, []);
 
   return (
     <>
@@ -56,7 +56,6 @@ const App: React.FC = () => {
               path="/reservation/new"
               render={() => <h1>Muhasebe</h1>}
             />
-            {/* <Route path="/settings/corporate" component={SettingCorporate} /> */}
           </Switch>
         </animated.div>
       ))}
