@@ -31,6 +31,7 @@ const App: React.FC = () => {
           className="fixed w-layout bg-gray-200 ml-20 flex h-full"
         >
           <Switch location={item}>
+            <Route exact path="/" component={Leftbar}></Route>
             {/* <Route exact path="/" component={Dashboard} />
             <Route exact path="/customer" component={CustomerList} />
             <Route path="/customer/new" component={CustomerNew} />

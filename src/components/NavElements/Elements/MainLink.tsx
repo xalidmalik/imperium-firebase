@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { INavLinks } from "helpers/Types/FormValidation";
+import { INavLinks } from "../../../helpers/Types/FormValidation";
 
 const MainLink = (props: INavLinks) => {
   return (
