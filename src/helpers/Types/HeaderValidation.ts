@@ -8,6 +8,6 @@ export interface IHeaderValidation {
   btnForm?: string;
   btnTitle?: string;
   btnLink?: any;
-  onChange?: any;
-  lenght?: any;
+  OnChange?: any;
+  length?: any;
 }

@@ -3,7 +3,8 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Leftbar from "./containers/Navbar/Leftbar";
 import { History } from "./helpers/Static/History";
-import { IncrenmentRowVersion, GetRecords } from "./database";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import { GetRecords, IncrenmentRowVersion } from "./database";
 
 const App: React.FC = () => {
   const { location } = History;
@@ -24,10 +25,10 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-    // // IncrenmentRowVersion("RowVersion", "Car", "ayazarac");
-    // GetRecords("Car", "ayazarac").then((ma: any) =>
-    //   console.log("Benim geriye donen degerim: ", ma)
-    // );
+    // IncrenmentRowVersion("RowVersion", "Car", "ayazarac");
+    GetRecords("Car", "ayazarac").then(va =>
+      console.log("Benim geriye donen degerim: ", va)
+    );
   }, []);
 
   return (
@@ -40,7 +41,7 @@ const App: React.FC = () => {
           className="fixed w-layout bg-gray-200 ml-20 flex h-full"
         >
           <Switch location={item}>
-            <Route exact path="/" component={Leftbar}></Route>
+            <Route exact path="/" component={Dashboard}></Route>
             {/* <Route exact path="/" component={Dashboard} />
             <Route exact path="/customer" component={CustomerList} />
             <Route path="/customer/new" component={CustomerNew} />
