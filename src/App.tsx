@@ -3,6 +3,7 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Leftbar from "./containers/Navbar/Leftbar";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import CustomerList from "./pages/Customer/CustomerList";
 import { GetRecords, IncrenmentRowVersion } from "./database";
 
 const App: React.FC = () => {
@@ -42,8 +43,8 @@ const App: React.FC = () => {
         >
           <Switch location={item}>
             <Route exact path="/" component={Dashboard} />
-            {/* <Route exact path="/customer" component={CustomerList} />
-            <Route path="/customer/new" component={CustomerNew} />
+            <Route exact path="/customer" component={CustomerList} />
+            {/* <Route path="/customer/new" component={CustomerNew} />
             <Route path="/customer/detail" component={CustomerDetail} />
             <Route exact path="/car" component={CarList} />
             <Route path="/car/new" component={CarNew} />
