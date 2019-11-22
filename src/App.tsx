@@ -3,7 +3,7 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Leftbar from "./containers/Navbar/Leftbar";
 import { History } from "./helpers/Static/History";
-import { IncrenmentRowVersion, GetRecords } from "database";
+import { IncrenmentRowVersion, GetRecords } from "./database";
 
 const App: React.FC = () => {
   const { location } = History;
@@ -24,10 +24,10 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-    // IncrenmentRowVersion("RowVersion", "Car", "ayazarac");
-    GetRecords("Car", "ayazarac").then(va =>
-      console.log("Benim geriye donen degerim: ", va)
-    );
+    // // IncrenmentRowVersion("RowVersion", "Car", "ayazarac");
+    // GetRecords("Car", "ayazarac").then((ma: any) =>
+    //   console.log("Benim geriye donen degerim: ", ma)
+    // );
   }, []);
 
   return (
