@@ -4,8 +4,8 @@ import {
   borderColorChange,
   errorsChange,
   textColorChange
-} from "../../../helpers/Validations/FormValidations";
-import { IFormValidation } from "../../../helpers/Types/FormValidation";
+} from "helpers/Validations/FormValidations";
+import { IFormValidation } from "helpers/Types/FormValidation";
 
 const InputLayout: FC<IFormValidation> = props => {
   return (
