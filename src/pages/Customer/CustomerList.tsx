@@ -12,7 +12,7 @@ const CustomerList: React.FC = () => {
         <SubLink base={customerList.overview} />
       </LeftLayout>
       <RightLayout>
-        <CustomerTable header={customerListHeader} />
+        <CustomerTable  />
       </RightLayout>
     </>
   );

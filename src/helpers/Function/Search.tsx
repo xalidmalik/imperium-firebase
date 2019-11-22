@@ -1,6 +1,6 @@
 import { isEmpty, filter, includes } from "lodash";
 
-export const SearchCustomer = (customerArray, value) => {
+export const SearchCustomer = (customerArray: any, value: any) => {
   if (isEmpty(customerArray)) {
     return customerArray;
   }
@@ -15,13 +15,13 @@ export const SearchCustomer = (customerArray, value) => {
   });
 };
 
-export const ToLowerCase = value => {
+export const ToLowerCase = (value: any) => {
   if (!isEmpty(value)) {
     return value.toLowerCase();
   }
 };
 
-export const SearchReservation = (reservationArray, value) => {
+export const SearchReservation = (reservationArray: any, value: any) => {
   if (isEmpty(reservationArray)) {
     return reservationArray;
   }
@@ -42,7 +42,7 @@ export const SearchReservation = (reservationArray, value) => {
   });
 };
 
-export const SearchCar = (carArray, value) => {
+export const SearchCar = (carArray: any, value: any) => {
   if (isEmpty(carArray)) {
     return carArray;
   }
