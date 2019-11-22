@@ -17,6 +17,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-spring": "^8.0.27",
+    "secure-ls": "^1.2.5",
     "sweetalert2": "^9.3.17",
     "typescript": "^3.7.2",
     "yup": "^0.27.0"
