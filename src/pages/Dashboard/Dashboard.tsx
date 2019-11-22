@@ -13,7 +13,11 @@ const Dashboard = () => {
         <SubLink base={dashboardList.overview} />
       </LeftLayout>
       <RightLayout>
-        <Header />
+        <Header
+          titleFirst="Kontrol Paneli"
+          btnLink="/reservation/new"
+          btnTitle="Rezervasyon Yap"
+        />
         <CardWrapper classes="w-card bg-white w-full rounded-lg shadow-base mb-4 overflow-hidden">
           {/* <DashboardCalendar /> */}
         </CardWrapper>
