@@ -3,9 +3,10 @@ export interface IRecord {
   Id?: any;
   DocumentType: DocumentTypes;
   UpdateModel?: any;
+  Code: string;
 }
 
 export interface ICheckRowVersion {
-  Code: string;
+  Code: any;
   DocumentType: DocumentTypes;
 }
