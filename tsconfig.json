@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "strictBindCallApply": false,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

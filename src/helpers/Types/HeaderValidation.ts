@@ -7,4 +7,7 @@ export interface IHeaderValidation {
   linkThird?: any;
   btnForm?: string;
   btnTitle?: string;
+  btnLink?: any;
+  onChange?: any;
+  lenght?: any;
 }
