@@ -64,6 +64,8 @@ const CustomerTable: React.FC = () => {
         titleFirst="Müşteriler"
         OnChange={(value?: any) => {}}
         length="0"
+        btnLink="/customer/new"
+        btnTitle="Yeni Ekle"
       />
       <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
         <div className="w-full overflow-auto rounded-lg med-table-wrapper">

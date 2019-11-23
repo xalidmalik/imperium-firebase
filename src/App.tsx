@@ -4,6 +4,7 @@ import { useTransition, animated } from "react-spring";
 import Leftbar from "./containers/Navbar/Leftbar";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CustomerList from "./pages/Customer/CustomerList";
+import CustomerNew from "./pages/Customer/CustomerNew";
 import { GetRecords, IncrenmentRowVersion } from "./database";
 
 const App: React.FC = () => {
@@ -44,8 +45,8 @@ const App: React.FC = () => {
           <Switch location={item}>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/customer" component={CustomerList} />
-            {/* <Route path="/customer/new" component={CustomerNew} />
-            <Route path="/customer/detail" component={CustomerDetail} />
+            <Route path="/customer/new" component={CustomerNew} />
+            {/* <Route path="/customer/detail" component={CustomerDetail} />
             <Route exact path="/car" component={CarList} />
             <Route path="/car/new" component={CarNew} />
             <Route path="/car/detail" component={CarDetail} />
