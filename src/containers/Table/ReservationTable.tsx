@@ -7,6 +7,7 @@ import Header from "../../components/Header/Header";
 import { CardWrapper } from "../../components/Card/CardWrapper";
 import { isEmpty } from "lodash";
 import { SearchReservation } from "../../helpers/Function/Search";
+import { ReservationListHeader } from "../../helpers/Static/ListHeader";
 
 class ReservationTable extends PureComponent {
   state = {
@@ -57,7 +58,7 @@ class ReservationTable extends PureComponent {
             <table className="table-auto med-table">
               <thead>
                 <tr>
-                  {this.props.header.map((i, index) => {
+                  {ReservationListHeader.map((i, index) => {
                     return <th key={index}>{i.col}</th>;
                   })}
                 </tr>
