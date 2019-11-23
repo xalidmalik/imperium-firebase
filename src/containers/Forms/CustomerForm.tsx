@@ -7,17 +7,16 @@ import { customerSchema } from "../../helpers/Validations/Yup";
 import { gender } from "../../helpers/Static/Options";
 import { customer } from "../../helpers/Static/System";
 import Card from "../../components/Card/Card";
-import DropDown from "../../components/FormElements/Input/DropDown";
+import Dropdown from "../../components/FormElements/Input/Dropdown";
 import { Formik, Form } from "formik";
 import { AlertSwal } from "../../helpers/Alert/Alert";
 import { message } from "../../helpers/Static/System";
 import { History } from "../../helpers/Static/History";
-import {
-  drivingClasses,
-  bloodGroup
-} from "../../helpers/Static/TransferedData";
-
-import { city as NationalityCities } from "../../helpers/Static/Cities/Cities";
+// import {
+//   drivingClasses,
+//   bloodGroup
+// } from "../../helpers/Static/TransferedData";
+import { city as NationalityCities } from "../../helpers/Static/Cities";
 
 class CustomerForm extends Component {
   state = {
@@ -26,163 +25,163 @@ class CustomerForm extends Component {
     counties: []
   };
 
-  CustomerCreateControl = prevProps => {
-    const {
-      customerCreateIsLoading,
-      customerCreateResponse,
-      errorMessage,
-      isModal
-    } = this.props;
+  // CustomerCreateControl = prevProps => {
+  //   const {
+  //     customerCreateIsLoading,
+  //     customerCreateResponse,
+  //     errorMessage,
+  //     isModal
+  //   } = this.props;
 
-    if (
-      prevProps.customerCreateIsLoading &&
-      !customerCreateIsLoading &&
-      customerCreateResponse
-    ) {
-      AlertSwal(message.success.title, message.success.type);
-      if (isModal) {
-        this.props.IsCustomerCreate && this.props.IsCustomerCreate(true);
-      }
-    }
-  };
+  //   if (
+  //     prevProps.customerCreateIsLoading &&
+  //     !customerCreateIsLoading &&
+  //     customerCreateResponse
+  //   ) {
+  //     AlertSwal(message.success.title, message.success.type);
+  //     if (isModal) {
+  //       this.props.IsCustomerCreate && this.props.IsCustomerCreate(true);
+  //     }
+  //   }
+  // };
 
-  CustomerUpdateControl = prevProps => {
-    const { customerUpdateResponse, customerUpdateIsLoading } = this.props;
+  // CustomerUpdateControl = prevProps => {
+  //   const { customerUpdateResponse, customerUpdateIsLoading } = this.props;
 
-    if (
-      prevProps.customerUpdateIsLoading &&
-      !customerUpdateIsLoading &&
-      customerUpdateResponse
-    ) {
-      AlertSwal(message.success.title, message.success.type);
-    } else if (
-      prevProps.customerUpdateIsLoading &&
-      !customerUpdateIsLoading &&
-      !customerUpdateResponse
-    ) {
-      localStorage.setItem(
-        "SelectedCustomer",
-        JSON.stringify(this.props.activeCustomer)
-      );
-      AlertSwal(message.error.title, message.error.type);
-    }
-  };
+  //   if (
+  //     prevProps.customerUpdateIsLoading &&
+  //     !customerUpdateIsLoading &&
+  //     customerUpdateResponse
+  //   ) {
+  //     AlertSwal(message.success.title, message.success.type);
+  //   } else if (
+  //     prevProps.customerUpdateIsLoading &&
+  //     !customerUpdateIsLoading &&
+  //     !customerUpdateResponse
+  //   ) {
+  //     localStorage.setItem(
+  //       "SelectedCustomer",
+  //       JSON.stringify(this.props.activeCustomer)
+  //     );
+  //     AlertSwal(message.error.title, message.error.type);
+  //   }
+  // };
 
-  setCountries = prevProps => {
-    const { countryIsLoading, countries, activeCustomer } = this.props;
-    let temp = [];
-    if (prevProps.countryIsLoading && !countryIsLoading && countries) {
-      countries.map(country => {
-        temp.push({
-          value: country.Code,
-          label: country.Name
-        });
-      });
-      this.setState({
-        countries: temp
-      });
-    }
-  };
+  // setCountries = prevProps => {
+  //   const { countryIsLoading, countries, activeCustomer } = this.props;
+  //   let temp = [];
+  //   if (prevProps.countryIsLoading && !countryIsLoading && countries) {
+  //     countries.map(country => {
+  //       temp.push({
+  //         value: country.Code,
+  //         label: country.Name
+  //       });
+  //     });
+  //     this.setState({
+  //       countries: temp
+  //     });
+  //   }
+  // };
 
-  setCities = countryCode => {
-    const { cities, activeCustomer } = this.props;
-    if (cities) {
-      let temp = [];
-      cities
-        .filter(b => b.CountryCode == countryCode)
-        .map(city => {
-          temp.push({
-            value: city.Id,
-            label: city.Name
-          });
-        });
-      this.setState(
-        {
-          cities: temp,
-          counties: []
-        },
-        () => {
-          this.state.cities.length !== 0 &&
-            activeCustomer &&
-            this.setCounties(activeCustomer.CityId);
-        }
-      );
-    }
-  };
+  // setCities = countryCode => {
+  //   const { cities, activeCustomer } = this.props;
+  //   if (cities) {
+  //     let temp = [];
+  //     cities
+  //       .filter(b => b.CountryCode == countryCode)
+  //       .map(city => {
+  //         temp.push({
+  //           value: city.Id,
+  //           label: city.Name
+  //         });
+  //       });
+  //     this.setState(
+  //       {
+  //         cities: temp,
+  //         counties: []
+  //       },
+  //       () => {
+  //         this.state.cities.length !== 0 &&
+  //           activeCustomer &&
+  //           this.setCounties(activeCustomer.CityId);
+  //       }
+  //     );
+  //   }
+  // };
 
-  setCounties = cityId => {
-    const { counties, cities } = this.props;
-    if (counties && cities) {
-      let temp = [];
-      counties
-        .filter(b => b.CityId == cityId)
-        .map(county => {
-          temp.push({
-            value: county.Id,
-            label: county.Name
-          });
-        });
-      this.setState({
-        counties: temp
-      });
-    }
-  };
+  // setCounties = cityId => {
+  //   const { counties, cities } = this.props;
+  //   if (counties && cities) {
+  //     let temp = [];
+  //     counties
+  //       .filter(b => b.CityId == cityId)
+  //       .map(county => {
+  //         temp.push({
+  //           value: county.Id,
+  //           label: county.Name
+  //         });
+  //       });
+  //     this.setState({
+  //       counties: temp
+  //     });
+  //   }
+  // };
 
-  componentWillMount() {
-    this.props.fetchCountry();
-    this.props.fetchCity();
-    this.props.fetchCounty();
-  }
+  // componentWillMount() {
+  //   this.props.fetchCountry();
+  //   this.props.fetchCity();
+  //   this.props.fetchCounty();
+  // }
 
-  componentDidUpdate(prevProps) {
-    this.CustomerCreateControl(prevProps);
-    this.CustomerUpdateControl(prevProps);
-    this.setCountries(prevProps);
-  }
+  // componentDidUpdate(prevProps) {
+  //   this.CustomerCreateControl(prevProps);
+  //   this.CustomerUpdateControl(prevProps);
+  //   this.setCountries(prevProps);
+  // }
 
-  componentDidMount() {
-    console.log("Ek sofor", this.props.AdditionalCustomerId);
-    setTimeout(() => {
-      const { activeCustomer } = this.props;
-      if (activeCustomer) {
-        this.setCities(activeCustomer.CountryCode);
-      }
-    }, 770);
-  }
+  // componentDidMount() {
+  //   console.log("Ek sofor", this.props.AdditionalCustomerId);
+  //   setTimeout(() => {
+  //     const { activeCustomer } = this.props;
+  //     if (activeCustomer) {
+  //       this.setCities(activeCustomer.CountryCode);
+  //     }
+  //   }, 770);
+  // }
 
-  isObject = value => {
-    if (value && typeof value == "object") {
-      return true;
-    }
-    return false;
-  };
+  // isObject = value => {
+  //   if (value && typeof value == "object") {
+  //     return true;
+  //   }
+  //   return false;
+  // };
 
-  updateModelControl = values => {
-    values.BloodGroup = this.isObject(values.BloodGroup)
-      ? values.BloodGroup.value
-      : values.BloodGroup;
+  // updateModelControl = values => {
+  //   values.BloodGroup = this.isObject(values.BloodGroup)
+  //     ? values.BloodGroup.value
+  //     : values.BloodGroup;
 
-    values.CityId = this.isObject(values.CityId)
-      ? values.CityId.value
-      : values.CityId;
+  //   values.CityId = this.isObject(values.CityId)
+  //     ? values.CityId.value
+  //     : values.CityId;
 
-    values.CountryCode = this.isObject(values.CountryCode)
-      ? values.CountryCode.value
-      : values.CountryCode;
+  //   values.CountryCode = this.isObject(values.CountryCode)
+  //     ? values.CountryCode.value
+  //     : values.CountryCode;
 
-    values.CountyId = this.isObject(values.CountyId)
-      ? values.CountyId.value
-      : values.CountyId;
+  //   values.CountyId = this.isObject(values.CountyId)
+  //     ? values.CountyId.value
+  //     : values.CountyId;
 
-    values.DrivingClasses = this.isObject(values.DrivingClasses)
-      ? values.DrivingClasses.label
-      : values.DrivingClasses;
+  //   values.DrivingClasses = this.isObject(values.DrivingClasses)
+  //     ? values.DrivingClasses.label
+  //     : values.DrivingClasses;
 
-    values.Nationality = this.isObject(values.Nationality)
-      ? values.Nationality.label
-      : values.Nationality;
-    localStorage.setItem("SelectedCustomer", JSON.stringify(values));
-  };
+  //   values.Nationality = this.isObject(values.Nationality)
+  //     ? values.Nationality.label
+  //     : values.Nationality;
+  //   localStorage.setItem("SelectedCustomer", JSON.stringify(values));
+  // };
 
   render() {
     return (
@@ -277,7 +276,7 @@ class CustomerForm extends Component {
                 errors={errors.BirthOfDateTime}
                 values={values.BirthOfDateTime}
               />
-              <DropDown
+              <Dropdown
                 base={defaultForm.Nationality}
                 touched={touched.Nationality}
                 errors={errors.Nationality}
@@ -285,7 +284,7 @@ class CustomerForm extends Component {
                 options={NationalityCities}
                 onChange={setFieldValue}
               />
-              <DropDown
+              <Dropdown
                 base={defaultForm.BloodGroup}
                 touched={touched.BloodGroup}
                 errors={errors.BloodGroup}
@@ -356,7 +355,7 @@ class CustomerForm extends Component {
                 values={values.Profession}
               />
 
-              <DropDown
+              <Dropdown
                 isLoading={this.props.countryIsLoading}
                 base={defaultForm.CountryCode}
                 touched={touched.CountryCode}
@@ -366,7 +365,7 @@ class CustomerForm extends Component {
                 onChange={setFieldValue}
                 selectedValue={value => this.setCities(value.value)}
               />
-              <DropDown
+              <Dropdown
                 isLoading={this.props.cityIsLoading}
                 base={defaultForm.CityId}
                 touched={touched.CityId}
@@ -377,7 +376,7 @@ class CustomerForm extends Component {
                 selectedValue={value => this.setCounties(value.value)}
                 loadingMessage="Yükleniyor..."
               />
-              <DropDown
+              <Dropdown
                 isLoading={this.props.countyIsLoading}
                 base={defaultForm.CountyId}
                 touched={touched.CountyId}
@@ -398,7 +397,7 @@ class CustomerForm extends Component {
             </Card>
 
             <Card base={customer.driveLicense}>
-              <DropDown
+              <Dropdown
                 isLoading={this.props.countyIsLoading}
                 base={defaultForm.DrivingClasses}
                 touched={touched.DrivingClasses}
