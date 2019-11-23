@@ -289,7 +289,7 @@ class CustomerForm extends Component {
                 touched={touched.BloodGroup}
                 errors={errors.BloodGroup}
                 values={values.BloodGroup}
-                options={bloodGroup}
+                // options={bloodGroup}
                 onChange={setFieldValue}
               />
 
