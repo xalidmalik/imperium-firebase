@@ -4,7 +4,7 @@ import { LeftLayout, RightLayout } from "../../components/Layouts/Layouts";
 // import CustomerOverview from "../../containers/Details/CustomerOverview";
 import SubLink from "../../components/NavElements/Elements/SubLink";
 import { customerDetail } from "../../helpers/Static/Links";
-import CustomerForm from "../../containers/Forms/CustomerForm";
+// import CustomerForm from "../../containers/Forms/CustomerForm";
 import Header from "../../components/Header/Header";
 import moment from "moment";
 
