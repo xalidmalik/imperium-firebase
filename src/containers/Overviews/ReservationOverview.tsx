@@ -7,7 +7,7 @@ import { defaultForm } from "../../helpers/Static/FormFields";
 
 class ReservationOverview extends Component {
   render() {
-    const { data } = this.props;
+    const { data }: any = this.props;
     console.log("dawd", data);
     return (
       <>

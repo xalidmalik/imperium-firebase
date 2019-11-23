@@ -7,7 +7,7 @@ import { carForm } from "../../helpers/Static/FormFields";
 
 export class CarOverview extends Component {
   render() {
-    const { data } = this.props;
+    const { data }: any = this.props;
     return (
       console.log(data),
       (

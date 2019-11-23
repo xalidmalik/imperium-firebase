@@ -9,7 +9,7 @@ import Timeline, {
 import moment from "moment";
 import "moment/locale/tr";
 import Img from "react-image";
-import { ImageUrl } from "../../helpers/Static/Extensions";
+// import { ImageUrl } from "../../helpers/Static/Extensions";
 import { Link } from "react-router-dom";
 
 // import LoadingOverlay from "react-loading-overlay";
@@ -35,7 +35,7 @@ class Calendar extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchDasboardCalendar();
+    // this.props.fetchDasboardCalendar();
   }
 
   //   componentDidUpdate(prevProps) {
@@ -72,7 +72,7 @@ class Calendar extends Component {
         <div
           className={`rounded mr-4 w-28 min-w-28 flex items-center justify-center text-white text-xl`}
         >
-          <Img src={ImageUrl(group.visualId)} />
+          <Img  />
         </div>
         <div className="block">
           <span className="flex leading-none text-sm">{group.brandName}</span>
@@ -129,7 +129,6 @@ class Calendar extends Component {
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
-            height: "40%",
             backgroundColor: "#1a202c",
             lineHeight: "100%",
             borderTopLeftRadius: "0.5rem",
@@ -160,9 +159,9 @@ class Calendar extends Component {
   };
 
   render() {
-    if (!this.props.dashboardCalendar) {
-      return <div></div>;
-    }
+    // if (!this.props.dashboardCalendar) {
+    //   return <div></div>;
+    // }
 
     return (
       // <LoadingOverlay
@@ -180,7 +179,7 @@ class Calendar extends Component {
         showCursorLine
         canMove={false}
         canResize={false}
-        groups={this.props.dashboardCalendar.Groups}
+        // groups={this.props.dashboardCalendar.Groups}
         items={this.state.calendarItems}
         defaultTimeStart={moment().add(-12, "hour")}
         defaultTimeEnd={moment().add(12, "hour")}
