@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { LeftLayout, RightLayout } from "../../components/Layouts/Layouts";
 import CustomerOverview from "../../containers/Overviews/CustomerOverview";
@@ -7,8 +7,13 @@ import { customerDetail } from "../../helpers/Static/Links";
 // import CustomerForm from "../../containers/Forms/CustomerForm";
 import Header from "../../components/Header/Header";
 import moment from "moment";
+import SecureStore from "secure-ls";
 
 const CustomerDetail: React.FC = () => {
+  const sc = new SecureStore();
+
+  const [customers, setCustomers] = useState();
+
   //   componentWillMount() {
   //     const activeCustomer = JSON.parse(localStorage.getItem("SelectedCustomer"));
   //     if (activeCustomer) {
@@ -23,6 +28,23 @@ const CustomerDetail: React.FC = () => {
   //       this.setState({ customers: activeCustomer });
   //     }
   //   }
+
+  useEffect(() => {
+    const activeCustomer = sc.get("SelectedCustomer");
+    console.log("active cs :", activeCustomer);
+    if (activeCustomer) {
+      activeCustomer.Gender = activeCustomer.Gender.toString();
+      activeCustomer.BirthOfDateTime = moment(
+        activeCustomer.BirthOfDateTime
+      ).format("YYYY-MM-DD");
+      activeCustomer.LicenseYear = moment(activeCustomer.LicenseYear).format(
+        "YYYY-MM-DD"
+      );
+      setCustomers(activeCustomer);
+    }
+  }, []);
+
+  if (!customers) return null;
 
   return (
     <>
@@ -39,7 +61,7 @@ const CustomerDetail: React.FC = () => {
             render={() => (
               <>
                 <Header titleFirst="dwa" />
-                <CustomerOverview />
+                <CustomerOverview data={customers} />
               </>
             )}
           />

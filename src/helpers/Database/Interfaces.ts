@@ -24,12 +24,17 @@ export interface IUser {
   Profession?: string;
   BloodGroup: string;
   Code: string;
+  NameOfFather?: string;
+  NameOfMother?: string;
+  WorkPlace?: string;
+  WorkPhone?: string;
+  DrivingClasses: string;
 }
 
 export class UserModel {
   Address: string = "";
   BirthOfDateTime: string = "";
-  BloodGroup: string = "Erkek";
+  BloodGroup: string = "";
   City?: string = "";
   Country?: string = "";
   County?: string = "";

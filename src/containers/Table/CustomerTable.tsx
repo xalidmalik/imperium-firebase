@@ -13,10 +13,11 @@ import { customerListHeader } from "../../helpers//Static/ListHeader";
 import { GetRecords } from "../../database/";
 import { IUser } from "src/helpers/Database/Interfaces";
 import { HeaderCustomerList } from "src/helpers/Static/Headers";
+import SecureStore from "secure-ls";
 
 const CustomerTable: React.FC = () => {
   const [customers, setCustomers] = useState<IUser[]>(new Array<IUser>());
-
+  const sc = new SecureStore();
   useEffect(() => {
     getAllRecords();
   }, []);
@@ -96,10 +97,7 @@ const CustomerTable: React.FC = () => {
                     className={`border-gray-300 border-b hover:border-med-500 hover:bg-gray-100 cursor-pointer`}
                     key={numb}
                     onDoubleClick={() => {
-                      // localStorage.setItem(
-                      //   "SelectedCustomer",
-                      //   JSON.stringify(i)
-                      // );
+                      sc.set("SelectedCustomer", i);
                       History.push("/customer/detail");
                     }}
                   >
@@ -135,10 +133,7 @@ const CustomerTable: React.FC = () => {
                         <Link
                           className="w-12 h-12 text-gray-600 block rounded-lg hover:text-orange-400 mr-2"
                           onClick={() => {
-                            // localStorage.setItem(
-                            //   "SelectedCustomer",
-                            //   JSON.stringify(i)
-                            // );
+                            sc.set("SelectedCustomer", i);
                           }}
                           to={{
                             pathname: "/customer/detail",
