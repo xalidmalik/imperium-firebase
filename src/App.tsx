@@ -46,8 +46,9 @@ const App: React.FC = () => {
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/customer" component={CustomerList} />
             <Route path="/customer/new" component={CustomerNew} />
-            {/* <Route path="/customer/detail" component={CustomerDetail} />
             <Route exact path="/car" component={CarList} />
+            {/* <Route path="/customer/detail" component={CustomerDetail} />
+           
             <Route path="/car/new" component={CarNew} />
             <Route path="/car/detail" component={CarDetail} />
             <Route exact path="/reservation" component={ReservationList} />

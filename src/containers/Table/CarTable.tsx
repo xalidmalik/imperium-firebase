@@ -10,10 +10,18 @@ import { AlertSwalDelete, AlertSwal } from "../../helpers/Alert/Alert";
 import { isEmpty } from "lodash";
 import { SearchCar } from "../../helpers/Function/Search";
 import { carListHeader } from "../../helpers/Static/ListHeader";
-
+import { GetRecords } from "../../database";
 
 const CarTable: React.FC = () => {
-  const [cars, setCars] = useState([]);
+  const [cars, setCars] = useState<any>([]);
+
+  useEffect(() => {
+    getAllCars();
+  }, []);
+
+  const getAllCars = () => {
+    GetRecords("Car", "ayazarac").then(data => setCars(data));
+  };
 
   const removeCar = carId => {
     AlertSwalDelete(result => {
@@ -30,13 +38,9 @@ const CarTable: React.FC = () => {
         OnChange={value => {
           let bulunan = SearchCar(cars, value);
           if (isEmpty(bulunan) || !value) {
-            this.setState({
-              cars: this.props.cars
-            });
+            getAllCars();
           } else {
-            this.setState({
-              cars: bulunan
-            });
+            setCars(bulunan);
           }
         }}
         length={cars.length}
@@ -67,7 +71,7 @@ const CarTable: React.FC = () => {
                       <div
                         className={`rounded mr-4 w-40 min-w-40 flex items-center justify-center text-white text-xl`}
                       >
-                        <Img src={ImageUrl(i.VisualId)} />
+                        <Img src={i.ImageUrl} />
                       </div>
                       <div className="block">
                         <span className="flex leading-none">{i.BrandName}</span>
@@ -77,8 +81,8 @@ const CarTable: React.FC = () => {
                       </div>
                     </td>
                     <td>{i.Km}</td>
-                    <td>{StringGearType(i.GearType.toString())}</td>
-                    <td>{StringFuelType(i.FuelType.toString())}</td>
+                    <td>{i.GearType}</td>
+                    <td>{i.FuelType}</td>
                     <td>{i.Maintenance ? "Bakımda " : "Aktif"}</td>
                     <td className="font-bold">
                       {i.Price} <span>&#8378;</span>
@@ -105,7 +109,7 @@ const CarTable: React.FC = () => {
                           </span>
                         </Link>
                         <button
-                          onClick={() => this.removeCar(i.Id)}
+                          onClick={() => removeCar(i.Id)}
                           className="w-12 h-12 text-red-400 block rounded-lg hover:text-red-500"
                         >
                           <span className="w-12 h-12 block my-auto p-3">
