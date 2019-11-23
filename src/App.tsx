@@ -3,8 +3,15 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Leftbar from "./containers/Navbar/Leftbar";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import CustomerList from "./pages/Customer/CustomerList";
 import CustomerNew from "./pages/Customer/CustomerNew";
+import CustomerList from "./pages/Customer/CustomerList";
+import CustomerDetail from "./pages/Customer/CustomerDetail";
+import CarList from "./pages/Car/CarList";
+import CarNew from "./pages/Car/CarNew";
+import CarDetail from "./pages/Car/CarDetail";
+import ReservationList from "./pages/Reservation/ReservationList";
+import ReservationNew from "./pages/Reservation/ReservationNew";
+import ReservationDetail from "./pages/Reservation/ReservationDetail";
 import { GetRecords, IncrenmentRowVersion } from "./database";
 
 const App: React.FC = () => {
@@ -47,13 +54,12 @@ const App: React.FC = () => {
             <Route exact path="/customer" component={CustomerList} />
             <Route path="/customer/new" component={CustomerNew} />
             <Route exact path="/car" component={CarList} />
-            {/* <Route path="/customer/detail" component={CustomerDetail} />
-           
+            <Route path="/customer/detail" component={CustomerDetail} />
             <Route path="/car/new" component={CarNew} />
             <Route path="/car/detail" component={CarDetail} />
             <Route exact path="/reservation" component={ReservationList} />
             <Route path="/reservation/new" component={ReservationNew} />
-            <Route path="/reservation/detail" component={ReservationDetail} /> */}
+            <Route path="/reservation/detail" component={ReservationDetail} />
             <Route
               exact
               path="/reservation/new"
