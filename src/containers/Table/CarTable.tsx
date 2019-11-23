@@ -8,15 +8,12 @@ import Header from "../../components/Header/Header";
 import { CardWrapper } from "../../components/Card/CardWrapper";
 import { AlertSwalDelete, AlertSwal } from "../../helpers/Alert/Alert";
 import { isEmpty } from "lodash";
-import { SearchCar } from "../../helpers/Search";
-
-const declare module react-image
+import { SearchCar } from "../../helpers/Function/Search";
 
 class CarTable extends React.Component {
   state = {
     cars: null
   };
-  
 
   //   componentDidMount() {
   //     this.props.fetchCarList();
