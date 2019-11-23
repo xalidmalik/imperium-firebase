@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Fields from "../../components/FormElements/Input/Fields";
 import Checkbox from "../../components/FormElements/Input/Checkbox";
 import Radiobox from "../../components/FormElements/Input/Radiobox";
-import DropDown from "../../components/FormElements/Input/DropDown";
+// import DropDown from "../../components/FormElements/Input/DropDown";
 import { reservationForm } from "../../helpers/Static/FormFields";
 import { reservation } from "../../helpers/Static/System";
 import Card from "../../components/Card/Card";
@@ -179,7 +179,7 @@ class ReservationForm extends Component {
   //   };
 
   render() {
-    const selectedCar = JSON.parse(localStorage.getItem("SelectedReservation"));
+    // const selectedCar = JSON.parse(localStorage.getItem("SelectedReservation"));
 
     return (
       <>

@@ -22,45 +22,46 @@ class LoginData extends Component {
 
   render() {
     return (
-    //   <Formik
-    //     initialValues={{
-    //       DepartmentCode: "",
-    //       Username: "",
-    //       Password: ""
-    //     }}
-    //     validationSchema={signSchema}
-    //     onSubmit={(values, { setSubmitting }) => {
-    //       localStorage.setItem("departmentcode", values.DepartmentCode);
-    //       this.props.fetchToken(values.Username, values.Password);
-    //     }}
-    //   >
-    //     {/* {({ errors, touched, values, handleSubmit, isSubmitting }) => (
-    //       <Form>
-    //         <Fields
-    //           base={signForm.DepartmentCode}
-    //           touched={touched.DepartmentCode}
-    //           errors={errors.DepartmentCode}
-    //         />
-    //         <Fields
-    //           base={signForm.Username}
-    //           touched={touched.Username}
-    //           errors={errors.Username}
-    //         />
-    //         <Fields
-    //           base={signForm.Password}
-    //           touched={touched.Password}
-    //           errors={errors.Password}
-    //         />
+      <> </>
+      //   <Formik
+      //     initialValues={{
+      //       DepartmentCode: "",
+      //       Username: "",
+      //       Password: ""
+      //     }}
+      //     validationSchema={signSchema}
+      //     onSubmit={(values, { setSubmitting }) => {
+      //       localStorage.setItem("departmentcode", values.DepartmentCode);
+      //       this.props.fetchToken(values.Username, values.Password);
+      //     }}
+      //   >
+      //     {/* {({ errors, touched, values, handleSubmit, isSubmitting }) => (
+      //       <Form>
+      //         <Fields
+      //           base={signForm.DepartmentCode}
+      //           touched={touched.DepartmentCode}
+      //           errors={errors.DepartmentCode}
+      //         />
+      //         <Fields
+      //           base={signForm.Username}
+      //           touched={touched.Username}
+      //           errors={errors.Username}
+      //         />
+      //         <Fields
+      //           base={signForm.Password}
+      //           touched={touched.Password}
+      //           errors={errors.Password}
+      //         />
 
-    //         <button
-    //           type="submit"
-    //           className="px-6 py-4 mt-20 w-full bg-orange-400 rounded shadow-base"
-    //         >
-    //           Giriş Yap
-    //         </button>
-    //       </Form>
-    //     )} */}
-    //   </Formik>
+      //         <button
+      //           type="submit"
+      //           className="px-6 py-4 mt-20 w-full bg-orange-400 rounded shadow-base"
+      //         >
+      //           Giriş Yap
+      //         </button>
+      //       </Form>
+      //     )} */}
+      //   </Formik>
     );
   }
 }
