@@ -81,6 +81,11 @@ export const fuelTypeList = [
   { value: "1", label: "Dizel" }
 ];
 
+export const GearTypeList = [
+  { value: "0", label: "Otomatik" },
+  { value: "1", label: "Manuel" }
+];
+
 export const bloodGroup = [
   { value: "0", label: "AB Rh+" },
   { value: "1", label: "AB Rh-" },
