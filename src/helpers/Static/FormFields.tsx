@@ -153,11 +153,11 @@ export const defaultForm = {
       /\d/
     ]
   },
-  EMail: {
+  Email: {
     title: "Email Adresi",
     placeholder: "Email adresi giriniz",
     type: "text",
-    for: "EMail",
+    for: "Email",
     required: false
   },
   Profession: {

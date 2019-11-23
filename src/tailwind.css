@@ -1,0 +1,325 @@
+@tailwind base;
+
+@tailwind components;
+/* -------------Layout Start------------- */
+body {
+  @apply bg-gray-200 font-base antialiased p-0;
+}
+
+.w-right {
+  height: calc(100%);
+}
+.w-right-modal {
+  width: calc(100% - 15rem);
+  height: calc(100%);
+}
+
+/* -------------Table Start------------ */
+.w-card-table {
+  height: calc(100vh - 7rem);
+}
+.med-table {
+  @apply w-full border-collapse;
+}
+
+.med-table thead tr th {
+  @apply text-left sticky top-0 bg-white h-16 shadow-table z-40;
+}
+.med-table th,
+.med-table td {
+  @apply px-4 py-4;
+}
+/* .med-table tbody tr {
+  @apply border-b border-gray-200;
+} */
+.med-table tbody tr:nth-of-type(even) {
+  @apply bg-gray-100;
+}
+/* .med-table tbody tr:last-of-type {
+  @apply rounded-b-lg border-none;
+} */
+/* .med-table tbody tr:hover {
+  @apply bg-gray-100 border-med-500 cursor-pointer;
+} */
+/* -------------Checkbox Start------------ */
+
+.med-checkbox-type {
+  display: none;
+}
+
+.med-checkbox-type:checked ~ .med-checkbox .med-checkbox-span {
+  @apply bg-green-500;
+}
+.med-checkbox-type:checked ~ .med-checkbox {
+  @apply bg-white border-green-500 shadow-base;
+}
+.med-checkbox-type:checked ~ .med-checkbox span {
+  @apply text-gray-900;
+}
+/* -------------Radio Start------------ */
+
+.med-radio-type {
+  display: none;
+}
+
+.med-radio-type:checked ~ .med-radio .med-radio-span {
+  @apply bg-green-500;
+}
+.med-radio-type:checked ~ .med-radio {
+  @apply bg-white border-green-500 shadow-base;
+}
+
+.med-radio-type:checked ~ .med-radio span {
+  @apply text-gray-900;
+}
+/* -------------Radio Start Color------------ */
+
+.med-radio-color {
+  display: none;
+}
+
+.med-radio-color:checked ~ .med-radio-colors {
+  @apply opacity-100 text-white;
+}
+
+.med__control {
+  @apply border-gray-300 min-h-full max-h-full rounded-lg !important;
+}
+
+.med__menu,
+.med__menu-list,
+.med__option {
+  /* @apply z-50 absolute bottom-0 h-4 flex !important; */
+}
+
+.med__control--is-focused {
+  @apply border-transparent shadow-none !important;
+}
+.med__value-container {
+  @apply px-4 !important;
+}
+.med__placeholder {
+  @apply text-gray-500 !important;
+}
+/* Button Style-------------- */
+
+.btn-style-1 {
+  @apply px-8 py-2 rounded bg-orange-400 text-white font-bold shadow-base;
+}
+.btn-style-1:hover {
+  @apply bg-orange-500;
+}
+
+/* Webkit Scroll------------------- */
+
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-300;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-orange-400;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-orange-500;
+}
+
+.med-menu__menu {
+  @apply z-30 !important;
+}
+
+/* swal ----------------------------- */
+.swal-container {
+  background-color: rgba(26, 32, 44, 0.75) !important;
+}
+
+/* Custommm ----------------------------- */
+.top-16 {
+  top: 4rem;
+}
+
+/* Calendar---------------------------------- */
+
+.react-calendar-timeline * {
+  box-sizing: border-box;
+}
+
+.react-calendar-timeline .rct-outer {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.react-calendar-timeline .rct-scroll {
+  display: inline-block;
+  white-space: normal;
+  vertical-align: top;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -ms-touch-action: none;
+  touch-action: none;
+}
+
+.react-calendar-timeline .rct-item:hover {
+  z-index: 88;
+}
+
+.react-calendar-timeline .rct-item .rct-item-content {
+  position: sticky;
+  position: -webkit-sticky;
+  left: 0px;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 2px;
+  padding: 0 6px;
+  height: 100%;
+}
+
+.react-calendar-timeline .rct-sidebar {
+  overflow: hidden;
+  white-space: normal;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  box-sizing: border-box;
+  @apply border-r border-gray-300;
+}
+.react-calendar-timeline .rct-sidebar.rct-sidebar-right {
+  border-right: 0;
+  @apply border-l border-gray-300;
+}
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row {
+  padding: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  margin: 0;
+  @apply border-b border-gray-300 flex items-center relative;
+}
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row.rct-sidebar-row-odd {
+  @apply bg-gray-100;
+}
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row.rct-sidebar-row-even {
+  background: transparent;
+}
+.rct-sidebar-row:last-of-type {
+  @apply border-transparent !important;
+}
+
+.react-calendar-timeline .rct-vertical-lines .rct-vl {
+  position: absolute;
+  z-index: 30;
+  @apply border-l border-gray-300;
+}
+.react-calendar-timeline .rct-vertical-lines .rct-vl.rct-vl-first {
+  border-left-width: 2px;
+}
+.react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-6,
+.react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-0 {
+  @apply bg-gray-200 opacity-50;
+}
+
+.react-calendar-timeline .rct-horizontal-lines {
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-even,
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-odd {
+  box-sizing: border-box;
+  z-index: 40;
+  @apply border-b border-gray-300;
+}
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-odd {
+  @apply bg-gray-100;
+}
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-even {
+  background: transparent;
+}
+
+.react-calendar-timeline .rct-cursor-line {
+  position: absolute;
+  width: 2px;
+  background: #2196f3;
+  z-index: 51;
+}
+
+.react-calendar-timeline .rct-dateHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  cursor: pointer;
+  font-size: 14px;
+  @apply bg-white border-l border-gray-300;
+}
+
+.react-calendar-timeline .rct-dateHeader-primary {
+  background-color: initial;
+  color: #fff;
+  @apply border-l border-r border-gray-800;
+}
+
+.react-calendar-timeline .rct-header-root {
+  @apply border-b border-gray-300;
+}
+
+.react-calendar-timeline .rct-calendar-header {
+  /* border: 1px solid #bbb; */
+}
+
+.cl-up {
+  height: 2.5rem !important;
+}
+.cl-down {
+  height: 2.5rem !important;
+}
+
+/* Datepıcker--------------- */
+
+.DayPicker__withBorder,
+.react-datepicker {
+  @apply rounded-l-lg shadow-base border border-gray-300 font-base antialiased !important;
+}
+
+.react-datepicker__header {
+  @apply bg-gray-200 border-none rounded-tr-none pt-4 px-4 !important;
+}
+.react-datepicker__time-container {
+  @apply border-gray-200 !important;
+}
+.react-datepicker__navigation--next {
+  @apply mr-4 !important;
+}
+.CalendarMonthGrid {
+  @apply bg-transparent !important;
+}
+.react-datepicker__day,
+.react-datepicker__day-name {
+  @apply m-0 p-2 w-13 !important;
+}
+.react-datepicker__day--selected,
+.react-datepicker__day--in-range,
+.react-datepicker__time-list-item--selected {
+  @apply rounded-none bg-orange-400 !important;
+}
+.react-datepicker__day--range-start {
+  @apply rounded-l-lg bg-orange-400 !important;
+}
+.react-datepicker__day--range-end {
+  @apply rounded-r-lg bg-orange-400 !important;
+}
+
+.react-datepicker__time-list-item {
+  @apply border-b border-gray-200 px-4 py-2 items-center justify-center flex !important;
+}
+
+.react-datepicker__month {
+  @apply mx-4 my-2 !important;
+}
+
+@tailwind utilities;

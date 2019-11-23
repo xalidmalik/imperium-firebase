@@ -10,7 +10,7 @@ export const SearchCustomer = (customerArray: any, value: any) => {
       includes(ToLowerCase(o.Surname), value.toLowerCase()) ||
       includes(ToLowerCase(o.Tc), value.toLowerCase()) ||
       includes(ToLowerCase(o.FirstPhone), value.toLowerCase()) ||
-      includes(ToLowerCase(o.EMail), value.toLowerCase())
+      includes(ToLowerCase(o.Email), value.toLowerCase())
     );
   });
 };

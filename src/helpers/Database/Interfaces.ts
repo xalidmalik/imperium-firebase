@@ -9,7 +9,7 @@ export interface IUser {
   PassportSerialNumber: string;
   FirstPhone: string;
   SecondPhone: string;
-  EMail: string;
+  Email: string;
   Address: string;
   LicenseYear: string;
   SerialNumberOfDrivingLicense: string;

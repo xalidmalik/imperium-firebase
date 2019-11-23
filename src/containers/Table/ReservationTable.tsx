@@ -8,6 +8,10 @@ import { CardWrapper } from "../../components/Card/CardWrapper";
 import { isEmpty } from "lodash";
 import { SearchReservation } from "../../helpers/Function/Search";
 import { ReservationListHeader } from "../../helpers/Static/ListHeader";
+import {
+  HeaderReservationList,
+  HeaderCustomerList
+} from "src/helpers/Static/Headers";
 
 const ReservationTable: React.FC<any> = () => {
   const [reservations, setReservation] = useState<any>([]);
@@ -35,7 +39,9 @@ const ReservationTable: React.FC<any> = () => {
   return (
     <>
       <Header
-        titleFirst="Xezer reser"
+        titleFirst={HeaderReservationList.titleFirst}
+        btnLink={HeaderCustomerList.btnLink}
+        btnTitle={HeaderCustomerList.btnTitle}
         OnChange={value => {}}
         // length={this.state.reservations.length}
       />

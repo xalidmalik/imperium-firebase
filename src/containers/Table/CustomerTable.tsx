@@ -12,6 +12,7 @@ import { isEmpty } from "lodash";
 import { customerListHeader } from "../../helpers//Static/ListHeader";
 import { GetRecords } from "../../database/";
 import { IUser } from "src/helpers/Database/Interfaces";
+import { HeaderCustomerList } from "src/helpers/Static/Headers";
 
 const CustomerTable: React.FC = () => {
   const [customers, setCustomers] = useState<IUser[]>(new Array<IUser>());
@@ -65,7 +66,7 @@ const CustomerTable: React.FC = () => {
   return (
     <>
       <Header
-        titleFirst="Müşteriler"
+        titleFirst={HeaderCustomerList.titleFirst}
         OnChange={(value?: any) => {
           let searched = SearchCustomer(customers, value);
           if ((isEmpty(searched) && searched != []) || !value) {
@@ -74,9 +75,9 @@ const CustomerTable: React.FC = () => {
             setCustomers(searched);
           }
         }}
-        length="0"
-        btnLink="/customer/new"
-        btnTitle="Yeni Ekle"
+        length={customers.length}
+        btnLink={HeaderCustomerList.btnLink}
+        btnTitle={HeaderCustomerList.btnTitle}
       />
       <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
         <div className="w-full overflow-auto rounded-lg med-table-wrapper">
@@ -110,7 +111,7 @@ const CustomerTable: React.FC = () => {
                     </td>
                     <td>{i.Tc}</td>
                     <td>{i.FirstPhone}</td>
-                    <td>{i.EMail}</td>
+                    <td>{i.Email}</td>
                     <td
                       className={`font-bold ${
                         new Date().getFullYear() -

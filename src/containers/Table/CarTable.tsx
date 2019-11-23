@@ -11,6 +11,7 @@ import { isEmpty } from "lodash";
 import { SearchCar } from "../../helpers/Function/Search";
 import { carListHeader } from "../../helpers/Static/ListHeader";
 import { GetRecords } from "../../database";
+import { HeaderCarList } from "src/helpers/Static/Headers";
 
 const CarTable: React.FC = () => {
   const [cars, setCars] = useState<any>([]);
@@ -44,7 +45,9 @@ const CarTable: React.FC = () => {
           }
         }}
         length={cars.length}
-        titleFirst="Arabalar"
+        titleFirst={HeaderCarList.titleFirst}
+        btnLink={HeaderCarList.btnLink}
+        btnTitle={HeaderCarList.btnTitle}
       />
       <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
         <div className="w-full overflow-auto rounded-lg med-table-wrapper">

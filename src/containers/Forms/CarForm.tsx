@@ -13,7 +13,7 @@ import {
 import { car } from "../../helpers/Static/System";
 import Card from "../../components/Card/Card";
 import { Formik, Form } from "formik";
-import { AlertSwal } from "../../helpers/Alert/Alert";
+// import { AlertSwal } from "../../helpers/Alert/Alert";
 import { message } from "../../helpers/Static/System";
 import { History } from "../../helpers/Static/History";
 // import DropDown from "../../components/FormElements/Input/DropDown";

@@ -23,7 +23,7 @@ class ReservationOverview extends Component {
         </Card>
         <Card base={customer.contact}>
           <FieldOutput base={defaultForm.MobilePhone} data={data.MobilePhone} />
-          <FieldOutput base={defaultForm.Email} data={data.EMail} />
+          <FieldOutput base={defaultForm.Email} data={data.Email} />
 
           <CheckboxOutput
             base={defaultForm.CanSendSms}

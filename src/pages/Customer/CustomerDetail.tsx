@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { LeftLayout, RightLayout } from "../../components/Layouts/Layouts";
-// import CustomerOverview from "../../containers/Details/CustomerOverview";
+import CustomerOverview from "../../containers/Overviews/CustomerOverview";
 import SubLink from "../../components/NavElements/Elements/SubLink";
 import { customerDetail } from "../../helpers/Static/Links";
 // import CustomerForm from "../../containers/Forms/CustomerForm";
@@ -39,7 +39,7 @@ const CustomerDetail: React.FC = () => {
             render={() => (
               <>
                 <Header titleFirst="dwa" />
-                {/* <CustomerOverview data={customers} /> */}
+                <CustomerOverview />
               </>
             )}
           />
