@@ -16,7 +16,7 @@ const Dropdown: React.FC<any> = (props: any) => {
   // };
 
   const handleChange = (value: any) => {
-    props.onChange(props.base.for, value);
+    props.onChange(props.base.for, value.label);
     props.selectedValue && props.selectedValue(value);
   };
 

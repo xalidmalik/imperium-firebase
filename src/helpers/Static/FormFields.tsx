@@ -212,21 +212,21 @@ export const defaultForm = {
     placeholder: "İsim Giriniz",
     for: "SecondPhoneOwner"
   },
-  CountryCode: {
+  Country: {
     title: "Ülke",
     placeholder: "Ülke seçiniz",
-    for: "CountryCode"
+    for: "Country"
   },
-  CityId: {
+  City: {
     title: "İl",
     placeholder: "İl seçiniz",
-    for: "CityId"
+    for: "City"
   },
 
-  CountyId: {
+  County: {
     title: "İlçe",
     placeholder: "İlçe seçiniz",
-    for: "CountyId"
+    for: "County"
   }
 };
 export const carForm = {

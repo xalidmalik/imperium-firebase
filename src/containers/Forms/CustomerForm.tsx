@@ -17,6 +17,8 @@ import Header from "../../components/Header/Header";
 
 import { city as NationalityCities } from "../../helpers/Static/Cities";
 import { HeaderCustomerNew } from "src/helpers/Static/Headers";
+import { IUser, UserModel } from "src/helpers/Database/Interfaces";
+import { AddRecord } from "../../database/index";
 
 const CustomerForm: React.FC = () => {
   // CustomerCreateControl = prevProps => {
@@ -121,6 +123,11 @@ const CustomerForm: React.FC = () => {
   //   }
   // };
 
+  const CreateRecord = (values: IUser) => {
+    values.Code = "ayazarac";
+    AddRecord("Customer", "ayazarac", values);
+  };
+
   return (
     <>
       <Header
@@ -133,37 +140,12 @@ const CustomerForm: React.FC = () => {
       <Formik
         initialValues={
           // this.props.activeCustomer ||
-          {
-            Address: "",
-            BirthOfDateTime: "",
-            BloodGroup: "",
-            CityId: null,
-            CountryCode: null,
-            CountyId: null,
-            DrivingClasses: "",
-            Email: "",
-            FirstPhone: "",
-            Gender: "",
-            LicenseYear: "",
-            LocationSite: "",
-            Name: "",
-            NameOfFather: "",
-            NameOfMother: "",
-            Nationality: "",
-            PassportSerialNumber: "",
-            Profession: "",
-            SecondPhone: "",
-            SecondPhoneOwner: null,
-            SerialNumberOfDrivingLicense: "",
-            Surname: "",
-            Tc: "",
-            IsAdditionalDriver: true,
-            WorkPhone: "",
-            WorkPlace: ""
-          }
+          new UserModel()
         }
         validationSchema={customerSchema}
-        onSubmit={(values, { setSubmitting }) => {}}
+        onSubmit={(values, { setSubmitting }) => {
+          CreateRecord(values);
+        }}
       >
         {({
           errors,
@@ -290,29 +272,29 @@ const CustomerForm: React.FC = () => {
               />
 
               <Dropdown
-                base={defaultForm.CountryCode}
-                touched={touched.CountryCode}
-                errors={errors.CountryCode}
-                values={values.CountryCode}
+                base={defaultForm.Country}
+                touched={touched.Country}
+                errors={errors.Country}
+                values={values.Country}
                 options={[]}
                 onChange={setFieldValue}
                 selectedValue={value => {}}
               />
               <Dropdown
-                base={defaultForm.CityId}
-                touched={touched.CityId}
-                errors={errors.CityId}
-                values={values.CityId}
+                base={defaultForm.City}
+                touched={touched.City}
+                errors={errors.City}
+                values={values.City}
                 options={[]}
                 onChange={setFieldValue}
                 selectedValue={value => {}}
                 loadingMessage="Yükleniyor..."
               />
               <Dropdown
-                base={defaultForm.CountyId}
-                touched={touched.CountyId}
-                errors={errors.CountyId}
-                values={values.CountyId}
+                base={defaultForm.County}
+                touched={touched.County}
+                errors={errors.County}
+                values={values.County}
                 options={[]}
                 onChange={setFieldValue}
                 loadingMessage="Yükleniyor..."

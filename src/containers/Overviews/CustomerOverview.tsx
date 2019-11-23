@@ -4,6 +4,7 @@ import { customer } from "../../helpers/Static/System";
 import { defaultForm } from "../../helpers/Static/FormFields";
 import FieldOutput from "../../components/FormElements/Output/FieldOutput";
 import CheckboxOutput from "../../components/FormElements/Output/CheckboxOutput";
+import { IUser } from "../../helpers/Database/Interfaces";
 
 class CustomerOverview extends Component {
   render() {
@@ -38,13 +39,13 @@ class CustomerOverview extends Component {
             base={defaultForm.SecondPhoneOwner}
             data={data.SecondPhoneOwner}
           />
-          <FieldOutput base={defaultForm.Email} data={data.Email} />
+          <FieldOutput base={defaultForm.Email} data={data.EMail} />
           <FieldOutput base={defaultForm.WorkPhone} data={data.WorkPhone} />
           <FieldOutput base={defaultForm.WorkPlace} data={data.WorkPlace} />
           <FieldOutput base={defaultForm.Profession} data={data.Profession} />
-          <FieldOutput base={defaultForm.CountryCode} data={data.CountryCode} />
-          <FieldOutput base={defaultForm.CityId} data={data.CityId} />
-          <FieldOutput base={defaultForm.CountyId} data={data.CountyId} />
+          <FieldOutput base={defaultForm.Country} data={data.Country} />
+          <FieldOutput base={defaultForm.City} data={data.City} />
+          <FieldOutput base={defaultForm.County} data={data.County} />
           <FieldOutput base={defaultForm.Address} data={data.Address} />
         </Card>
         <Card base={customer.driveLicense}>

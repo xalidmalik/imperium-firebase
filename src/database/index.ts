@@ -4,6 +4,7 @@ import React from "react";
 import db from "../firebase/firebaseconfig";
 import ls from "secure-ls";
 import { async } from "q";
+import { type } from "os";
 
 export const GetRecords = async (
   documentType: DocumentTypes,
@@ -33,6 +34,21 @@ export const GetRecords = async (
   }
 };
 
+export const AddRecord = (
+  documentType: DocumentTypes,
+  code: any,
+  model: object
+) => {
+  console.log("giden model: ", model);
+  console.log("giden model type: ", typeof model);
+
+  return db
+    .collection(documentType)
+    .doc()
+    .set(Object.assign({}, model))
+    .then(() => IncrenmentRowVersion(documentType, code));
+};
+
 const RemoveRecord = (props: IRecord) => {};
 
 const UpdateRecord = (props: IRecord) => {};
@@ -54,19 +70,18 @@ const ChechRowVersion = async (code: any, documentType: DocumentTypes) => {
 };
 
 export const IncrenmentRowVersion = async (
-  documentType: DocumentTypes,
   increntmentData: DocumentTypes,
   code?: string
 ) => {
   let secureStore = new ls();
 
-  let findedRowVersion = db.collection(documentType).doc(code);
+  let findedRowVersion = db.collection("RowVersion").doc(code);
 
   let data: any = await findedRowVersion.get().then(data => data.data());
   data[increntmentData] = data[increntmentData] + 1;
 
   // Write Local Storage
-  secureStore.set(`${increntmentData}-${code}`, data);
+  // secureStore.set(`${increntmentData}-${code}`, data);
 
   // Write Db
   findedRowVersion.update(data);
