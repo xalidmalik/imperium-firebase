@@ -3,7 +3,7 @@ import InputLayout from "../Layouts/InputLayout";
 import Select from "react-select";
 import { borderColorChange } from "../../../helpers/Validations/FormValidations";
 
-const Dropdown: React.FC = (props: any) => {
+const Dropdown: React.FC<any> = (props: any) => {
   // const colourStyles = {
   //   control: (styles: any) => ({ ...styles, backgroundColor: "white" }),
   //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
