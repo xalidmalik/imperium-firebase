@@ -17,10 +17,14 @@ const CustomerTable: React.FC = () => {
   const [customers, setCustomers] = useState<IUser[]>(new Array<IUser>());
 
   useEffect(() => {
+    getAllRecords();
+  }, []);
+
+  const getAllRecords = () => {
     GetRecords("Customer", "ayazarac").then(value => {
       setCustomers(value);
     });
-  }, []);
+  };
 
   //   removeCustomer = customerId => {
   //     AlertSwalDelete(result => {
@@ -62,7 +66,14 @@ const CustomerTable: React.FC = () => {
     <>
       <Header
         titleFirst="Müşteriler"
-        OnChange={(value?: any) => {}}
+        OnChange={(value?: any) => {
+          let searched = SearchCustomer(customers, value);
+          if ((isEmpty(searched) && searched != []) || !value) {
+            getAllRecords();
+          } else {
+            setCustomers(searched);
+          }
+        }}
         length="0"
         btnLink="/customer/new"
         btnTitle="Yeni Ekle"
