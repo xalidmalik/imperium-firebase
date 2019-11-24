@@ -21,7 +21,6 @@ const CustomerDetail: React.FC = () => {
 
   useEffect(() => {
     const activeCustomer = sc.get("SelectedCustomer");
-    console.log("active cs :", activeCustomer);
     if (activeCustomer) {
       setCustomers(activeCustomer);
     }
