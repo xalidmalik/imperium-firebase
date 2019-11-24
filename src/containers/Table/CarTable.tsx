@@ -86,7 +86,7 @@ const CarTable: React.FC = () => {
                     <td>{i.Km}</td>
                     <td>{i.GearType}</td>
                     <td>{i.FuelType}</td>
-                    <td>{i.Maintenance ? "Bakımda " : "Aktif"}</td>
+                    <td>{i.isMaintenance ? "Bakımda " : "Aktif"}</td>
                     <td className="font-bold">
                       {i.Price} <span>&#8378;</span>
                     </td>

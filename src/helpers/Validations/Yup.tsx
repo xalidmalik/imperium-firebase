@@ -1,28 +1,28 @@
-import * as yup from "yup"; // for everything
+import * as yup from "yup";
 
 export const customerSchema = yup.object().shape({
   Name: yup.string().required("Bu alan zorunludur."),
   Surname: yup.string().required("Bu alan zorunludur."),
-  Tc: yup.string().required("Bu alan zorunludur."),
+  TCNumber: yup.string().required("Bu alan zorunludur."),
   Gender: yup.string().required("Bu alan zorunludur."),
-  BirthOfDateTime: yup
+  BirthDate: yup
     .date()
     .required("Bu alan zorunludur.")
     .min(new Date(1900, 1, 1), "Geçersiz tarih girdiniz")
     .max(new Date(), "Geçersiz tarih girdiniz"),
   FirstPhone: yup.string().required("Bu alan zorunludur"),
-  LicenseYear: yup
+  DrivingLicenseYear: yup
     .date()
     .required("Bu alan zorunludur.")
     .min(new Date(1900, 1, 1), "Geçersiz tarih girdiniz")
     .max(new Date(), "Geçersiz tarih girdiniz"),
-  SerialNumberOfDrivingLicense: yup.string().required("Bu alan zorunludur"),
+  DrivingLicenseNumber: yup.string().required("Bu alan zorunludur"),
   DrivingClasses: yup.string().required("Bu alan zorunludur")
 });
 
 export const carSchema = yup.object().shape({
-  BrandId: yup.string().required("Bu alan zorunludur."),
-  BrandModelId: yup.string().required("Bu alan zorunludur."),
+  BrandName: yup.string().required("Bu alan zorunludur."),
+  ModelName: yup.string().required("Bu alan zorunludur."),
   FuelType: yup.string().required("Bu alan zorunludur."),
   GearType: yup.string().required("Bu alan zorunludur."),
   Plate: yup.string().required("Bu alan zorunludur."),

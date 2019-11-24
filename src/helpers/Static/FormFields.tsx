@@ -39,7 +39,7 @@ export const defaultForm = {
   PassportNumber: {
     title: "Pasaport Numarası",
     placeholder: "Pasaport Numarası Giriniz",
-    type: "number",
+    type: "text",
     for: "PassportNumber"
   },
   Gender: {
@@ -212,9 +212,9 @@ export const defaultForm = {
   },
   DrivingLicenseNumber: {
     title: "Ehliyet Seri Numarası",
-    type: "number",
+    type: "text",
     required: true,
-    for: "DrivingLicenseNUmber",
+    for: "DrivingLicenseNumber",
     placeholder: "Seri Numarası Giriniz"
   },
   CanSendSms: {
