@@ -231,16 +231,16 @@ export const defaultForm = {
   }
 };
 export const carForm = {
-  BrandId: {
+  BrandName: {
     title: "Marka",
     placeholder: "Seçiniz",
-    for: "BrandId",
+    for: "BrandName",
     required: true
   },
-  BrandModelId: {
+  ModelName: {
     title: "Model",
     placeholder: "Seçiniz",
-    for: "BrandModelId",
+    for: "ModelName",
     required: true
   },
   Plate: {
@@ -257,17 +257,17 @@ export const carForm = {
     for: "CaseType"
   },
 
-  GearType: {
-    title: "Vites Tipi",
-    type: "radio",
-    for: "GearType",
-    required: true
-  },
-
   FuelType: {
     title: "Yakıt Tipi",
     type: "radio",
     for: "FuelType",
+    required: true
+  },
+
+  GearType: {
+    title: "Vites Tipi",
+    type: "radio",
+    for: "GearType",
     required: true
   },
 
@@ -284,9 +284,9 @@ export const carForm = {
     for: "EngineCapacity"
   },
 
-  NumberOfDoors: {
+  DoorsNumber: {
     title: "Kapı Sayısı",
-    for: "NumberOfDoors"
+    for: "DoorsNumber"
   },
 
   Price: {
@@ -296,36 +296,20 @@ export const carForm = {
     for: "Price",
     required: true
   },
-  MinDriverLicense: {
+  MinDriverLicenseYear: {
+    title: "Minimum Sürücü Yaşı",
+    placeholder: "Minimum Sürücü Yaşı Giriniz",
+    type: "text",
+    for: "MinDriverLicenseYear"
+  },
+
+  MinDrivingLicenseYear: {
     title: "Minimum Ehliyet Yaşı",
     placeholder: "Minimum Ehliyet Yaşı Giriniz",
     type: "text",
-    for: "MinDriverLicense"
+    for: "MinDrivingLicenseYear"
   },
 
-  Classes: {
-    title: "Sınıf",
-    type: "radio",
-    for: "Classes",
-    required: true
-  },
-
-  Year: {
-    title: "Üretim Yılı",
-    placeholder: "Üretim Yılını Giriniz",
-    type: "text",
-    for: "Year"
-  },
-  Maintenance: {
-    title: "Bakım",
-    type: "checkbox",
-    for: "Maintenance"
-  },
-  Crash: {
-    title: "Kaza Durumu",
-    type: "checkbox",
-    for: "Crash"
-  },
   Color: {
     title: "Renk",
     type: "radio",
@@ -335,6 +319,30 @@ export const carForm = {
     title: "Depozit",
     type: "number",
     for: "Deposit"
+  },
+
+  Classes: {
+    title: "Sınıf",
+    type: "radio",
+    for: "Classes",
+    required: true
+  },
+  Year: {
+    title: "Üretim Yılı",
+    placeholder: "Üretim Yılını Giriniz",
+    type: "text",
+    for: "Year"
+  },
+
+  isMaintenance: {
+    title: "Bakım",
+    type: "checkbox",
+    for: "isMaintenance"
+  },
+  isCrash: {
+    title: "Kaza Durumu",
+    type: "checkbox",
+    for: "isCrash"
   }
 };
 
