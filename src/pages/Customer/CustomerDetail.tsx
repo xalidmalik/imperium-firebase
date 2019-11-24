@@ -14,21 +14,6 @@ const CustomerDetail: React.FC = () => {
 
   const [customers, setCustomers] = useState();
 
-  //   componentWillMount() {
-  //     const activeCustomer = JSON.parse(localStorage.getItem("SelectedCustomer"));
-  //     if (activeCustomer) {
-  //       activeCustomer.Gender = activeCustomer.Gender.toString();
-  //       activeCustomer.BirthOfDateTime = moment(
-  //         activeCustomer.BirthOfDateTime
-  //       ).format("YYYY-MM-DD");
-  //       activeCustomer.LicenseYear = moment(activeCustomer.LicenseYear).format(
-  //         "YYYY-MM-DD"
-  //       );
-
-  //       this.setState({ customers: activeCustomer });
-  //     }
-  //   }
-
   useEffect(() => {
     const activeCustomer = sc.get("SelectedCustomer");
     console.log("active cs :", activeCustomer);
@@ -53,7 +38,7 @@ const CustomerDetail: React.FC = () => {
             path={customerDetail.overview.link}
             render={() => (
               <>
-                <Header titleFirst="dwa" />
+                <Header titleFirst="Overview" />
                 <CustomerOverview data={customers} />
               </>
             )}
@@ -70,8 +55,6 @@ const CustomerDetail: React.FC = () => {
           />
         </Switch>
       </RightLayout>
-
-      {/* <h1>detaylar</h1> */}
     </>
   );
 };

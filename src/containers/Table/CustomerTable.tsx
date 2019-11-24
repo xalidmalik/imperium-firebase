@@ -16,7 +16,9 @@ import { HeaderCustomerList } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
 
 const CustomerTable: React.FC = () => {
-  const [customers, setCustomers] = useState<ICustomer[]>(new Array<ICustomer>());
+  const [customers, setCustomers] = useState<ICustomer[]>(
+    new Array<ICustomer>()
+  );
   const sc = new SecureStore();
   useEffect(() => {
     getAllRecords();
@@ -92,6 +94,14 @@ const CustomerTable: React.FC = () => {
             </thead>
             <tbody>
               {customers.map((i, numb: any) => {
+                console.log(
+                  "ada",
+                  new Date().getFullYear() -
+                    moment(i.DrivingLicenseYear)
+                      .toDate()
+                      .getFullYear() +
+                    " Yıl"
+                );
                 return (
                   <tr
                     className={`border-gray-300 border-b hover:border-med-500 hover:bg-gray-100 cursor-pointer`}
@@ -115,7 +125,7 @@ const CustomerTable: React.FC = () => {
                         new Date().getFullYear() -
                           moment(i.DrivingLicenseYear)
                             .toDate()
-                            .getTime() <=
+                            .getFullYear() <=
                         1
                           ? "text-red-500"
                           : "text-green-500"
@@ -125,7 +135,7 @@ const CustomerTable: React.FC = () => {
                       {new Date().getFullYear() -
                         moment(i.DrivingLicenseYear)
                           .toDate()
-                          .getTime() +
+                          .getFullYear() +
                         " Yıl"}
                     </td>
                     <td>
