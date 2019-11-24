@@ -214,7 +214,7 @@ export const defaultForm = {
     title: "Ehliyet Seri Numarası",
     type: "text",
     required: true,
-    for: "DrivingLicenseNUmber",
+    for: "DrivingLicenseNumber",
     placeholder: "Seri Numarası Giriniz"
   },
   CanSendSms: {
