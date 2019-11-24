@@ -1,13 +1,10 @@
 // import Swal from "sweetalert2";
-import Swal from "sweetalert2/src/sweetalert2";
+import Swal from "sweetalert2";
 
-Swal.fire({
-  title: "a",
-  showConfirmButton: false
-});
-export const AlertSwal = (title: any, type: any) => {
+export const AlertSwal = (title: any) => {
   return Swal.fire({
     title: title,
+    icon: "success",
     showConfirmButton: false,
     customClass: {
       container: "swal-container ml-80"
