@@ -22,108 +22,6 @@ import { AddRecord } from "../../database/index";
 import { locations } from "../../helpers/Static/CountriesAndCities";
 
 const CustomerForm: React.FC = () => {
-  // CustomerCreateControl = prevProps => {
-  //   const {
-  //     customerCreateIsLoading,
-  //     customerCreateResponse,
-  //     errorMessage,
-  //     isModal
-  //   } = this.props;
-
-  //   if (
-  //     prevProps.customerCreateIsLoading &&
-  //     !customerCreateIsLoading &&
-  //     customerCreateResponse
-  //   ) {
-  //     AlertSwal(message.success.title, message.success.type);
-  //     if (isModal) {
-  //       this.props.IsCustomerCreate && this.props.IsCustomerCreate(true);
-  //     }
-  //   }
-  // };
-
-  // CustomerUpdateControl = prevProps => {
-  //   const { customerUpdateResponse, customerUpdateIsLoading } = this.props;
-
-  //   if (
-  //     prevProps.customerUpdateIsLoading &&
-  //     !customerUpdateIsLoading &&
-  //     customerUpdateResponse
-  //   ) {
-  //     AlertSwal(message.success.title, message.success.type);
-  //   } else if (
-  //     prevProps.customerUpdateIsLoading &&
-  //     !customerUpdateIsLoading &&
-  //     !customerUpdateResponse
-  //   ) {
-  //     localStorage.setItem(
-  //       "SelectedCustomer",
-  //       JSON.stringify(this.props.activeCustomer)
-  //     );
-  //     AlertSwal(message.error.title, message.error.type);
-  //   }
-  // };
-
-  // setCountries = prevProps => {
-  //   const { countryIsLoading, countries, activeCustomer } = this.props;
-  //   let temp = [];
-  //   if (prevProps.countryIsLoading && !countryIsLoading && countries) {
-  //     countries.map(country => {
-  //       temp.push({
-  //         value: country.Code,
-  //         label: country.Name
-  //       });
-  //     });
-  //     this.setState({
-  //       countries: temp
-  //     });
-  //   }
-  // };
-
-  // setCities = countryCode => {
-  //   const { cities, activeCustomer } = this.props;
-  //   if (cities) {
-  //     let temp = [];
-  //     cities
-  //       .filter(b => b.CountryCode == countryCode)
-  //       .map(city => {
-  //         temp.push({
-  //           value: city.Id,
-  //           label: city.Name
-  //         });
-  //       });
-  //     this.setState(
-  //       {
-  //         cities: temp,
-  //         counties: []
-  //       },
-  //       () => {
-  //         this.state.cities.length !== 0 &&
-  //           activeCustomer &&
-  //           this.setCounties(activeCustomer.CityId);
-  //       }
-  //     );
-  //   }
-  // };
-
-  // setCounties = cityId => {
-  //   const { counties, cities } = this.props;
-  //   if (counties && cities) {
-  //     let temp = [];
-  //     counties
-  //       .filter(b => b.CityId == cityId)
-  //       .map(county => {
-  //         temp.push({
-  //           value: county.Id,
-  //           label: county.Name
-  //         });
-  //       });
-  //     this.setState({
-  //       counties: temp
-  //     });
-  //   }
-  // };
-
   const fillCities = (countryName: any) => {
     let city = Object.keys(locations[countryName]);
     setCities(city.map((c, index) => ({ label: c, value: index })));
@@ -145,11 +43,11 @@ const CustomerForm: React.FC = () => {
 
   useEffect(() => {
     fillCountries();
-    // let city = Object.keys(locations.Turkiye);
-    // let county = Object.values(locations.Turkiye.Kastamonu);
   }, []);
 
   const CreateRecord = (values: IUser) => {
+    console.log("hai :", values);
+    return;
     values.Code = "ayazarac";
     AddRecord("Customer", "ayazarac", values);
   };
@@ -336,7 +234,6 @@ const CustomerForm: React.FC = () => {
 
             <Card base={customer.driveLicense}>
               <Dropdown
-                // isLoading={this.props.countyIsLoading}
                 base={defaultForm.DrivingClasses}
                 touched={touched.DrivingClasses}
                 errors={errors.DrivingClasses}
