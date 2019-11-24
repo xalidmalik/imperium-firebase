@@ -284,7 +284,8 @@ export const carForm = {
 
   DoorsNumber: {
     title: "Kapı Sayısı",
-    for: "DoorsNumber"
+    for: "DoorsNumber",
+    type: "radio"
   },
 
   Price: {
@@ -315,7 +316,7 @@ export const carForm = {
   },
   Deposit: {
     title: "Depozit",
-    type: "number",
+    type: "text",
     for: "Deposit"
   },
 

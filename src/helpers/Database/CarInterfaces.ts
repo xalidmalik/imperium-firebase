@@ -5,10 +5,10 @@ export interface ICar {
   CaseType: string;
   FuelType: string;
   GearType: string;
-  KM: number;
+  KM: string;
   EngineCapacity: string;
   DoorsNumber: number;
-  Price: number;
+  Price: string;
   MinDriverLicenseYear: string;
   MinDrivingLicenseYear: string;
   Color: string;

@@ -31,7 +31,7 @@ const Header = (props: IHeaderValidation) => {
           <input
             onChange={e => props.OnChange && props.OnChange(e.target.value)}
             type="text"
-            placeholder="Arama Yapiniz..."
+            placeholder="Arama Yapınız..."
             className="px-4 py-2 w-80 rounded-lg border border-gray-300 bg-gray-100 shadow-base focus:shadow-none focus:outline-none ml-4"
           />
         </>
