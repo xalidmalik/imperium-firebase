@@ -314,6 +314,7 @@ const CustomerForm: React.FC = () => {
                 values={values.DrivingClasses}
                 options={drivingClasses}
                 onChange={setFieldValue}
+                isMulti={true}
               />
 
               <Fields
