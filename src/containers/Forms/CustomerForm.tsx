@@ -312,8 +312,6 @@ const CustomerForm: React.FC = () => {
                 options={cities}
                 onChange={setFieldValue}
                 selectedValue={value => {
-                  alert(values.Country);
-                  alert(value.label);
                   fillCounties(values.Country, value.label);
                 }}
                 loadingMessage="Yükleniyor..."
