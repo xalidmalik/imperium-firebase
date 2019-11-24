@@ -61,6 +61,13 @@ const CustomerForm: React.FC<any> = (data: any) => {
     });
   };
 
+  const PutRecord = (values: ICustomer) => {
+    values.Code = "ayazarac";
+    UpdateRecord("ayazarac", "Customer", values).then(success => {
+      AlertSwal(message.success);
+    });
+  };
+
   return (
     <>
       <Formik
@@ -68,7 +75,7 @@ const CustomerForm: React.FC<any> = (data: any) => {
         validationSchema={customerSchema}
         onSubmit={(values, { setSubmitting }) => {
           if (activeCustomer) {
-            UpdateRecord("ayazarac", "Customer", values);
+            PutRecord(values);
           } else {
             CreateRecord(values);
           }
