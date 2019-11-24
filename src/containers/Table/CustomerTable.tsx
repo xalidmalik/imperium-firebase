@@ -94,14 +94,6 @@ const CustomerTable: React.FC = () => {
             </thead>
             <tbody>
               {customers.map((i, numb: any) => {
-                console.log(
-                  "ada",
-                  new Date().getFullYear() -
-                    moment(i.DrivingLicenseYear)
-                      .toDate()
-                      .getFullYear() +
-                    " Yıl"
-                );
                 return (
                   <tr
                     className={`border-gray-300 border-b hover:border-med-500 hover:bg-gray-100 cursor-pointer`}
