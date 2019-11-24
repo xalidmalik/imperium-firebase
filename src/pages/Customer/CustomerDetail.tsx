@@ -8,11 +8,13 @@ import { customerDetail } from "../../helpers/Static/Links";
 import Header from "../../components/Header/Header";
 import moment from "moment";
 import SecureStore from "secure-ls";
+import { HeaderCustomerOverview } from "src/helpers/Static/Headers";
+import { customer } from "src/helpers/Static/System";
 
 const CustomerDetail: React.FC = () => {
   const sc = new SecureStore();
 
-  const [customers, setCustomers] = useState();
+  const [customers, setCustomers] = useState<any>();
 
   useEffect(() => {
     const activeCustomer = sc.get("SelectedCustomer");
@@ -21,9 +23,7 @@ const CustomerDetail: React.FC = () => {
       setCustomers(activeCustomer);
     }
   }, []);
-
   if (!customers) return null;
-
   return (
     <>
       <LeftLayout>
@@ -38,7 +38,11 @@ const CustomerDetail: React.FC = () => {
             path={customerDetail.overview.link}
             render={() => (
               <>
-                <Header />
+                <Header
+                  titleFirst={HeaderCustomerOverview.titleFirst}
+                  linkFirst={HeaderCustomerOverview.linkFirst}
+                  titleSecond={`${customers.Name} ${customers.Surname}`}
+                />
                 <CustomerOverview data={customers} />
               </>
             )}

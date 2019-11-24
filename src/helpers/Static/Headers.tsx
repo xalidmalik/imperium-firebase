@@ -34,7 +34,5 @@ export const HeaderCarNew: IHeaderValidation = {
 
 export const HeaderCustomerOverview: IHeaderValidation = {
   titleFirst: "Müşteriler",
-  linkFirst: "/car",
-  btnTitle: "Kaydet",
-  btnForm: "CarFormSubmit"
+  linkFirst: "/customer"
 };

@@ -13,17 +13,13 @@ import { AlertSwal } from "../../helpers/Alert/Alert";
 import { message } from "../../helpers/Static/System";
 import { History } from "../../helpers/Static/History";
 import { drivingClasses, bloodGroup } from "../../helpers/Static/Options";
-import Header from "../../components/Header/Header";
-
 import { city as NationalityCities, city } from "../../helpers/Static/Cities";
-import { HeaderCustomerNew } from "src/helpers/Static/Headers";
 import {
   ICustomer,
   CustomerModel
 } from "src/helpers/Database/CustomerInterfaces";
 import { AddRecord } from "../../database/index";
 import { locations } from "../../helpers/Static/CountriesAndCities";
-
 const CustomerForm: React.FC = () => {
   const fillCities = countryName => {
     let city = Object.keys(locations[countryName]);
@@ -54,13 +50,6 @@ const CustomerForm: React.FC = () => {
   };
   return (
     <>
-      <Header
-        titleFirst={HeaderCustomerNew.titleFirst}
-        linkFirst={HeaderCustomerNew.linkFirst}
-        titleSecond={HeaderCustomerNew.titleSecond}
-        btnForm={HeaderCustomerNew.btnForm}
-        btnTitle={HeaderCustomerNew.btnTitle}
-      />
       <Formik
         initialValues={new CustomerModel()}
         validationSchema={customerSchema}
