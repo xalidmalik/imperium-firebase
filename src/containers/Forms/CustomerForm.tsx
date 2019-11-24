@@ -18,7 +18,7 @@ import {
   ICustomer,
   CustomerModel
 } from "src/helpers/Database/CustomerInterfaces";
-import { AddRecord } from "../../database/index";
+import { AddRecord, UpdateRecord } from "../../database/index";
 import { locations } from "../../helpers/Static/CountriesAndCities";
 
 const CustomerForm: React.FC<any> = (data: any) => {
@@ -64,7 +64,11 @@ const CustomerForm: React.FC<any> = (data: any) => {
         initialValues={activeCustomer || new CustomerModel()}
         validationSchema={customerSchema}
         onSubmit={(values, { setSubmitting }) => {
-          CreateRecord(values);
+          if (activeCustomer) {
+            UpdateRecord("ayazarac", "Customer", values);
+          } else {
+            CreateRecord(values);
+          }
         }}
       >
         {({

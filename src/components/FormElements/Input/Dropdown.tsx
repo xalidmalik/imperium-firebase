@@ -15,7 +15,14 @@ const Dropdown: React.FC<any> = (props: any) => {
   //   }
   // };
 
-  const handleChange = (value: any) => {
+  const handleChange = (value: any, action: any) => {
+    if (action.action == "remove-value") {
+      props.onChange(
+        props.base.for,
+        props.values.filter(a => a != action.removedValue.label)
+      );
+    }
+
     if (value && props.isMulti) {
       props.onChange(
         props.base.for,
@@ -39,6 +46,10 @@ const Dropdown: React.FC<any> = (props: any) => {
 
     props.onCustomerChange && props.onCustomerChange(options.find(findValue));
 
+    if (Array.isArray(props.values)) {
+      return props.values.map(a => ({ values: a, label: a }));
+    }
+
     return options.find(findValue);
   };
 
@@ -55,6 +66,7 @@ const Dropdown: React.FC<any> = (props: any) => {
       required={props.base.required}
     >
       <Select
+        backspaceRemovesValue={true}
         onFocus={() => props.runFuction && props.runFuction()}
         isClearable={props.isClearable}
         noOptionsMessage={() => "Aradığınız sonuç bulunamadı"}

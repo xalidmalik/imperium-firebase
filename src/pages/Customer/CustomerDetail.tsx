@@ -8,7 +8,10 @@ import CustomerForm from "../../containers/Forms/CustomerForm";
 import Header from "../../components/Header/Header";
 import moment from "moment";
 import SecureStore from "secure-ls";
-import { HeaderCustomerOverview } from "src/helpers/Static/Headers";
+import {
+  HeaderCustomerOverview,
+  HeaderCustomerEdit
+} from "src/helpers/Static/Headers";
 import { customer } from "src/helpers/Static/System";
 
 const CustomerDetail: React.FC = () => {
@@ -52,7 +55,15 @@ const CustomerDetail: React.FC = () => {
             path={customerDetail.edit.link}
             render={() => (
               <>
-                <Header titleFirst="wdaw" />
+                <Header
+                  titleFirst={HeaderCustomerEdit.titleFirst}
+                  linkFirst={HeaderCustomerEdit.linkFirst}
+                  titleSecond={`${customers.Name} ${customers.Surname}`}
+                  linkSecond={HeaderCustomerEdit.linkSecond}
+                  titleThird={HeaderCustomerEdit.titleThird}
+                  btnForm={HeaderCustomerEdit.btnForm}
+                  btnTitle={HeaderCustomerEdit.btnTitle}
+                />
                 <CustomerForm activeCustomer={customers} />
               </>
             )}
