@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import Fields from "../../components/FormElements/Input/Fields";
 import Checkbox from "../../components/FormElements/Input/Checkbox";
 import Radiobox from "../../components/FormElements/Input/Radiobox";
@@ -15,10 +15,11 @@ import { History } from "../../helpers/Static/History";
 import { drivingClasses, bloodGroup } from "../../helpers/Static/Options";
 import Header from "../../components/Header/Header";
 
-import { city as NationalityCities } from "../../helpers/Static/Cities";
+import { city as NationalityCities, city } from "../../helpers/Static/Cities";
 import { HeaderCustomerNew } from "src/helpers/Static/Headers";
 import { IUser, UserModel } from "src/helpers/Database/UserInterfaces";
 import { AddRecord } from "../../database/index";
+import { locations } from "../../helpers/Static/CountriesAndCities";
 
 const CustomerForm: React.FC = () => {
   // CustomerCreateControl = prevProps => {
@@ -123,11 +124,35 @@ const CustomerForm: React.FC = () => {
   //   }
   // };
 
+  const fillCities = (countryName: any) => {
+    let city = Object.keys(locations[countryName]);
+    setCities(city.map((c, index) => ({ label: c, value: index })));
+  };
+
+  const fillCountries = () => {
+    let country = Object.keys(locations);
+    setCountries(country.map((c, index) => ({ label: c, value: index })));
+  };
+
+  const fillCounties = (countryName, cityName) => {
+    let city = Object.values(locations[countryName][cityName]);
+    setCounties(city.map((c, index) => ({ label: c, value: index })));
+  };
+
+  const [cities, setCities] = useState<any>([]);
+  const [countries, setCountries] = useState<any>([]);
+  const [counties, setCounties] = useState<any>([]);
+
+  useEffect(() => {
+    fillCountries();
+    // let city = Object.keys(locations.Turkiye);
+    // let county = Object.values(locations.Turkiye.Kastamonu);
+  }, []);
+
   const CreateRecord = (values: IUser) => {
     values.Code = "ayazarac";
     AddRecord("Customer", "ayazarac", values);
   };
-
   return (
     <>
       <Header
@@ -273,18 +298,22 @@ const CustomerForm: React.FC = () => {
                 touched={touched.Country}
                 errors={errors.Country}
                 values={values.Country}
-                options={[]}
+                options={countries}
                 onChange={setFieldValue}
-                selectedValue={value => {}}
+                selectedValue={value => {
+                  fillCities(value.label);
+                }}
               />
               <Dropdown
                 base={defaultForm.City}
                 touched={touched.City}
                 errors={errors.City}
                 values={values.City}
-                options={[]}
+                options={cities}
                 onChange={setFieldValue}
-                selectedValue={value => {}}
+                selectedValue={value => {
+                  fillCounties(values.Country, value.label);
+                }}
                 loadingMessage="Yükleniyor..."
               />
               <Dropdown
@@ -292,7 +321,7 @@ const CustomerForm: React.FC = () => {
                 touched={touched.County}
                 errors={errors.County}
                 values={values.County}
-                options={[]}
+                options={counties}
                 onChange={setFieldValue}
                 loadingMessage="Yükleniyor..."
               />

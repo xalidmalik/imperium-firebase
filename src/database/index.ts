@@ -3,8 +3,6 @@ import { IRecord, ICheckRowVersion } from "../helpers/Types/RecordInterface";
 import React from "react";
 import db from "../firebase/firebaseconfig";
 import ls from "secure-ls";
-import { async } from "q";
-import { type } from "os";
 
 export const GetRecords = async (
   documentType: DocumentTypes,
