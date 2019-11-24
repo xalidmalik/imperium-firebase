@@ -56,8 +56,11 @@ const CustomerForm: React.FC<any> = (data: any) => {
 
   const CreateRecord = (values: ICustomer) => {
     values.Code = "ayazarac";
-    AddRecord("Customer", "ayazarac", values);
+    AddRecord("Customer", "ayazarac", values).then(success => {
+      AlertSwal(message.success, message.success.type);
+    });
   };
+
   return (
     <>
       <Formik

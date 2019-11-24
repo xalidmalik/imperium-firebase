@@ -12,7 +12,6 @@ import {
   HeaderCustomerOverview,
   HeaderCustomerEdit
 } from "src/helpers/Static/Headers";
-import { customer } from "src/helpers/Static/System";
 
 const CustomerDetail: React.FC = () => {
   const sc = new SecureStore();
@@ -21,7 +20,6 @@ const CustomerDetail: React.FC = () => {
 
   useEffect(() => {
     const activeCustomer = sc.get("SelectedCustomer");
-    console.log("active cs :", activeCustomer);
     if (activeCustomer) {
       setCustomers(activeCustomer);
     }
