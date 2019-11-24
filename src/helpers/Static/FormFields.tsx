@@ -271,11 +271,11 @@ export const carForm = {
     required: true
   },
 
-  Km: {
+  KM: {
     title: "KM Değeri",
     placeholder: "Şu Anki Değeri Giriniz",
     type: "text",
-    for: "Km"
+    for: "KM"
   },
 
   EngineCapacity: {

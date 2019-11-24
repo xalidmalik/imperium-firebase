@@ -12,23 +12,23 @@ const CustomerOverview: React.FC<any> = (cstmr: any) => {
       <Card base={customer.identity}>
         <FieldOutput base={defaultForm.Name} data={data.Name} />
         <FieldOutput base={defaultForm.Surname} data={data.Surname} />
-        <FieldOutput base={defaultForm.Tc} data={data.Tc} />
+        <FieldOutput base={defaultForm.TCNumber} data={data.TCNumber} />
         <FieldOutput base={defaultForm.Gender} data={data.Gender} />
-        <FieldOutput
-          base={defaultForm.BirthOfDateTime}
-          data={data.BirthOfDateTime}
-        />
-        <FieldOutput base={defaultForm.Nationality} data={data.Nationality} />
+        <FieldOutput base={defaultForm.BirthDate} data={data.BirthDate} />
+        <FieldOutput base={defaultForm.BirthPlace} data={data.BirthPlace} />
         <FieldOutput base={defaultForm.BloodGroup} data={data.BloodGroup} />
-        <FieldOutput base={defaultForm.NameOfMother} data={data.NameOfMother} />
-        <FieldOutput base={defaultForm.NameOfFather} data={data.NameOfFather} />
+        <FieldOutput base={defaultForm.MotherName} data={data.MotherName} />
+        <FieldOutput base={defaultForm.FatherName} data={data.FatherName} />
       </Card>
       <Card base={customer.contact}>
         <FieldOutput base={defaultForm.FirstPhone} data={data.FirstPhone} />
-        <FieldOutput base={defaultForm.SecondPhone} data={data.SecondPhone} />
         <FieldOutput
-          base={defaultForm.SecondPhoneOwner}
-          data={data.SecondPhoneOwner}
+          base={defaultForm.EmergencyPhone}
+          data={data.EmergencyPhone}
+        />
+        <FieldOutput
+          base={defaultForm.EmergencyPhoneOwner}
+          data={data.EmergencyPhoneOwner}
         />
         <FieldOutput base={defaultForm.Email} data={data.Email} />
         <FieldOutput base={defaultForm.WorkPhone} data={data.WorkPhone} />
@@ -45,10 +45,13 @@ const CustomerOverview: React.FC<any> = (cstmr: any) => {
           data={data.DrivingClasses}
         />
         <FieldOutput
-          base={defaultForm.SerialNumberOfDrivingLicense}
-          data={data.SerialNumberOfDrivingLicense}
+          base={defaultForm.DrivingLicenseNumber}
+          data={data.DrivingLicenseNumber}
         />
-        <FieldOutput base={defaultForm.LicenseYear} data={data.LicenseYear} />
+        <FieldOutput
+          base={defaultForm.DrivingLicenseYear}
+          data={data.DrivingLicenseYear}
+        />
       </Card>
     </>
   );

@@ -18,6 +18,8 @@ import { message } from "../../helpers/Static/System";
 import { History } from "../../helpers/Static/History";
 import Dropdown from "../../components/FormElements/Input/Dropdown";
 import { CarModel } from "src/helpers/Database/CarInterfaces";
+import Header from "src/components/Header/Header";
+import { HeaderCarNew } from "src/helpers/Static/Headers";
 
 const CarForm: React.FC = () => {
   //   state = {
@@ -142,6 +144,13 @@ const CarForm: React.FC = () => {
 
   return (
     <>
+      <Header
+        titleFirst={HeaderCarNew.titleFirst}
+        linkFirst={HeaderCarNew.linkFirst}
+        titleSecond={HeaderCarNew.titleSecond}
+        btnForm={HeaderCarNew.btnForm}
+        btnTitle={HeaderCarNew.btnTitle}
+      />
       <Formik
         initialValues={new CarModel()}
         validationSchema={carSchema}
@@ -169,20 +178,20 @@ const CarForm: React.FC = () => {
             <Card base={car.basicfeatures}>
               <Dropdown
                 onChange={setFieldValue}
-                base={carForm.BrandId}
-                touched={touched.BrandId}
-                errors={errors.BrandId}
-                values={values.BrandId}
-                options={this.state.brands}
-                selectedValue={value => this.setAllModel(value.value)}
+                base={carForm.BrandName}
+                touched={touched.BrandName}
+                errors={errors.BrandName}
+                values={values.BrandName}
+                // options={this.state.brands}
+                // selectedValue={value => this.setAllModel(value.value)}
               />
               <Dropdown
                 onChange={setFieldValue}
-                base={carForm.BrandModelId}
-                touched={touched.BrandModelId}
-                errors={errors.BrandModelId}
-                values={values.BrandModelId}
-                options={this.state.models}
+                base={carForm.ModelName}
+                touched={touched.ModelName}
+                errors={errors.ModelName}
+                values={values.ModelName}
+                // options={this.state.models}
                 isClearable={true}
               />
               <Dropdown
@@ -208,11 +217,12 @@ const CarForm: React.FC = () => {
                 errors={errors.Year}
                 values={values.Year}
               />
-              <Fields
-                base={carForm.NumberOfDoors}
-                touched={touched.NumberOfDoors}
-                errors={errors.NumberOfDoors}
-                values={values.NumberOfDoors}
+              <Radiobox
+                base={carForm.DoorsNumber}
+                touched={touched.DoorsNumber}
+                errors={errors.DoorsNumber}
+                values={values.DoorsNumber}
+                // options={gearTypeList}
               />
               <Radiobox
                 base={carForm.FuelType}
@@ -235,20 +245,6 @@ const CarForm: React.FC = () => {
                 values={values.Classes}
                 options={CarClasses}
               />
-              {/* <Radiobox
-                base={carForm.NumberOfDoors}
-                touched={touched.NumberOfDoors}
-                errors={errors.NumberOfDoors}
-                values={values.NumberOfDoors}
-                options={gearTypeList}
-              /> */}
-
-              {/* <Checkbox
-                base={carForm.Maintenance}
-                touched={touched.Maintenance}
-                errors={errors.Maintenance}
-                values={values.Maintenance}
-              /> */}
             </Card>
             <Card base={car.additionalinfo}>
               {/* <ColorPicker
@@ -271,16 +267,34 @@ const CarForm: React.FC = () => {
                 values={values.Price}
               />
               <Fields
-                base={carForm.Km}
-                touched={touched.Km}
-                errors={errors.Km}
-                values={values.Km}
+                base={carForm.Deposit}
+                touched={touched.Deposit}
+                errors={errors.Deposit}
+                values={values.Deposit}
               />
               <Fields
-                base={carForm.MinDriverLicense}
-                touched={touched.MinDriverLicense}
-                errors={errors.MinDriverLicense}
-                values={values.MinDriverLicense}
+                base={carForm.KM}
+                touched={touched.KM}
+                errors={errors.KM}
+                values={values.KM}
+              />
+              <Fields
+                base={carForm.Color}
+                touched={touched.Color}
+                errors={errors.Color}
+                values={values.Color}
+              />
+              <Fields
+                base={carForm.MinDriverLicenseYear}
+                touched={touched.MinDriverLicenseYear}
+                errors={errors.MinDriverLicenseYear}
+                values={values.MinDriverLicenseYear}
+              />
+              <Fields
+                base={carForm.MinDrivingLicenseYear}
+                touched={touched.MinDrivingLicenseYear}
+                errors={errors.MinDrivingLicenseYear}
+                values={values.MinDrivingLicenseYear}
               />
             </Card>
           </Form>

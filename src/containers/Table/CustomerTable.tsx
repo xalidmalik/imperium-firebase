@@ -107,13 +107,13 @@ const CustomerTable: React.FC = () => {
                       </div>
                       {`${i.Name} ${i.Surname}`}
                     </td>
-                    <td>{i.Tc}</td>
+                    <td>{i.TCNumber}</td>
                     <td>{i.FirstPhone}</td>
                     <td>{i.Email}</td>
                     <td
                       className={`font-bold ${
                         new Date().getFullYear() -
-                          moment(i.LicenseYear)
+                          moment(i.DrivingLicenseYear)
                             .toDate()
                             .getTime() <=
                         1
@@ -123,7 +123,7 @@ const CustomerTable: React.FC = () => {
                     >
                       <span className="mr-2">•</span>
                       {new Date().getFullYear() -
-                        moment(i.LicenseYear)
+                        moment(i.DrivingLicenseYear)
                           .toDate()
                           .getTime() +
                         " Yıl"}

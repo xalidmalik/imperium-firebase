@@ -61,3 +61,4 @@ export class UserModel {
   Code: string = "";
   IsActive?: boolean = true;
   InBlackList?: boolean = false;
+}
