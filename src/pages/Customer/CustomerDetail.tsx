@@ -71,7 +71,7 @@ const CustomerDetail: React.FC = () => {
             render={() => (
               <>
                 <Header titleFirst="wdaw" />
-                {/* <CustomerForm activeCustomer={customers} /> */}
+                {/* <CustomerForm data={customers} /> */}
               </>
             )}
           />
