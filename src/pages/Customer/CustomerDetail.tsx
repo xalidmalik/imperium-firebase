@@ -12,7 +12,6 @@ import {
   HeaderCustomerOverview,
   HeaderCustomerEdit
 } from "src/helpers/Static/Headers";
-import { customer } from "src/helpers/Static/System";
 
 const CustomerDetail: React.FC = () => {
   const sc = new SecureStore();
