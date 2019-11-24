@@ -20,10 +20,14 @@ import {
 } from "src/helpers/Database/CustomerInterfaces";
 import { AddRecord } from "../../database/index";
 import { locations } from "../../helpers/Static/CountriesAndCities";
-const CustomerForm: React.FC = () => {
+
+const CustomerForm: React.FC<any> = (data: any) => {
+  const { activeCustomer } = data;
   const fillCities = countryName => {
-    let city = Object.keys(locations[countryName]);
-    setCities(city.map((c, index) => ({ label: c, value: index })));
+    if (countryName) {
+      let city = Object.keys(locations[countryName]);
+      setCities(city.map((c, index) => ({ label: c, value: index })));
+    }
   };
 
   const fillCountries = () => {
@@ -32,8 +36,10 @@ const CustomerForm: React.FC = () => {
   };
 
   const fillCounties = (countryName, cityName) => {
-    let city = Object.values(locations[countryName][cityName]);
-    setCounties(city.map((c, index) => ({ label: c, value: index })));
+    if (countryName && cityName) {
+      let county = Object.values(locations[countryName][cityName]);
+      setCounties(county.map((c, index) => ({ label: c, value: index })));
+    }
   };
 
   const [cities, setCities] = useState<any>([]);
@@ -42,6 +48,10 @@ const CustomerForm: React.FC = () => {
 
   useEffect(() => {
     fillCountries();
+    if (activeCustomer) {
+      fillCities(activeCustomer.Country);
+      fillCounties(activeCustomer.Country, activeCustomer.City);
+    }
   }, []);
 
   const CreateRecord = (values: ICustomer) => {
@@ -51,7 +61,7 @@ const CustomerForm: React.FC = () => {
   return (
     <>
       <Formik
-        initialValues={new CustomerModel()}
+        initialValues={activeCustomer || new CustomerModel()}
         validationSchema={customerSchema}
         onSubmit={(values, { setSubmitting }) => {
           CreateRecord(values);
