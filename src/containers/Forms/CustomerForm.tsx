@@ -17,7 +17,7 @@ import Header from "../../components/Header/Header";
 
 import { city as NationalityCities } from "../../helpers/Static/Cities";
 import { HeaderCustomerNew } from "src/helpers/Static/Headers";
-import { IUser, UserModel } from "src/helpers/Database/Interfaces";
+import { IUser, UserModel } from "src/helpers/Database/UserInterfaces";
 import { AddRecord } from "../../database/index";
 
 const CustomerForm: React.FC = () => {
@@ -138,10 +138,7 @@ const CustomerForm: React.FC = () => {
         btnTitle={HeaderCustomerNew.btnTitle}
       />
       <Formik
-        initialValues={
-          // this.props.activeCustomer ||
-          new UserModel()
-        }
+        initialValues={new UserModel()}
         validationSchema={customerSchema}
         onSubmit={(values, { setSubmitting }) => {
           CreateRecord(values);

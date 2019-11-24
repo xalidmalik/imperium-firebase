@@ -11,7 +11,7 @@ import moment from "moment";
 import { isEmpty } from "lodash";
 import { customerListHeader } from "../../helpers//Static/ListHeader";
 import { GetRecords } from "../../database/";
-import { IUser } from "src/helpers/Database/Interfaces";
+import { IUser } from "src/helpers/Database/UserInterfaces";
 import { HeaderCustomerList } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
 
