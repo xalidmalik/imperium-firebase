@@ -126,7 +126,7 @@ const CustomerForm: React.FC = () => {
                 touched={touched.BloodGroup}
                 errors={errors.BloodGroup}
                 values={values.BloodGroup}
-                // options={bloodGroup}
+                options={bloodGroup}
                 onChange={setFieldValue}
               />
 
