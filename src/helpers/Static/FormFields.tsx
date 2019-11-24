@@ -15,48 +15,11 @@ export const defaultForm = {
     for: "Surname",
     required: true
   },
-  BirthOfDateTime: {
-    title: "Doğum Tarihi",
-    type: "date",
-    for: "BirthOfDateTime",
-    // placeholder: "Gün / Ay / Yıl",
-    required: true
-    // mask: true,
-    // masked: [/[1-9]/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]
-  },
-  Nationality: {
-    title: "Doğum Yeri",
-    placeholder: "Şehir Seçiniz",
-    for: "Nationality"
-  },
-  NameOfFather: {
-    title: "Baba Adı",
-    placeholder: "İsim Giriniz",
-    type: "text",
-    for: "NameOfFather"
-  },
-  NameOfMother: {
-    title: "Anne Adı",
-    placeholder: "İsim Giriniz",
-    type: "text",
-    for: "NameOfMother"
-  },
-  Gender: {
-    title: "Cinsiyet",
-    type: "radio",
-    for: "Gender",
-    required: true
-  },
-  BloodGroup: {
-    title: "Kan Grubu",
-    placeholder: "Kan Grubu Giriniz",
-    for: "BloodGroup"
-  },
-  Tc: {
+  TCNumber: {
     title: "T.C. Numarası",
     placeholder: "T.C. Numarası Giriniz",
     type: "text",
-    for: "Tc",
+    for: "TCNumber",
     required: true,
     mask: true,
     masked: [
@@ -73,11 +36,48 @@ export const defaultForm = {
       /\d/
     ]
   },
-  PassportSerialNumber: {
+  PassportNumber: {
     title: "Pasaport Numarası",
     placeholder: "Pasaport Numarası Giriniz",
     type: "number",
-    for: "PassportSerialNumber"
+    for: "PassportNumber"
+  },
+  Gender: {
+    title: "Cinsiyet",
+    type: "radio",
+    for: "Gender",
+    required: true
+  },
+  BirthDate: {
+    title: "Doğum Tarihi",
+    type: "date",
+    for: "BirthDate",
+    // placeholder: "Gün / Ay / Yıl",
+    required: true
+    // mask: true,
+    // masked: [/[1-9]/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]
+  },
+  BirthPlace: {
+    title: "Doğum Yeri",
+    placeholder: "Şehir Seçiniz",
+    for: "BirthPlace"
+  },
+  BloodGroup: {
+    title: "Kan Grubu",
+    placeholder: "Kan Grubu Giriniz",
+    for: "BloodGroup"
+  },
+  MotherName: {
+    title: "Anne Adı",
+    placeholder: "İsim Giriniz",
+    type: "text",
+    for: "MotherName"
+  },
+  FatherName: {
+    title: "Baba Adı",
+    placeholder: "İsim Giriniz",
+    type: "text",
+    for: "FatherName"
   },
   FirstPhone: {
     title: "Cep Telefonu",
@@ -102,6 +102,42 @@ export const defaultForm = {
       /\d/,
       /\d/
     ]
+  },
+  EmergencyPhone: {
+    title: "Acil Durum Telefonu",
+    placeholder: "Telefon Numarası Giriniz",
+    type: "tel",
+    for: "EmergencyPhone",
+    mask: true,
+    masked: [
+      "(",
+      /[1-9]/,
+      /\d/,
+      /\d/,
+      ")",
+      " ",
+      /\d/,
+      /\d/,
+      /\d/,
+      "-",
+      /\d/,
+      /\d/,
+      /\d/,
+      /\d/
+    ]
+  },
+  EmergencyPhoneOwner: {
+    title: "Acil Durum Telefonu Sahibi",
+    type: "text",
+    placeholder: "İsim Giriniz",
+    for: "EmergencyPhoneOwner"
+  },
+  Email: {
+    title: "Email Adresi",
+    placeholder: "Email adresi giriniz",
+    type: "text",
+    for: "Email",
+    required: false
   },
   WorkPhone: {
     title: "İş Telefonu",
@@ -132,87 +168,11 @@ export const defaultForm = {
     type: "text",
     for: "WorkPlace"
   },
-  SecondPhone: {
-    title: "Acil Durum Telefonu",
-    placeholder: "Telefon Numarası Giriniz",
-    type: "tel",
-    for: "SecondPhone",
-    mask: true,
-    masked: [
-      "(",
-      /[1-9]/,
-      /\d/,
-      /\d/,
-      ")",
-      " ",
-      /\d/,
-      /\d/,
-      /\d/,
-      "-",
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/
-    ]
-  },
-  Email: {
-    title: "Email Adresi",
-    placeholder: "Email adresi giriniz",
-    type: "text",
-    for: "Email",
-    required: false
-  },
   Profession: {
     title: "Meslek",
     placeholder: "Meslek Giriniz",
     type: "text",
     for: "Profession"
-  },
-  Address: {
-    title: "Açık Adres",
-    placeholder: "Açık Adres Giriniz",
-    type: "text",
-    for: "Address"
-  },
-  CanSendSms: {
-    title: "Bildirim Onayı",
-    placeholder: "SMS ve E-Posta Gönderimini Onaylıyorum",
-    type: "checkbox",
-    for: "CanSendSms"
-  },
-
-  Note: {
-    title: "Not",
-    type: "text",
-    for: "Note",
-    placeholder: "Not Giriniz"
-  },
-
-  LicenseYear: {
-    title: "Ehliyet Alma Tarihi",
-    type: "date",
-    required: true,
-    for: "LicenseYear",
-    placeholder: "Tarih Giriniz"
-  },
-  SerialNumberOfDrivingLicense: {
-    title: "Ehliyet Seri Numarası",
-    type: "number",
-    required: true,
-    for: "SerialNumberOfDrivingLicense",
-    placeholder: "Seri Numarası Giriniz"
-  },
-  DrivingClasses: {
-    title: "Ehliyet Sınıfı",
-    for: "DrivingClasses",
-    required: true,
-    placeholder: "Sınıf Seçiniz"
-  },
-  SecondPhoneOwner: {
-    title: "Acil Durum Telefonu Sahibi",
-    type: "text",
-    placeholder: "İsim Giriniz",
-    for: "SecondPhoneOwner"
   },
   Country: {
     title: "Ülke",
@@ -229,6 +189,45 @@ export const defaultForm = {
     title: "İlçe",
     placeholder: "İlçe seçiniz",
     for: "County"
+  },
+  Address: {
+    title: "Açık Adres",
+    placeholder: "Açık Adres Giriniz",
+    type: "text",
+    for: "Address"
+  },
+  DrivingClasses: {
+    title: "Ehliyet Sınıfı",
+    for: "DrivingClasses",
+    required: true,
+    placeholder: "Sınıf Seçiniz"
+  },
+
+  DrivingLicenseYear: {
+    title: "Ehliyet Alma Tarihi",
+    type: "date",
+    required: true,
+    for: "DrivingLicenseYear",
+    placeholder: "Tarih Giriniz"
+  },
+  DrivingLicenseNumber: {
+    title: "Ehliyet Seri Numarası",
+    type: "number",
+    required: true,
+    for: "DrivingLicenseNUmber",
+    placeholder: "Seri Numarası Giriniz"
+  },
+  CanSendSms: {
+    title: "Bildirim Onayı",
+    placeholder: "SMS ve E-Posta Gönderimini Onaylıyorum",
+    type: "checkbox",
+    for: "CanSendSms"
+  },
+  Note: {
+    title: "Not",
+    type: "text",
+    for: "Note",
+    placeholder: "Not Giriniz"
   }
 };
 export const carForm = {

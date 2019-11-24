@@ -170,10 +170,10 @@ const CustomerForm: React.FC = () => {
                 values={values.Surname}
               />
               <Fields
-                base={defaultForm.Tc}
-                touched={touched.Tc}
-                errors={errors.Tc}
-                values={values.Tc}
+                base={defaultForm.TCNumber}
+                touched={touched.TCNumber}
+                errors={errors.TCNumber}
+                values={values.TCNumber}
               />
               <Radiobox
                 touched={touched.Gender}
@@ -184,16 +184,16 @@ const CustomerForm: React.FC = () => {
               />
 
               <Fields
-                base={defaultForm.BirthOfDateTime}
-                touched={touched.BirthOfDateTime}
-                errors={errors.BirthOfDateTime}
-                values={values.BirthOfDateTime}
+                base={defaultForm.BirthDate}
+                touched={touched.BirthDate}
+                errors={errors.BirthDate}
+                values={values.BirthDate}
               />
               <Dropdown
-                base={defaultForm.Nationality}
-                touched={touched.Nationality}
-                errors={errors.Nationality}
-                values={values.Nationality}
+                base={defaultForm.BirthPlace}
+                touched={touched.BirthPlace}
+                errors={errors.BirthPlace}
+                values={values.BirthPlace}
                 options={NationalityCities}
                 onChange={setFieldValue}
               />
@@ -207,16 +207,16 @@ const CustomerForm: React.FC = () => {
               />
 
               <Fields
-                base={defaultForm.NameOfMother}
-                touched={touched.NameOfMother}
-                errors={errors.NameOfMother}
-                values={values.NameOfMother}
+                base={defaultForm.MotherName}
+                touched={touched.MotherName}
+                errors={errors.MotherName}
+                values={values.MotherName}
               />
               <Fields
-                base={defaultForm.NameOfFather}
-                touched={touched.NameOfFather}
-                errors={errors.NameOfFather}
-                values={values.NameOfFather}
+                base={defaultForm.FatherName}
+                touched={touched.FatherName}
+                errors={errors.FatherName}
+                values={values.FatherName}
               />
             </Card>
             <Card base={customer.contact}>
@@ -227,17 +227,17 @@ const CustomerForm: React.FC = () => {
                 values={values.FirstPhone}
               />
               <Fields
-                base={defaultForm.SecondPhone}
-                touched={touched.SecondPhone}
-                errors={errors.SecondPhone}
-                values={values.SecondPhone}
+                base={defaultForm.EmergencyPhone}
+                touched={touched.EmergencyPhone}
+                errors={errors.EmergencyPhone}
+                values={values.EmergencyPhone}
               />
 
               <Fields
-                base={defaultForm.SecondPhoneOwner}
-                touched={touched.SecondPhoneOwner}
-                errors={errors.SecondPhoneOwner}
-                values={values.SecondPhoneOwner}
+                base={defaultForm.EmergencyPhoneOwner}
+                touched={touched.EmergencyPhoneOwner}
+                errors={errors.EmergencyPhoneOwner}
+                values={values.EmergencyPhoneOwner}
               />
 
               <Fields
@@ -317,17 +317,17 @@ const CustomerForm: React.FC = () => {
               />
 
               <Fields
-                base={defaultForm.SerialNumberOfDrivingLicense}
-                touched={touched.SerialNumberOfDrivingLicense}
-                errors={errors.SerialNumberOfDrivingLicense}
-                values={values.SerialNumberOfDrivingLicense}
+                base={defaultForm.DrivingLicenseNumber}
+                touched={touched.DrivingLicenseNumber}
+                errors={errors.DrivingLicenseNumber}
+                values={values.DrivingLicenseNumber}
               />
 
               <Fields
-                base={defaultForm.LicenseYear}
-                touched={touched.LicenseYear}
-                errors={errors.LicenseYear}
-                values={values.LicenseYear}
+                base={defaultForm.DrivingLicenseYear}
+                touched={touched.DrivingLicenseYear}
+                errors={errors.DrivingLicenseYear}
+                values={values.DrivingLicenseYear}
               />
             </Card>
           </Form>
