@@ -39,7 +39,7 @@ export const defaultForm = {
   PassportNumber: {
     title: "Pasaport Numarası",
     placeholder: "Pasaport Numarası Giriniz",
-    type: "number",
+    type: "text",
     for: "PassportNumber"
   },
   Gender: {
@@ -212,7 +212,7 @@ export const defaultForm = {
   },
   DrivingLicenseNumber: {
     title: "Ehliyet Seri Numarası",
-    type: "number",
+    type: "text",
     required: true,
     for: "DrivingLicenseNUmber",
     placeholder: "Seri Numarası Giriniz"
@@ -286,7 +286,8 @@ export const carForm = {
 
   DoorsNumber: {
     title: "Kapı Sayısı",
-    for: "DoorsNumber"
+    for: "DoorsNumber",
+    type: "radio"
   },
 
   Price: {
@@ -317,7 +318,7 @@ export const carForm = {
   },
   Deposit: {
     title: "Depozit",
-    type: "number",
+    type: "text",
     for: "Deposit"
   },
 
