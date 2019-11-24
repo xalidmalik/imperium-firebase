@@ -36,3 +36,11 @@ export const HeaderCustomerOverview: IHeaderValidation = {
   titleFirst: "Müşteriler",
   linkFirst: "/customer"
 };
+export const HeaderCustomerEdit: IHeaderValidation = {
+  titleFirst: "Müşteriler",
+  linkFirst: "/customer",
+  linkSecond: "/customer/detail",
+  titleThird: "Bilgileri Düzenle",
+  btnTitle: "Güncelle",
+  btnForm: "CustomerFormSubmit"
+};
