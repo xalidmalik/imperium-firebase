@@ -17,7 +17,7 @@ export const customerSchema = yup.object().shape({
     .min(new Date(1900, 1, 1), "Geçersiz tarih girdiniz")
     .max(new Date(), "Geçersiz tarih girdiniz"),
   DrivingLicenseNumber: yup.string().required("Bu alan zorunludur"),
-  DrivingClasses: yup.string().required("Bu alan zorunludur")
+  DrivingClasses: yup.array().required("Bu alan zorunludur")
 });
 
 export const carSchema = yup.object().shape({

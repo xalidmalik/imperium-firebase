@@ -16,8 +16,17 @@ const Dropdown: React.FC<any> = (props: any) => {
   // };
 
   const handleChange = (value: any) => {
-    props.onChange(props.base.for, value.label);
-    props.selectedValue && props.selectedValue(value);
+    if (value && props.isMulti) {
+      props.onChange(
+        props.base.for,
+        value.map(c => c.label)
+      );
+    } else {
+      if (value) {
+        props.onChange(props.base.for, value.label);
+        props.selectedValue && props.selectedValue(value);
+      }
+    }
   };
 
   const findValue = (options: any) => {

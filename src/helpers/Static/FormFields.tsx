@@ -1,5 +1,3 @@
-import { IUser } from "../Database/UserInterfaces";
-
 export const defaultForm = {
   Name: {
     title: "İsim",

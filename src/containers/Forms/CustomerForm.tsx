@@ -17,7 +17,10 @@ import Header from "../../components/Header/Header";
 
 import { city as NationalityCities, city } from "../../helpers/Static/Cities";
 import { HeaderCustomerNew } from "src/helpers/Static/Headers";
-import { IUser, UserModel } from "src/helpers/Database/UserInterfaces";
+import {
+  ICustomer,
+  CustomerModel
+} from "src/helpers/Database/CustomerInterfaces";
 import { AddRecord } from "../../database/index";
 import { locations } from "../../helpers/Static/CountriesAndCities";
 
@@ -45,7 +48,7 @@ const CustomerForm: React.FC = () => {
     fillCountries();
   }, []);
 
-  const CreateRecord = (values: IUser) => {
+  const CreateRecord = (values: ICustomer) => {
     console.log("hai :", values);
     return;
     values.Code = "ayazarac";
@@ -61,7 +64,7 @@ const CustomerForm: React.FC = () => {
         btnTitle={HeaderCustomerNew.btnTitle}
       />
       <Formik
-        initialValues={new UserModel()}
+        initialValues={new CustomerModel()}
         validationSchema={customerSchema}
         onSubmit={(values, { setSubmitting }) => {
           CreateRecord(values);

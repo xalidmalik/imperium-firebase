@@ -1,4 +1,4 @@
-export interface IUser {
+export interface ICustomer {
   Id?: number;
   Name: string;
   Surname: string;
@@ -21,7 +21,7 @@ export interface IUser {
   City?: string;
   County?: string;
   Address: string;
-  DrivingClasses: string;
+  DrivingClasses?: any;
   DrivingLicenseNumber: string;
   DrivingLicenseYear: string;
   IsAdditionalDriver: boolean;
@@ -31,7 +31,7 @@ export interface IUser {
   InBlackList?: boolean;
 }
 
-export class UserModel {
+export class CustomerModel {
   Name: string = "";
   Surname: string = "";
   TCNumber: string = "";
@@ -53,7 +53,7 @@ export class UserModel {
   City?: string = "";
   County?: string = "";
   Address: string = "";
-  DrivingClasses: string = "";
+  DrivingClasses?: any;
   DrivingLicenseNumber: string = "";
   DrivingLicenseYear: string = "";
   IsAdditionalDriver: boolean = false;
