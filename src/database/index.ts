@@ -49,7 +49,16 @@ export const AddRecord = (
 
 const RemoveRecord = (props: IRecord) => {};
 
-const UpdateRecord = (props: IRecord) => {};
+export const UpdateRecord = (
+  code: any,
+  documentType: DocumentTypes,
+  updatedModel: any
+) => {
+  let findedProduct = db.collection(documentType).doc(updatedModel.Id);
+  return findedProduct
+    .update(Object.assign({}, updatedModel))
+    .then(() => IncrenmentRowVersion(documentType, code));
+};
 
 const ChechRowVersion = async (code: any, documentType: DocumentTypes) => {
   let secureStore = new ls();
