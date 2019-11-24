@@ -25,7 +25,7 @@ import { AddRecord } from "../../database/index";
 import { locations } from "../../helpers/Static/CountriesAndCities";
 
 const CustomerForm: React.FC = () => {
-  const fillCities = (countryName: any) => {
+  const fillCities = countryName => {
     let city = Object.keys(locations[countryName]);
     setCities(city.map((c, index) => ({ label: c, value: index })));
   };
@@ -49,8 +49,6 @@ const CustomerForm: React.FC = () => {
   }, []);
 
   const CreateRecord = (values: ICustomer) => {
-    console.log("hai :", values);
-    return;
     values.Code = "ayazarac";
     AddRecord("Customer", "ayazarac", values);
   };
