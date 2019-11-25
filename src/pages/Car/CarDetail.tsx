@@ -1,30 +1,30 @@
-import React, { Component } from "react";
-// import CarOverview from "../../containers/Details/CarOverview";
+import React, { useEffect, useState } from "react";
+import CarOverview from "../../containers/Overviews/CarOverview";
 import { Route, Switch } from "react-router-dom";
 import { LeftLayout, RightLayout } from "../../components/Layouts/Layouts";
 import SubLink from "../../components/NavElements/Elements/SubLink";
 import { carDetail } from "../../helpers/Static/Links";
-// import CarForm from "../../containers/Forms/CarForm";
+import CarForm from "../../containers/Forms/CarForm";
 import moment from "moment";
 import Header from "../../components/Header/Header";
+import { ICar } from "../../helpers/Database/CarInterfaces";
+import SecureStore from "secure-ls";
+import { HeaderCarOverview } from "src/helpers/Static/Headers";
 
-export class CarDetail extends Component {
-  state = {
-    car: []
-  };
-  //   componentWillMount() {
-  //     const activeCar = JSON.parse(localStorage.getItem("SelectedCar"));
-  //     if (activeCar) {
-  //       console.log("active car :", activeCar);
-  //       activeCar.FuelType = activeCar.FuelType.toString();
-  //       activeCar.GearType = activeCar.GearType.toString();
-  //       activeCar.Classes = activeCar.Classes.toString();
-  //       this.setState({ car: activeCar });
-  //     }
-  //   }
-  render() {
-    const { car } = this.state;
-    return (
+const CarDetail: React.FC = () => {
+  const [car, setCar] = useState<any>();
+  const sc = new SecureStore();
+
+  useEffect(() => {
+    const activeCar = sc.get("SelectedCar");
+    if (activeCar) {
+      setCar(activeCar);
+    }
+  }, []);
+  if (!car) return null;
+  return (
+    console.log("data", car),
+    (
       <>
         <LeftLayout>
           <SubLink base={carDetail.overview} />
@@ -38,8 +38,12 @@ export class CarDetail extends Component {
               path="/car/detail"
               render={() => (
                 <>
-                  <Header titleFirst="demo" />
-                  {/* <CarOverview data={car} /> */}
+                  <Header
+                    titleFirst={HeaderCarOverview.titleFirst}
+                    linkFirst={HeaderCarOverview.linkFirst}
+                    titleSecond={`${car.BrandName} ${car.ModelName}`}
+                  />
+                  <CarOverview data={car} />
                 </>
               )}
             />
@@ -49,15 +53,15 @@ export class CarDetail extends Component {
               render={() => (
                 <>
                   <Header titleFirst="demo" />
-                  {/* <CarForm activeCar={car} /> */}
+                  <CarForm activeCar={car} />
                 </>
               )}
             />
           </Switch>
         </RightLayout>
       </>
-    );
-  }
-}
+    )
+  );
+};
 
 export default CarDetail;

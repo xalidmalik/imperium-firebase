@@ -1,6 +1,8 @@
 import react from "react";
 import { IHeaderValidation } from "../Types/HeaderValidation";
 
+//* Header List ---------------------------------------
+
 export const HeaderCustomerList: IHeaderValidation = {
   titleFirst: "Müşteriler",
   btnTitle: "Yeni Ekle",
@@ -17,6 +19,8 @@ export const HeaderReservationList: IHeaderValidation = {
   btnLink: "/reservation/new"
 };
 
+//* Header New ---------------------------------------
+
 export const HeaderCustomerNew: IHeaderValidation = {
   titleFirst: "Müşteriler",
   linkFirst: "/customer",
@@ -32,10 +36,20 @@ export const HeaderCarNew: IHeaderValidation = {
   btnForm: "CarFormSubmit"
 };
 
+//* Header overview ---------------------------------------
+
 export const HeaderCustomerOverview: IHeaderValidation = {
   titleFirst: "Müşteriler",
   linkFirst: "/customer"
 };
+
+export const HeaderCarOverview: IHeaderValidation = {
+  titleFirst: "Arabalar",
+  linkFirst: "/car"
+};
+
+//* Header Edit ---------------------------------------
+
 export const HeaderCustomerEdit: IHeaderValidation = {
   titleFirst: "Müşteriler",
   linkFirst: "/customer",
@@ -43,4 +57,12 @@ export const HeaderCustomerEdit: IHeaderValidation = {
   titleThird: "Bilgileri Düzenle",
   btnTitle: "Güncelle",
   btnForm: "CustomerFormSubmit"
+};
+export const HeaderCarEdit: IHeaderValidation = {
+  titleFirst: "Arabalar",
+  linkFirst: "/car",
+  linkSecond: "/car/detail",
+  titleThird: "Bilgileri Düzenle",
+  btnTitle: "Güncelle",
+  btnForm: "CarFormSubmit"
 };

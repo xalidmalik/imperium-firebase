@@ -21,7 +21,7 @@ import { CarModel } from "src/helpers/Database/CarInterfaces";
 import Header from "src/components/Header/Header";
 import { HeaderCarNew } from "src/helpers/Static/Headers";
 
-const CarForm: React.FC = () => {
+const CarForm: React.FC<any> = (props: any) => {
   //   state = {
   //     brands: [],
   //     models: []
