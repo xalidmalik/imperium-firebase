@@ -18,6 +18,7 @@ export interface ICar {
   isMaintenance: boolean;
   isCrash: boolean;
   IsDeleted: boolean;
+  Image: any;
 }
 
 export class CarModel {
@@ -40,4 +41,5 @@ export class CarModel {
   isMaintenance: boolean = false;
   isCrash: boolean = false;
   IsDeleted: boolean = false;
+  Image: any;
 }

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sweetalert2/theme-borderless": "^3.0.5",
     "@types/history": "^4.7.3",
     "@types/jest": "^24.0.23",
     "@types/lodash": "^4.14.149",

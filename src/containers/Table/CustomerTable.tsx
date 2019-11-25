@@ -4,16 +4,16 @@ import { Carax } from "../../helpers/Static/Icons";
 import { History } from "../../helpers/Static/History";
 import { message } from "../../helpers/Static/System";
 import { CardWrapper } from "../../components/Card/CardWrapper";
-import Header from "../../components/Header/Header";
 import { AlertSwalDelete, AlertSwal } from "../../helpers/Alert/Alert";
 import { SearchCustomer } from "../../helpers/Function/Search";
-import moment from "moment";
 import { isEmpty } from "lodash";
 import { customerListHeader } from "../../helpers//Static/ListHeader";
 import { GetRecords } from "../../database/";
 import { ICustomer } from "src/helpers/Database/CustomerInterfaces";
 import { HeaderCustomerList } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
+import Header from "../../components/Header/Header";
+import moment from "moment";
 
 const CustomerTable: React.FC = () => {
   const [customers, setCustomers] = useState<ICustomer[]>(
@@ -29,40 +29,6 @@ const CustomerTable: React.FC = () => {
       setCustomers(value);
     });
   };
-
-  //   removeCustomer = customerId => {
-  //     AlertSwalDelete(result => {
-  //       if (result) {
-  //         this.props.deleteCustomer(customerId);
-  //       }
-  //     });
-  //   };
-
-  //   componentDidUpdate(prevProps) {
-  //     const {
-  //       deleteIsLoading,
-  //       deleteResponse,
-  //       deleteErrorMessage,
-  //       isLoading,
-  //       customers,
-  //       errorMessage
-  //     } = this.props;
-  //     if (prevProps.deleteIsLoading && !deleteIsLoading && deleteResponse) {
-  //       this.props.fetchCustomerList(true);
-  //       AlertSwal(message.success.title, message.success.type);
-  //     }
-
-  //     if (prevProps.isLoading && !isLoading && customers) {
-  //       this.setState({
-  //         customers: customers
-  //       });
-  //     }
-  //   }
-
-  //   componentDidMount() {
-  //     this.props.fetchCustomerList(true);
-  //     localStorage.removeItem("SelectedCustomer");
-  //   }
 
   if (!customers) return null;
 
@@ -137,12 +103,7 @@ const CustomerTable: React.FC = () => {
                           onClick={() => {
                             sc.set("SelectedCustomer", i);
                           }}
-                          to={{
-                            pathname: "/customer/detail",
-                            state: {
-                              patient: i
-                            }
-                          }}
+                          to="/customer/detail"
                         >
                           <span className="w-12 block my-auto">
                             {Carax.More}

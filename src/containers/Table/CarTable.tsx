@@ -2,20 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Carax } from "../../helpers/Static/Icons";
 import { History } from "../../helpers/Static/History";
-import Img from "react-image";
 import { message, car } from "../../helpers/Static/System";
-import Header from "../../components/Header/Header";
 import { CardWrapper } from "../../components/Card/CardWrapper";
 import { AlertSwalDelete, AlertSwal } from "../../helpers/Alert/Alert";
-import { isEmpty } from "lodash";
 import { SearchCar } from "../../helpers/Function/Search";
+import { isEmpty } from "lodash";
 import { carListHeader } from "../../helpers/Static/ListHeader";
 import { GetRecords } from "../../database";
 import { HeaderCarList } from "src/helpers/Static/Headers";
+import SecureStore from "secure-ls";
+import Img from "react-image";
+import Header from "../../components/Header/Header";
+import { ICar } from "src/helpers/Database/CarInterfaces";
 
 const CarTable: React.FC = () => {
-  const [cars, setCars] = useState<any>([]);
+  const [cars, setCars] = useState<ICar[]>(new Array<ICar>());
 
+  const sc = new SecureStore();
   useEffect(() => {
     getAllCars();
   }, []);
@@ -66,7 +69,7 @@ const CarTable: React.FC = () => {
                     className={`border-gray-300 border-b hover:border-${i.Color} hover:bg-gray-100 cursor-pointer`}
                     key={index}
                     onDoubleClick={() => {
-                      localStorage.setItem("SelectedCar", JSON.stringify(i));
+                      sc.set("SelectedCar", i);
                       History.push("/car/detail");
                     }}
                   >
@@ -74,7 +77,7 @@ const CarTable: React.FC = () => {
                       <div
                         className={`rounded mr-4 w-40 min-w-40 flex items-center justify-center text-white text-xl`}
                       >
-                        <Img src={i.ImageUrl} />
+                        <Img src={i.Image} />
                       </div>
                       <div className="block">
                         <span className="flex leading-none">{i.BrandName}</span>
@@ -83,7 +86,7 @@ const CarTable: React.FC = () => {
                         </h5>
                       </div>
                     </td>
-                    <td>{i.Km}</td>
+                    <td>{i.KM}</td>
                     <td>{i.GearType}</td>
                     <td>{i.FuelType}</td>
                     <td>{i.isMaintenance ? "Bakımda " : "Aktif"}</td>
@@ -95,24 +98,20 @@ const CarTable: React.FC = () => {
                         <Link
                           className="w-12 h-12 text-gray-600 block rounded-lg hover:text-orange-400 mr-2"
                           onClick={() => {
-                            localStorage.setItem(
-                              "SelectedCar",
-                              JSON.stringify(i)
-                            );
+                            sc.set("SelectedCar", i);
                           }}
-                          to={{
-                            pathname: "/car/detail",
-                            state: {
-                              patient: i
-                            }
-                          }}
+                          to="/car/detail"
                         >
                           <span className="w-12 block my-auto">
                             {Carax.More}
                           </span>
                         </Link>
                         <button
-                          onClick={() => removeCar(i.Id)}
+                          // onClick={()=>
+
+                          //     // () => removeCar(i.id)
+
+                          // }
                           className="w-12 h-12 text-red-400 block rounded-lg hover:text-red-500"
                         >
                           <span className="w-12 h-12 block my-auto p-3">
