@@ -16,19 +16,19 @@ export const color = [
   { value: "orange-500", label: "orange-500" }
 ];
 
-export const CaseTypeList = [
-  { value: "0", label: "Cabrio" },
-  { value: "1", label: "Coupe" },
-  { value: "2", label: "Panelvan" },
-  { value: "3", label: "PickUp" },
-  { value: "4", label: "Roadster" },
-  { value: "5", label: "Sedan" },
-  { value: "6", label: "Stationvagon" },
-  { value: "7", label: "Suv" },
-  { value: "8", label: "Hatchback" }
+export const caseTypeList = [
+  { value: "Cabrio", label: "Cabrio" },
+  { value: "Coupe", label: "Coupe" },
+  { value: "Panelvan", label: "Panelvan" },
+  { value: "PickUp", label: "PickUp" },
+  { value: "Roadster", label: "Roadster" },
+  { value: "Sedan", label: "Sedan" },
+  { value: "Stationvagon", label: "Stationvagon" },
+  { value: "Suv", label: "Suv" },
+  { value: "Hatchback", label: "Hatchback" }
 ];
 
-export const EngineCapacityList = [
+export const engineCapacityList = [
   { value: "0", label: "1.3" },
   { value: "1", label: "1.4" },
   { value: "2", label: "1.5" },
@@ -39,60 +39,66 @@ export const EngineCapacityList = [
   { value: "7", label: "2.0" }
 ];
 
-export const PaymentType = [
-  { value: "0", label: "Nakit Para" },
-  { value: "1", label: "Kredi Kartı" }
+export const paymentType = [
+  { value: "Nakit Para", label: "Nakit Para" },
+  { value: "Kredi Kartı", label: "Kredi Kartı" }
 ];
 
-export const ReservationType = [
+export const reservationType = [
   { value: 0, label: "Ön Rezerve" },
   { value: 1, label: "Rezerve" },
   { value: 2, label: "Başlat" },
   { value: 3, label: "Bitir" }
 ];
 
-export const CarClasses = [
-  { value: "0", label: "Ekonomik" },
-  { value: "1", label: "Lüks" }
+export const carClasses = [
+  { value: "Ekonomik", label: "Ekonomik" },
+  { value: "Lüks", label: "Lüks" }
 ];
 
 export const drivingClasses = [
-  { value: "0", label: "M" },
-  { value: "1", label: "A1" },
-  { value: "2", label: "A2" },
-  { value: "3", label: "A" },
-  { value: "4", label: "B" },
-  { value: "5", label: "B1" },
-  { value: "6", label: "BE" },
-  { value: "7", label: "C1" },
-  { value: "8", label: "C1E" },
-  { value: "9", label: "C" },
-  { value: "10", label: "CE" },
-  { value: "11", label: "D" },
-  { value: "12", label: "DE" },
-  { value: "13", label: "D1E" },
-  { value: "14", label: "D1" },
-  { value: "15", label: "F" },
-  { value: "16", label: "G" }
+  { value: "M", label: "M" },
+  { value: "A1", label: "A1" },
+  { value: "A2", label: "A2" },
+  { value: "A", label: "A" },
+  { value: "B", label: "B" },
+  { value: "B1", label: "B1" },
+  { value: "BE", label: "BE" },
+  { value: "C1", label: "C1" },
+  { value: "C1E", label: "C1E" },
+  { value: "C", label: "C" },
+  { value: "CE", label: "CE" },
+  { value: "D", label: "D" },
+  { value: "DE", label: "DE" },
+  { value: "D1E", label: "D1E" },
+  { value: "D1", label: "D1" },
+  { value: "F", label: "F" },
+  { value: "G", label: "G" }
 ];
 
 export const fuelTypeList = [
-  { value: "0", label: "Benzin" },
-  { value: "1", label: "Dizel" }
+  { value: "Benzin", label: "Benzin" },
+  { value: "Dizel", label: "Dizel" }
 ];
 
-export const GearTypeList = [
-  { value: "0", label: "Otomatik" },
-  { value: "1", label: "Manuel" }
+export const gearTypeList = [
+  { value: "Otomatik", label: "Otomatik" },
+  { value: "Manuel", label: "Manuel" }
+];
+export const doorsNumberList = [
+  { value: "2", label: "2" },
+  { value: "3", label: "3" },
+  { value: "4", label: "4" },
+  { value: "5", label: "5" }
 ];
 
 export const bloodGroup = [
-  { value: "0", label: "AB Rh+" },
-  { value: "1", label: "AB Rh-" },
-  { value: "2", label: "A Rh+" },
-  { value: "3", label: "A Rh-" },
-  { value: "4", label: "B Rh+" },
-  { value: "5", label: "B Rh-" },
-  { value: "6", label: "O Rh+" },
-  { value: "7", label: "O Rh-" }
+  { value: "AB Rh+", label: "AB Rh+" },
+  { value: "AB Rh-", label: "AB Rh-" },
+  { value: "A Rh+", label: "A Rh+" },
+  { value: "A Rh-", label: "A Rh-" },
+  { value: "B Rh+", label: "B Rh+" },
+  { value: "B Rh-", label: "B Rh-" },
+  { value: "O Rh+", label: "O Rh+" },
+  { value: "O Rh-", label: "O Rh-" }
 ];

@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Fields from "../../components/FormElements/Input/Fields";
 import Checkbox from "../../components/FormElements/Input/Checkbox";
 import Radiobox from "../../components/FormElements/Input/Radiobox";
