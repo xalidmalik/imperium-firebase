@@ -17,8 +17,8 @@ import Header from "../../components/Header/Header";
 // import FieldOutput from "../../components/FormElements/Outputs/FieldOutput";
 import moment from "moment";
 import {
-  ReservationType,
-  PaymentType,
+  reservationType,
+  paymentType,
   gender,
   color
 } from "../../helpers/Static/Options";

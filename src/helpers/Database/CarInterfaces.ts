@@ -7,7 +7,7 @@ export interface ICar {
   GearType: string;
   KM: string;
   EngineCapacity: string;
-  DoorsNumber: number;
+  DoorsNumber: string;
   Price: string;
   MinDriverLicenseYear: string;
   MinDrivingLicenseYear: string;
@@ -19,6 +19,7 @@ export interface ICar {
   isCrash: boolean;
   IsDeleted: boolean;
   Image: any;
+  Code: string;
 }
 
 export class CarModel {
@@ -28,10 +29,10 @@ export class CarModel {
   CaseType: string = "";
   FuelType: string = "";
   GearType: string = "";
-  KM: number = 0;
+  KM: string = "";
   EngineCapacity: string = "";
-  DoorsNumber: number = 4;
-  Price: number = 0;
+  DoorsNumber: string = "";
+  Price: string = "";
   MinDriverLicenseYear: string = "";
   MinDrivingLicenseYear: string = "";
   Color: string = "";
@@ -42,4 +43,5 @@ export class CarModel {
   isCrash: boolean = false;
   IsDeleted: boolean = false;
   Image: any;
+  Code: string = "";
 }
