@@ -63,6 +63,7 @@ export const UpdateRecord = (
   documentType: DocumentTypes,
   updatedModel: any
 ) => {
+  console.log("ID ID IDI :", updatedModel.Id);
   let findedProduct = db.collection(documentType).doc(updatedModel.Id);
   return findedProduct
     .update(Object.assign({}, updatedModel))
