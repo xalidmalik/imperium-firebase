@@ -10,6 +10,8 @@ import { Formik, Form } from "formik";
 import { message } from "../../helpers/Static/System";
 import { AlertSwal } from "../../helpers/Alert/Alert";
 import { History } from "../../helpers/Static/History";
+import { DepartmentModel } from "src/helpers/Database/DepartmentInterface";
+import { departmentSchema } from "../../helpers/Validations/Yup";
 
 class DepartmentForm extends Component {
   OpenModal = () => {
@@ -19,38 +21,10 @@ class DepartmentForm extends Component {
   render() {
     return (
       <>
-        {/* <Formik
-          initialValues={
-            this.props.activeReservation || {
-              Code: "",
-              DisplayName: "",
-              Name: "",
-              Address: "",
-              VisualId: "",
-              EMail: "",
-              TaxNumber: "",
-              TaxAdministration: "",
-              Phone: "",
-              FaxNo: "",
-              InstagramUrl: "",
-              FacebookUrl: "",
-              OfficialEMail: "",
-              PublicSiteUrl: "",
-              CompanyCode: ""
-            }
-          }
-          // validationSchema={reservationSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            // if (this.props.activeTechnician) {
-            //   localStorage.setItem("SelectedTechnician", JSON.stringify(values));
-            //   // this.props.putUser(values);
-            // } else {
-            //   values.Password = values.MobilePhone;
-            //   values.Username = values.EMail;
-            //   // this.props.addUser(values);
-            //   localStorage.setItem("SelectedTechnician", JSON.stringify(values));
-            // }
-          }}
+        <Formik
+          initialValues={new DepartmentModel()}
+          validationSchema={departmentSchema}
+          onSubmit={(values, { setSubmitting }) => {}}
         >
           {({
             errors,
@@ -64,16 +38,16 @@ class DepartmentForm extends Component {
             <Form id="DepartmentFormSubmit">
               <Card base={department.corporateinfo}>
                 <Fields
-                  base={departmentForm.VisualId}
-                  values={values.VisualId}
-                  errors={errors.VisualId}
-                  touched={touched.VisualId}
+                  base={departmentForm.BrandLogo}
+                  values={values.BrandLogo}
+                  errors={errors.BrandLogo}
+                  touched={touched.BrandLogo}
                 />
                 <Fields
-                  base={departmentForm.OfficalEMail}
-                  values={values.OfficalEMail}
-                  errors={errors.OfficalEMail}
-                  touched={touched.OfficalEMail}
+                  base={departmentForm.OfficialEmail}
+                  values={values.OfficialEmail}
+                  errors={errors.OfficialEmail}
+                  touched={touched.OfficialEmail}
                 />
                 <Fields
                   base={departmentForm.PublicSiteUrl}
@@ -103,10 +77,10 @@ class DepartmentForm extends Component {
                   touched={touched.TaxAdministration}
                 />
                 <Fields
-                  base={departmentForm.DisplayName}
-                  values={values.DisplayName}
-                  errors={errors.DisplayName}
-                  touched={touched.DisplayName}
+                  base={departmentForm.Name}
+                  values={values.Name}
+                  errors={errors.Name}
+                  touched={touched.Name}
                 />
                 <Fields
                   base={departmentForm.Name}
@@ -124,10 +98,10 @@ class DepartmentForm extends Component {
                   touched={touched.Address}
                 />
                 <Fields
-                  base={departmentForm.EMail}
-                  values={values.EMail}
-                  errors={errors.EMail}
-                  touched={touched.EMail}
+                  base={departmentForm.Email}
+                  values={values.Email}
+                  errors={errors.Email}
+                  touched={touched.Email}
                 />
                 <Fields
                   base={departmentForm.Phone}
@@ -159,7 +133,7 @@ class DepartmentForm extends Component {
               </Card>
             </Form>
           )}
-        </Formik> */}
+        </Formik>
       </>
     );
   }
