@@ -21,6 +21,7 @@ const CarTable: React.FC = () => {
   const sc = new SecureStore();
   useEffect(() => {
     getAllCars();
+    console.log("arabalar :",cars);
   }, []);
 
   const getAllCars = () => {
