@@ -110,7 +110,7 @@ const CustomerTable: React.FC = () => {
                           </span>
                         </Link>
                         <button
-                          // onClick={() => this.removeCustomer(i.Id)}
+                          onClick={() => AlertSwalDelete(i.Id)}
                           className="w-12 h-12 text-red-400 block rounded-lg hover:text-red-500"
                         >
                           <span className="w-12 h-12 block my-auto p-3">

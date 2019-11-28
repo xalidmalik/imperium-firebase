@@ -8,7 +8,8 @@ export const AlertSwal = (title: any, type: any) => {
     showConfirmButton: false,
     customClass: {
       container: "swal-container ml-80"
-    }
+    },
+    timer: 1000
   });
 };
 

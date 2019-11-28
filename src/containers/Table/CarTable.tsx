@@ -21,7 +21,7 @@ const CarTable: React.FC = () => {
   const sc = new SecureStore();
   useEffect(() => {
     getAllCars();
-    console.log("arabalar :",cars);
+    console.log("arabalar :", cars);
   }, []);
 
   const getAllCars = () => {
@@ -108,11 +108,7 @@ const CarTable: React.FC = () => {
                           </span>
                         </Link>
                         <button
-                          // onClick={()=>
-
-                          //     // () => removeCar(i.id)
-
-                          // }
+                          onClick={() => AlertSwalDelete(i.KM)}
                           className="w-12 h-12 text-red-400 block rounded-lg hover:text-red-500"
                         >
                           <span className="w-12 h-12 block my-auto p-3">
