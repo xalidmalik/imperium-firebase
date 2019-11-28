@@ -23,7 +23,7 @@ const CarDetail: React.FC = () => {
   }, []);
   if (!car) return null;
   return (
-    console.log("data", car),
+    console.log("data mata", car),
     (
       <>
         <LeftLayout>

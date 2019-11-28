@@ -27,32 +27,44 @@ import CarModelList from "../../helpers/Static/CarList.json";
 const CarForm: React.FC<any> = (props: any) => {
   const [brandList, setBrandList] = useState<any>([]);
   const [modelList, setModelList] = useState<any>([]);
-  const [ImageUrl, setImageUrl] = useState<any>([]);
-
+  const [ImageUrl, setImageUrl] = useState<any>(null);
+  const { activeCar } = props;
   const fillBrand = () => {
     setBrandList(
       CarModelList.map((i, index) => ({
         label: i.Name,
-        value: index,
-        BrandModels: i.BrandModels
-      }))
-    );
-  };
-  const fillModel = (ModelName: any) => {
-    setModelList(
-      ModelName.map((i, index) => ({
-        label: i.Name,
-        value: index,
-        Image: i.Image
+        value: index
       }))
     );
   };
 
+  const fillModel = (ModelName: any) => {
+    const brands = CarModelList.filter(data => data.Name == ModelName);
+    let temp: any = [];
+    brands[0].BrandModels.forEach((a, index) => {
+      temp.push({ label: a.Name, value: index, Image: a.Image });
+    });
+    setModelList(temp);
+  };
+
+  const putRecord = (model: any) => {
+    model.Code = "ayazarac";
+    if (!ImageUrl) {
+      model.Image = activeCar.Image;
+    } else {
+      model.Image = ImageUrl;
+    }
+    UpdateRecord("ayazarac", "Car", model).then(() => {
+      AlertSwal(message.success.title, message.success.type);
+    });
+  };
+
   useEffect(() => {
+    console.log("car form props: ", props);
     fillBrand();
-    // if (activeCar) {
-    //   fillModel(activeCar.Name);
-    // }
+    if (activeCar) {
+      fillModel(activeCar.BrandName);
+    }
   }, []);
 
   const CreateRecord = (values: ICar) => {
@@ -73,10 +85,14 @@ const CarForm: React.FC<any> = (props: any) => {
         btnTitle={HeaderCarNew.btnTitle}
       />
       <Formik
-        initialValues={new CarModel()}
+        initialValues={activeCar || new CarModel()}
         validationSchema={carSchema}
         onSubmit={(values, { setSubmitting }) => {
-          CreateRecord(values);
+          if (activeCar) {
+            putRecord(values);
+          } else {
+            CreateRecord(values);
+          }
         }}
       >
         {({
@@ -97,7 +113,7 @@ const CarForm: React.FC<any> = (props: any) => {
                 errors={errors.BrandName}
                 values={values.BrandName}
                 options={brandList}
-                selectedValue={value => fillModel(value.BrandModels)}
+                selectedValue={value => fillModel(value.label)}
               />
               <Dropdown
                 onChange={setFieldValue}
