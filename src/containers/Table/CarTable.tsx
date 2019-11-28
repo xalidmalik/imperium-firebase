@@ -8,7 +8,7 @@ import { AlertSwalDelete, AlertSwal } from "../../helpers/Alert/Alert";
 import { SearchCar } from "../../helpers/Function/Search";
 import { isEmpty } from "lodash";
 import { carListHeader } from "../../helpers/Static/ListHeader";
-import { GetRecords } from "../../database";
+import { GetRecords, RemoveRecord } from "../../database";
 import { HeaderCarList } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
 import Img from "react-image";
@@ -21,18 +21,16 @@ const CarTable: React.FC = () => {
   const sc = new SecureStore();
   useEffect(() => {
     getAllCars();
-    console.log("arabalar :",cars);
+    console.log("arabalar :", cars);
   }, []);
 
   const getAllCars = () => {
     GetRecords("Car", "ayazarac").then(data => setCars(data));
   };
 
-  const removeCar = carId => {
-    AlertSwalDelete(result => {
-      if (result) {
-        // this.props.deleteCar(carId);
-      }
+  const removeCars = (Id: any) => {
+    AlertSwalDelete(response => {
+      RemoveRecord("Car", Id, "ayazarac").then(() => getAllCars());
     });
   };
 
@@ -108,11 +106,7 @@ const CarTable: React.FC = () => {
                           </span>
                         </Link>
                         <button
-                          // onClick={()=>
-
-                          //     // () => removeCar(i.id)
-
-                          // }
+                          onClick={() => removeCars(i.Id)}
                           className="w-12 h-12 text-red-400 block rounded-lg hover:text-red-500"
                         >
                           <span className="w-12 h-12 block my-auto p-3">

@@ -59,7 +59,7 @@ const CarForm: React.FC<any> = (props: any) => {
     values.Image = ImageUrl;
     values.Code = "ayazarac";
     AddRecord("Car", "ayazarac", values).then(success => {
-      AlertSwal(message.success);
+      AlertSwal(message.success.title, message.success.type);
     });
   };
 

@@ -1,4 +1,5 @@
 export interface ICar {
+  Id?: string;
   BrandName: string;
   ModelName: string;
   Plate: string;

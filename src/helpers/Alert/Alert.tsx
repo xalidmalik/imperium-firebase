@@ -1,14 +1,15 @@
 // import Swal from "sweetalert2";
 import Swal from "sweetalert2";
 
-export const AlertSwal = (title: any) => {
+export const AlertSwal = (title: any, type: any) => {
   return Swal.fire({
     title: title,
-    icon: "success",
+    icon: type,
     showConfirmButton: false,
     customClass: {
       container: "swal-container ml-80"
-    }
+    },
+    timer: 1000
   });
 };
 
@@ -22,6 +23,8 @@ export const AlertSwalDelete = (resultCallBack: any) => {
     confirmButtonText: "Evet, eminim!",
     cancelButtonText: "Vazgeç"
   }).then(result => {
-    resultCallBack(result.value);
+    if (result) {
+      resultCallBack(result.value);
+    }
   });
 };
