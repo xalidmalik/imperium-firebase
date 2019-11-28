@@ -37,9 +37,7 @@ export const AddRecord = (
   code: any,
   model: object
 ) => {
-  console.log("giden model: ", model);
-  console.log("giden model type: ", typeof model);
-
+  delete model["Id"];
   return db
     .collection(documentType)
     .doc()
@@ -47,7 +45,18 @@ export const AddRecord = (
     .then(() => IncrenmentRowVersion(documentType, code));
 };
 
-const RemoveRecord = (props: IRecord) => {};
+export const RemoveRecord = (
+  documentType: DocumentTypes,
+  Id: string,
+  Code: string
+) => {
+  console.log("ID :", Id);
+  return db
+    .collection(documentType)
+    .doc(Id)
+    .delete()
+    .then(() => IncrenmentRowVersion(documentType, Code));
+};
 
 export const UpdateRecord = (
   code: any,

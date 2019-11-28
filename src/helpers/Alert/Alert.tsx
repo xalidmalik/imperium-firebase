@@ -23,6 +23,8 @@ export const AlertSwalDelete = (resultCallBack: any) => {
     confirmButtonText: "Evet, eminim!",
     cancelButtonText: "Vazgeç"
   }).then(result => {
-    resultCallBack(result.value);
+    if (result) {
+      resultCallBack(result.value);
+    }
   });
 };
