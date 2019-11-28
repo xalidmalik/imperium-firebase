@@ -1,10 +1,10 @@
 // import Swal from "sweetalert2";
 import Swal from "sweetalert2";
 
-export const AlertSwal = (title: any) => {
+export const AlertSwal = (title: any, type: any) => {
   return Swal.fire({
     title: title,
-    icon: "success",
+    icon: type,
     showConfirmButton: false,
     customClass: {
       container: "swal-container ml-80"

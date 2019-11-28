@@ -57,14 +57,14 @@ const CustomerForm: React.FC<any> = (data: any) => {
   const CreateRecord = (values: ICustomer) => {
     values.Code = "ayazarac";
     AddRecord("Customer", "ayazarac", values).then(success => {
-      AlertSwal(message.success);
+      AlertSwal(message.success.title, message.success.type);
     });
   };
 
   const PutRecord = (values: ICustomer) => {
     values.Code = "ayazarac";
     UpdateRecord("ayazarac", "Customer", values).then(success => {
-      AlertSwal(message.success);
+      AlertSwal(message.success.title, message.success.type);
     });
   };
 
