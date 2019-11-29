@@ -14,6 +14,7 @@ import { HeaderCustomerList } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
 import Header from "../../components/Header/Header";
 import moment from "moment";
+import { RemoveRecord } from "../../database/index";
 
 const CustomerTable: React.FC = () => {
   const [customers, setCustomers] = useState<ICustomer[]>(
@@ -27,6 +28,12 @@ const CustomerTable: React.FC = () => {
   const getAllRecords = () => {
     GetRecords("Customer", "ayazarac").then(value => {
       setCustomers(value);
+    });
+  };
+
+  const RemoveCar = (Id: any) => {
+    AlertSwalDelete(() => {
+      RemoveRecord("Customer", Id, "ayazarac").then(() => getAllRecords());
     });
   };
 
@@ -110,7 +117,7 @@ const CustomerTable: React.FC = () => {
                           </span>
                         </Link>
                         <button
-                          onClick={() => AlertSwalDelete(i.Id)}
+                          onClick={() => RemoveCar(i.Id)}
                           className="w-12 h-12 text-red-400 block rounded-lg hover:text-red-500"
                         >
                           <span className="w-12 h-12 block my-auto p-3">

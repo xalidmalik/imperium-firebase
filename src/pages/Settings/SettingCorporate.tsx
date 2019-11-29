@@ -13,11 +13,13 @@ const SettingCorporate: React.FC = () => {
   );
 
   const getDepartment = () => {
-    GetRecords("Department", "ayazarac").then(data => setDepartment(data));
+    GetRecords("Department", "ayazarac").then(data => {
+      console.log("department :", data);
+      setDepartment(data[0]);
+    });
   };
   useEffect(() => {
     getDepartment();
-    console.log("Departmanlar :", department);
   }, []);
   return (
     <>
