@@ -15,7 +15,7 @@ const ColorPicker = (props: IFormValidation) => {
       <div className="h-12 flex w-full justify-between">
         {props.options.map((data: any, index: any) => {
           return (
-            <label key={index}>
+            <label key={index} className="relative">
               <Field
                 type={props.base.type ? props.base.type : "radio"}
                 name={props.base.for}
