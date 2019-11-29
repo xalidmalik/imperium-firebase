@@ -19,8 +19,6 @@ import { message } from "../../helpers/Static/System";
 import { History } from "../../helpers/Static/History";
 import Dropdown from "../../components/FormElements/Input/Dropdown";
 import { CarModel, ICar } from "src/helpers/Database/CarInterfaces";
-import Header from "src/components/Header/Header";
-import { HeaderCarNew } from "src/helpers/Static/Headers";
 import { AddRecord, UpdateRecord } from "../../database/index";
 import CarModelList from "../../helpers/Static/CarList.json";
 
@@ -77,13 +75,6 @@ const CarForm: React.FC<any> = (props: any) => {
 
   return (
     <>
-      <Header
-        titleFirst={HeaderCarNew.titleFirst}
-        linkFirst={HeaderCarNew.linkFirst}
-        titleSecond={HeaderCarNew.titleSecond}
-        btnForm={HeaderCarNew.btnForm}
-        btnTitle={HeaderCarNew.btnTitle}
-      />
       <Formik
         initialValues={activeCar || new CarModel()}
         validationSchema={carSchema}
