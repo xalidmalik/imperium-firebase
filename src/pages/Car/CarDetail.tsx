@@ -9,7 +9,7 @@ import moment from "moment";
 import Header from "../../components/Header/Header";
 import { ICar } from "../../helpers/Database/CarInterfaces";
 import SecureStore from "secure-ls";
-import { HeaderCarOverview } from "src/helpers/Static/Headers";
+import { HeaderCarOverview, HeaderCarEdit } from "src/helpers/Static/Headers";
 
 const CarDetail: React.FC = () => {
   const [car, setCar] = useState<any>();
@@ -52,7 +52,15 @@ const CarDetail: React.FC = () => {
               path="/car/detail/edit"
               render={() => (
                 <>
-                  <Header titleFirst="demo" />
+                  <Header
+                    titleFirst={HeaderCarEdit.titleFirst}
+                    linkFirst={HeaderCarEdit.linkFirst}
+                    titleSecond={`${car.BrandName} ${car.ModelName}`}
+                    linkSecond={HeaderCarEdit.linkSecond}
+                    titleThird={HeaderCarEdit.titleThird}
+                    btnForm={HeaderCarEdit.btnForm}
+                    btnTitle={HeaderCarEdit.btnTitle}
+                  />
                   <CarForm activeCar={car} />
                 </>
               )}
