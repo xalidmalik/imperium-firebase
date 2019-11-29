@@ -1,4 +1,4 @@
-import React, { PureComponent, useState } from "react";
+import React, { PureComponent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Carax } from "../../helpers/Static/Icons";
 import { History } from "../../helpers/Static/History";
@@ -8,32 +8,50 @@ import { CardWrapper } from "../../components/Card/CardWrapper";
 import { isEmpty } from "lodash";
 import { SearchReservation } from "../../helpers/Function/Search";
 import { ReservationListHeader } from "../../helpers/Static/ListHeader";
+import { IReservation } from "../../helpers/Database/ReservationInterface";
 import {
   HeaderReservationList,
   HeaderCustomerList
 } from "src/helpers/Static/Headers";
+import { GetRecords, AddRecord } from "src/database";
 
 const ReservationTable: React.FC<any> = () => {
-  const [reservations, setReservation] = useState<any>([]);
-  //   componentDidMount() {
-  //     this.props.fetchDepartment();
-  //     this.props.fetchReservationList(true);
-  //     localStorage.removeItem("SelectedReservation");
-  //   }
+  const [reservations, setReservation] = useState<IReservation[]>(
+    new Array<IReservation>()
+  );
 
-  //   componentDidUpdate(prevProps) {
-  //     const { reservationListIsLoading, reservationList } = this.props;
+  const getAllReservation = () => {
+    GetRecords("Reservation", "ayazarac").then(data => setReservation(data));
 
-  //     if (
-  //       prevProps.reservationListIsLoading &&
-  //       !reservationListIsLoading &&
-  //       reservationList
-  //     ) {
-  //       this.setState({
-  //         reservations: reservationList
-  //       });
-  //     }
-  //   }
+    let obj: IReservation = {
+      Price: 150,
+      AdditionalCustomer: "",
+      BeginDateTime: new Date(Date.now()).toString(),
+      EndDateTime: new Date(Date.now()).toString(),
+      Car: {
+        BrandName: "Reno",
+        ModelName: "Meno",
+        Plate: "99 be 946",
+        Price: ""
+      },
+      Code: "ayazarac",
+      Customer: {
+        Name: "Agha",
+        Surname: "Huseynov",
+        FirstPhone: "5530829742"
+      },
+      Deposit: 150,
+      Paid: 50,
+      PaymentType: "Kredi",
+      ReservationTypes: "Ön Rezerve"
+    };
+
+    AddRecord("Reservation", "ayazarac", obj);
+  };
+
+  useEffect(() => {
+    getAllReservation();
+  }, []);
 
   if (!reservations) return null;
   return (
@@ -43,7 +61,7 @@ const ReservationTable: React.FC<any> = () => {
         btnLink={HeaderCustomerList.btnLink}
         btnTitle={HeaderCustomerList.btnTitle}
         OnChange={value => {}}
-        // length={this.state.reservations.length}
+        length={reservations.length}
       />
       <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
         <div className="w-full overflow-auto rounded-lg med-table-wrapper">
@@ -56,7 +74,7 @@ const ReservationTable: React.FC<any> = () => {
               </tr>
             </thead>
             <tbody>
-              {reservations.map((i, index) => {
+              {reservations.map((i: IReservation, index: any) => {
                 return (
                   <tr
                     className={`border-gray-300 border-b hover:border-orange-400 hover:bg-gray-100 cursor-pointer`}
@@ -73,42 +91,37 @@ const ReservationTable: React.FC<any> = () => {
                       <div
                         className={`rounded-full bg-gray-300 mr-4 p-2 w-12 h-12 min-h-12 min-w-12 flex items-center justify-center text-gray-800`}
                       >
-                        {i.CustomerName[0] + i.CustomerSurname[0]}
+                        {i.Customer.Name[0] + i.Customer.Surname[0]}
                       </div>
                       <div className="block">
-                        <h5 className="flex font-bold">{`${i.CustomerName} ${i.CustomerSurname}`}</h5>
-                        <span className="text-sm flex">{`Tel: ${i.CustomerFirstPhone}`}</span>
+                        <h5 className="flex font-bold">{`${i.Customer.Name} ${i.Customer.Surname}`}</h5>
+                        <span className="text-sm flex">{`Tel: ${i.Customer.FirstPhone}`}</span>
                       </div>
                     </td>
                     <td>
                       <div className="block">
                         <h5 className="flex font-bold">
-                          {`${i.CarBrandName} ${i.CarModelName}`}
+                          {`${i.Car.BrandName} ${i.Car.ModelName}`}
                         </h5>
                         <div className="flex">
-                          <span className="text-sm flex">{`Plaka: ${i.CarPlate}`}</span>
+                          <span className="text-sm flex">{`Plaka: ${i.Car.Plate}`}</span>
                         </div>
                       </div>
                     </td>
                     <td>
                       <div className="block">
                         <h5 className="flex">
-                          {moment(i.ReservationStartDateTime).format(
-                            "DD.MM.YYYY (HH:mm)"
-                          )}
+                          {moment(i.BeginDateTime).format("DD.MM.YYYY (HH:mm)")}
                         </h5>
                         <h5 className="flex">
-                          {moment(i.ReservationStartDateTime).format(
-                            "DD.MM.YYYY (HH:mm)"
-                          )}
+                          {moment(i.EndDateTime).format("DD.MM.YYYY (HH:mm)")}
                         </h5>
                       </div>
                     </td>
                     <td>
                       <div className="block">
                         <h5 className="flex font-bold">
-                          {i.ReservationPrice || i.CarPrice}{" "}
-                          <span>&#8378;</span>
+                          {i.Price || i.Car.Price} <span>&#8378;</span>
                         </h5>
                         <span className="text-sm flex">(KDV Dahil)</span>
                       </div>
