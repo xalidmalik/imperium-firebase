@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LeftLayout, RightLayout } from "../../components/Layouts/Layouts";
 import { CardWrapper } from "../../components/Card/CardWrapper";
 import DepartmentForm from "../../containers/Forms/DepartmentForm";
 import Header from "../../components/Header/Header";
 import DepartmentOverview from "src/containers/Overviews/DepartmentOverview";
+import { IDepartment } from "src/helpers/Database/DepartmentInterface";
+import { GetRecords } from "../../database";
 
-const SettingCorporate = () => {
+const SettingCorporate: React.FC = () => {
+  const [department, setDepartment] = useState<IDepartment[]>(
+    new Array<IDepartment>()
+  );
+
+  const getDepartment = () => {
+    GetRecords("Department", "ayazarac").then(data => setDepartment(data));
+  };
+  useEffect(() => {
+    getDepartment();
+    console.log("Departmanlar :", department);
+  }, []);
   return (
     <>
       <LeftLayout>
@@ -14,7 +27,7 @@ const SettingCorporate = () => {
       <RightLayout>
         <Header titleFirst="test" />
         {/* <DepartmentForm /> */}
-        <DepartmentOverview />
+        <DepartmentOverview data={department} />
       </RightLayout>
     </>
   );
