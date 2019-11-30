@@ -14,3 +14,4 @@ export interface IReservation {
   PaymentType: string;
   Code: string;
 }
+
