@@ -5,9 +5,9 @@ import CustomerOverview from "../../containers/Overviews/CustomerOverview";
 import SubLink from "../../components/NavElements/Elements/SubLink";
 import { customerDetail } from "../../helpers/Static/Links";
 import CustomerForm from "../../containers/Forms/CustomerForm";
-import Header from "../../components/Header/Header";
 import moment from "moment";
 import SecureStore from "secure-ls";
+import Header from "../../components/Header/Header";
 import {
   HeaderCustomerOverview,
   HeaderCustomerEdit

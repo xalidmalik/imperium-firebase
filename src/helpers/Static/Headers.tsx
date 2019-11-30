@@ -35,6 +35,13 @@ export const HeaderCarNew: IHeaderValidation = {
   btnTitle: "Kaydet",
   btnForm: "CarFormSubmit"
 };
+export const HeaderReservationNew: IHeaderValidation = {
+  titleFirst: "Rezervasyonlar",
+  linkFirst: "/reservation",
+  titleSecond: "Yeni Rezervayon Yap",
+  btnTitle: "Kaydet",
+  btnForm: "ReservationFormSubmit"
+};
 
 //* Header overview ---------------------------------------
 
@@ -48,6 +55,10 @@ export const HeaderCarOverview: IHeaderValidation = {
   linkFirst: "/car"
 };
 
+export const HeaderReservationOverview: IHeaderValidation = {
+  titleFirst: "Rezervasyonlar",
+  linkFirst: "/reservation"
+};
 //* Header Edit ---------------------------------------
 
 export const HeaderCustomerEdit: IHeaderValidation = {
@@ -65,4 +76,12 @@ export const HeaderCarEdit: IHeaderValidation = {
   titleThird: "Bilgileri Düzenle",
   btnTitle: "Güncelle",
   btnForm: "CarFormSubmit"
+};
+export const HeaderReservationEdit: IHeaderValidation = {
+  titleFirst: "Rezervasyonlar",
+  linkFirst: "/reservation",
+  linkSecond: "/reservation/detail",
+  titleThird: "Bilgileri Düzenle",
+  btnTitle: "Güncelle",
+  btnForm: "ReservationFormSubmit"
 };
