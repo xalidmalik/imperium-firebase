@@ -58,8 +58,8 @@ const ReservationTable: React.FC<any> = () => {
     <>
       <Header
         titleFirst={HeaderReservationList.titleFirst}
-        btnLink={HeaderCustomerList.btnLink}
-        btnTitle={HeaderCustomerList.btnTitle}
+        btnLink={HeaderReservationList.btnLink}
+        btnTitle={HeaderReservationList.btnTitle}
         OnChange={value => {}}
         length={reservations.length}
       />

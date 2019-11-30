@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Fields from "../../components/FormElements/Input/Fields";
 import Checkbox from "../../components/FormElements/Input/Checkbox";
 import Radiobox from "../../components/FormElements/Input/Radiobox";
-// import DropDown from "../../components/FormElements/Input/DropDown";
+import Dropdown from "../../components/FormElements/Input/Dropdown";
 import { reservationForm } from "../../helpers/Static/FormFields";
 import { reservation } from "../../helpers/Static/System";
 import Card from "../../components/Card/Card";
@@ -10,11 +10,11 @@ import { Formik, Form } from "formik";
 import { message } from "../../helpers/Static/System";
 import { AlertSwal } from "../../helpers/Alert/Alert";
 import { History } from "../../helpers/Static/History";
-// import DateTimePicker from "../../components/FormElements/Input/DateTimePicker";
+import DatetimePicker from "../../components/FormElements/Input/DatetimePicker";
 import RightModal from "../../components/Modal/RightModal";
-// import CustomerForm from "./CustomerForm";
+import CustomerForm from "./CustomerForm";
 import Header from "../../components/Header/Header";
-// import FieldOutput from "../../components/FormElements/Outputs/FieldOutput";
+import FieldOutput from "../../components/FormElements/Output/FieldOutput";
 import moment from "moment";
 import {
   reservationType,
@@ -22,6 +22,7 @@ import {
   gender,
   color
 } from "../../helpers/Static/Options";
+import { ReservationModel } from "src/helpers/Database/ReservationInterface";
 
 class ReservationForm extends Component {
   //   state = {
@@ -179,98 +180,73 @@ class ReservationForm extends Component {
   //   };
 
   render() {
-    // const selectedCar = JSON.parse(localStorage.getItem("SelectedReservation"));
-
     return (
       <>
-        {/* <Formik
-          initialValues={
-            this.props.activeReservation || {
-              BeginDateTime: null,
-              EndDateTime: null,
-              ReservationStatus: "",
-              CustomerId: "",
-              Price: "",
-              KmStart: "",
-              KmEnd: "",
-              CarId: "",
-              PaymentType: "0",
-              FuelCount: "",
-              Deposit: "",
-              AmountPaid: "",
-              AdditionalCustomerId: ""
-            }
-          }
+        <Formik
+          initialValues={new ReservationModel()}
           onSubmit={(values, { setSubmitting }) => {
-            if (this.props.activeReservation) {
-              alert("active");
-              let model = {
-                BeginDateTime: moment(values.BeginDateTime.toString()).format(
-                  "YYYY.MM.DD HH:mm"
-                ),
-                EndDateTime: moment(values.EndDateTime.toString()).format(
-                  "YYYY.MM.DD HH:mm"
-                ),
-                ReservationStatus: this.isObject(values.ReservationStatus)
-                  ? values.ReservationStatus.value
-                  : values.ReservationStatus,
-
-                CustomerId: this.isObject(values.CustomerId)
-                  ? values.CustomerId.value
-                  : values.CustomerId,
-
-                Price: values.Price || 0,
-                KmStart: values.KmStart || 0,
-                KmEnd: values.KmEnd || 0,
-
-                CarId: this.isObject(values.CarId)
-                  ? values.CarId.value
-                  : values.CarId,
-
-                PaymentType: this.isObject(values.PaymentType)
-                  ? values.PaymentType.value
-                  : values.PaymentType,
-
-                FuelCount: values.FuelCount || 0,
-                Deposit: values.Deposit || 0,
-                AmountPaid: values.AmountPaid || 0,
-                IsApproval: true,
-
-                AdditionalCustomerId: this.isObject(values.AdditionalCustomerId)
-                  ? values.AdditionalCustomerId.value
-                  : values.AdditionalCustomerId
-              };
-              this.props.putReservation(model);
-              console.log("update reservation :", model);
-            } else {
-              let model = {
-                BeginDateTime: moment(values.BeginDateTime.toString()).format(
-                  "YYYY.MM.DD HH:mm"
-                ),
-                EndDateTime: moment(values.EndDateTime.toString()).format(
-                  "YYYY.MM.DD HH:mm"
-                ),
-                ReservationStatus: values.ReservationStatus.value,
-                CustomerId: this.isObject(values.CustomerId)
-                  ? values.CustomerId.value
-                  : values.CustomerId,
-
-                Price: values.Price || 0,
-                KmStart: values.KmStart || 0,
-                KmEnd: values.KmEnd || 0,
-                CarId: values.CarId.value,
-                PaymentType: values.PaymentType.value || 0,
-                FuelCount: values.FuelCount || 0,
-                Deposit: values.Deposit || 0,
-                AmountPaid: values.AmountPaid || 0,
-                IsApproval: true,
-                AdditionalCustomerId: this.isObject(values.AdditionalCustomerId)
-                  ? values.AdditionalCustomerId.value
-                  : values.AdditionalCustomerId
-              };
-              console.log(model);
-              this.props.postReservation(model);
-            }
+            // if (this.props.activeReservation) {
+            //   alert("active");
+            //   let model = {
+            //     BeginDateTime: moment(values.BeginDateTime.toString()).format(
+            //       "YYYY.MM.DD HH:mm"
+            //     ),
+            //     EndDateTime: moment(values.EndDateTime.toString()).format(
+            //       "YYYY.MM.DD HH:mm"
+            //     ),
+            //     ReservationStatus: this.isObject(values.ReservationStatus)
+            //       ? values.ReservationStatus.value
+            //       : values.ReservationStatus,
+            //     CustomerId: this.isObject(values.CustomerId)
+            //       ? values.CustomerId.value
+            //       : values.CustomerId,
+            //     Price: values.Price || 0,
+            //     KmStart: values.KmStart || 0,
+            //     KmEnd: values.KmEnd || 0,
+            //     CarId: this.isObject(values.CarId)
+            //       ? values.CarId.value
+            //       : values.CarId,
+            //     PaymentType: this.isObject(values.PaymentType)
+            //       ? values.PaymentType.value
+            //       : values.PaymentType,
+            //     FuelCount: values.FuelCount || 0,
+            //     Deposit: values.Deposit || 0,
+            //     AmountPaid: values.AmountPaid || 0,
+            //     IsApproval: true,
+            //     AdditionalCustomerId: this.isObject(values.AdditionalCustomerId)
+            //       ? values.AdditionalCustomerId.value
+            //       : values.AdditionalCustomerId
+            //   };
+            //   this.props.putReservation(model);
+            //   console.log("update reservation :", model);
+            // } else {
+            //   let model = {
+            //     BeginDateTime: moment(values.BeginDateTime.toString()).format(
+            //       "YYYY.MM.DD HH:mm"
+            //     ),
+            //     EndDateTime: moment(values.EndDateTime.toString()).format(
+            //       "YYYY.MM.DD HH:mm"
+            //     ),
+            //     ReservationStatus: values.ReservationStatus.value,
+            //     CustomerId: this.isObject(values.CustomerId)
+            //       ? values.CustomerId.value
+            //       : values.CustomerId,
+            //     Price: values.Price || 0,
+            //     KmStart: values.KmStart || 0,
+            //     KmEnd: values.KmEnd || 0,
+            //     CarId: values.CarId.value,
+            //     PaymentType: values.PaymentType.value || 0,
+            //     FuelCount: values.FuelCount || 0,
+            //     Deposit: values.Deposit || 0,
+            //     AmountPaid: values.AmountPaid || 0,
+            //     IsApproval: true,
+            //     AdditionalCustomerId: this.isObject(values.AdditionalCustomerId)
+            //       ? values.AdditionalCustomerId.value
+            //       : values.AdditionalCustomerId
+            //   };
+            //   console.log(model);
+            //   this.props.postReservation(model);
+            // }
           }}
         >
           {({
@@ -284,77 +260,77 @@ class ReservationForm extends Component {
           }) => (
             <Form id="ReservationFormSubmit">
               <Card base={reservation.history}>
-                <DateTimePicker
-                  showTimeSelect={true}
-                  onChange={setFieldValue}
-                  base={reservationForm.BeginDateTime}
-                  touched={touched.BeginDateTime}
-                  errors={errors.BeginDateTime}
-                  values={values.BeginDateTime}
-                  seletedStart={true}
-                  startDate={values.BeginDateTime}
-                  endDate={values.EndDateTime}
+                <DatetimePicker
+                // showTimeSelect={true}
+                // onChange={setFieldValue}
+                // base={reservationForm.BeginDateTime}
+                // touched={touched.BeginDateTime}
+                // errors={errors.BeginDateTime}
+                // values={values.BeginDateTime}
+                // seletedStart={true}
+                // startDate={values.BeginDateTime}
+                // endDate={values.EndDateTime}
                 />
-                <DateTimePicker
-                  showTimeSelect={true}
-                  onChange={setFieldValue}
-                  base={reservationForm.EndDateTime}
-                  touched={touched.EndDateTime}
-                  errors={errors.EndDateTime}
-                  values={values.EndDateTime}
-                  minDate={values.BeginDateTime}
-                  selectedEnd={true}
-                  startDate={values.BeginDateTime}
-                  endDate={values.EndDateTime}
+                <DatetimePicker
+                // showTimeSelect={true}
+                // onChange={setFieldValue}
+                // base={reservationForm.EndDateTime}
+                // touched={touched.EndDateTime}
+                // errors={errors.EndDateTime}
+                // values={values.EndDateTime}
+                // minDate={values.BeginDateTime}
+                // selectedEnd={true}
+                // startDate={values.BeginDateTime}
+                // endDate={values.EndDateTime}
                 />
               </Card>
               <Card base={reservation.car}>
-                {this.props.activeReservation ? (
+                {/* {this.props.activeReservation ? (
                   <FieldOutput
                     base={reservationForm.SelectedCar}
                     data={`${selectedCar.CarBrandName} ${selectedCar.CarModelName} | ${selectedCar.CarPlate} `}
                   />
-                ) : null}
+                ) : null} */}
 
-                <DropDown
+                <Dropdown
                   runFuction={() => {
-                    this.props.fetchAvailableCars(
-                      moment(values.BeginDateTime).format("YYYY-MM-DD HH:mm"),
-                      moment(values.EndDateTime).format("YYYY-MM-DD HH:mm")
-                    );
+                    // this.props.fetchAvailableCars(
+                    //   moment(values.BeginDateTime).format("YYYY-MM-DD HH:mm"),
+                    //   moment(values.EndDateTime).format("YYYY-MM-DD HH:mm")
+                    // );
                   }}
                   onChange={setFieldValue}
                   base={reservationForm.CarId}
                   touched={touched.CarId}
                   errors={errors.CarId}
                   values={values.CarId}
-                  options={this.state.availableCars}
+                  // options={this.state.availableCars}
                 />
               </Card>
               <Card base={reservation.customer}>
-                <DropDown
+                <Dropdown
                   onChange={setFieldValue}
                   base={reservationForm.CustomerId}
                   touched={touched.CustomerId}
                   errors={errors.CustomerId}
-                  values={
-                    this.state.isNewCustomer && !this.state.IsAdditionalDriver
-                      ? this.props.customers[this.props.customers.length - 1].Id
-                      : values.CustomerId
-                  }
-                  options={this.state.customers}
-                  selectedValue={value => {
-                    if (value.value == "addNew") {
-                      this.OpenModal();
-                    }
-                  }}
+                  // values={
+                  //   this.state.isNewCustomer && !this.state.IsAdditionalDriver
+                  //     ? this.props.customers[this.props.customers.length - 1].Id
+                  //     : values.CustomerId
+                  // }
+                  // options={this.state.customers}
+                  // selectedValue={value => {
+                  //   if (value.value == "addNew") {
+                  //     this.OpenModal();
+                  //   }
+                  // }}
                   onCustomerChange={value => {
                     if (value) {
                       values.CustomerId = value.value;
                     }
                   }}
                 />
-                <DropDown
+                <Dropdown
                   onChange={setFieldValue}
                   onCustomerChange={value => {
                     if (value) {
@@ -364,24 +340,24 @@ class ReservationForm extends Component {
                   base={reservationForm.AdditionalCustomerId}
                   touched={touched.AdditionalCustomerId}
                   errors={errors.AdditionalCustomerId}
-                  options={this.state.additionalCustomer}
-                  values={
-                    this.state.IsAdditionalDriver
-                      ? this.props.customers[this.props.customers.length - 1].Id
-                      : values.AdditionalCustomerId
-                  }
-                  selectedValue={value => {
-                    if (value.value == "addNew") {
-                      this.setState(
-                        {
-                          IsAdditionalDriver: true
-                        },
-                        () => {
-                          this.OpenModal();
-                        }
-                      );
-                    }
-                  }}
+                  // options={this.state.additionalCustomer}
+                  // values={
+                  //   this.state.IsAdditionalDriver
+                  //     ? this.props.customers[this.props.customers.length - 1].Id
+                  //     : values.AdditionalCustomerId
+                  // }
+                  // selectedValue={value => {
+                  //   if (value.value == "addNew") {
+                  //     this.setState(
+                  //       {
+                  //         IsAdditionalDriver: true
+                  //       },
+                  //       () => {
+                  //         this.OpenModal();
+                  //       }
+                  //     );
+                  //   }
+                  // }}
                 />
               </Card>
               <Card base={reservation.payment}>
@@ -398,10 +374,10 @@ class ReservationForm extends Component {
                   values={values.Deposit}
                 />
                 <Fields
-                  base={reservationForm.AmountPaid}
-                  touched={touched.AmountPaid}
-                  errors={errors.AmountPaid}
-                  values={values.AmountPaid}
+                  base={reservationForm.Paid}
+                  touched={touched.Paid}
+                  errors={errors.Paid}
+                  values={values.Paid}
                 />
 
                 <Radiobox
@@ -409,24 +385,24 @@ class ReservationForm extends Component {
                   touched={touched.PaymentType}
                   errors={errors.PaymentType}
                   values={values.PaymentType}
-                  options={PaymentType}
+                  // options={PaymentType}
                 />
 
-                <DropDown
+                <Dropdown
                   onChange={setFieldValue}
-                  base={reservationForm.ReservationStatus}
-                  touched={touched.ReservationStatus}
-                  errors={errors.ReservationStatus}
-                  values={values.ReservationStatus}
-                  options={ReservationType}
+                  base={reservationForm.ReservationTypes}
+                  touched={touched.ReservationTypes}
+                  errors={errors.ReservationTypes}
+                  values={values.ReservationTypes}
+                  // options={ReservationType}
                 />
               </Card>
             </Form>
           )}
         </Formik>
         <RightModal ref="modal">
-          <HeaderReservationCustomerNew closeModal={() => this.OpenModal()} />
-          <CustomerForm
+          {/* <HeaderReservationCustomerNew closeModal={() => this.OpenModal()} /> */}
+          {/* <CustomerForm
             AdditionalCustomerId={this.state.IsAdditionalDriver}
             IsCustomerCreate={value => {
               if (value) {
@@ -443,8 +419,8 @@ class ReservationForm extends Component {
               }
             }}
             isModal={true}
-          />
-        </RightModal> */}
+          /> */}
+        </RightModal>
       </>
     );
   }

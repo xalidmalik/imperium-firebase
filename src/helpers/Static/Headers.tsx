@@ -35,6 +35,13 @@ export const HeaderCarNew: IHeaderValidation = {
   btnTitle: "Kaydet",
   btnForm: "CarFormSubmit"
 };
+export const HeaderReservationNew: IHeaderValidation = {
+  titleFirst: "Rezervasyonlar",
+  linkFirst: "/reservation",
+  titleSecond: "Yeni Rezervayon Yap",
+  btnTitle: "Kaydet",
+  btnForm: "ReservationFormSubmit"
+};
 
 //* Header overview ---------------------------------------
 
