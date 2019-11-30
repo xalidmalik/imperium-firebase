@@ -14,17 +14,3 @@ export interface IReservation {
   PaymentType: string;
   Code: string;
 }
-export class ReservationModel {
-  Id?: string = "";
-  CustomerId: any = "";
-  AdditionalCustomerId: any = "";
-  ReservationTypes?: ReservationType;
-  CarId: any;
-  BeginDateTime: string = "";
-  EndDateTime: string = "";
-  Price?: number;
-  Deposit?: number;
-  Paid?: number;
-  PaymentType: string = "";
-  Code: string = "";
-}

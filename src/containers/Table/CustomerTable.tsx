@@ -8,7 +8,7 @@ import { AlertSwalDelete, AlertSwal } from "../../helpers/Alert/Alert";
 import { SearchCustomer } from "../../helpers/Function/Search";
 import { isEmpty } from "lodash";
 import { customerListHeader } from "../../helpers//Static/ListHeader";
-import { GetRecords } from "../../database/";
+import { GetRecords, GetReservations } from "../../database/";
 import { ICustomer } from "src/helpers/Database/CustomerInterfaces";
 import { HeaderCustomerList } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";

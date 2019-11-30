@@ -13,7 +13,7 @@ import {
   HeaderReservationList,
   HeaderCustomerList
 } from "src/helpers/Static/Headers";
-import { GetRecords, AddRecord } from "src/database";
+import { GetRecords, AddRecord, GetReservations } from "src/database";
 import SecureStore from "secure-ls";
 
 const ReservationTable: React.FC<any> = () => {
@@ -23,32 +23,7 @@ const ReservationTable: React.FC<any> = () => {
   const sc = new SecureStore();
 
   const getAllReservation = () => {
-    GetRecords("Reservation", "ayazarac").then(data => setReservation(data));
-
-    let obj: IReservation = {
-      Price: 150,
-      AdditionalCustomerId: "",
-      BeginDateTime: new Date(Date.now()).toString(),
-      EndDateTime: new Date(Date.now()).toString(),
-      CarId: {
-        BrandName: "Reno",
-        ModelName: "Meno",
-        Plate: "99 be 946",
-        Price: ""
-      },
-      Code: "ayazarac",
-      CustomerId: {
-        Name: "Agha",
-        Surname: "Huseynov",
-        FirstPhone: "5530829742"
-      },
-      Deposit: 150,
-      Paid: 50,
-      PaymentType: "Kredi",
-      ReservationTypes: "Ön Rezerve"
-    };
-
-    AddRecord("Reservation", "ayazarac", obj);
+    GetReservations().then(data => setReservation(data));
   };
 
   useEffect(() => {
@@ -127,7 +102,7 @@ const ReservationTable: React.FC<any> = () => {
                     </td>
                     <td>
                       <span className="px-3 py-1 bg-blue-400 rounded-lg text-white">
-                        {/* {StringReservationStatus(i.ReservationState)} */}
+                        {i.ReservationTypes}
                       </span>
                     </td>
                     <td>
