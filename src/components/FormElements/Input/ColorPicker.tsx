@@ -15,13 +15,14 @@ const ColorPicker = (props: IFormValidation) => {
       <div className="h-12 flex w-full justify-between">
         {props.options.map((data: any, index: any) => {
           return (
-            <label key={index}>
+            <label key={index} className="relative">
               <Field
                 type={props.base.type ? props.base.type : "radio"}
                 name={props.base.for}
                 value={data.value}
-                checked={props.values == data.value}
+                checked={props.values == data.value ? props.values : ""}
                 className="med-radio-color"
+                tabIndex={0}
               />
               <div
                 className={`h-12 w-12 flex px-4 my-auto rounded-full bg-${data.label} opacity-25 text-${data.label} border shadow-base med-radio-colors align-middle`}

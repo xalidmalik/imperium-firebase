@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Fields from "../../components/FormElements/Input/Fields";
 import Radiobox from "../../components/FormElements/Input/Radiobox";
+import ColorPicker from "../../components/FormElements/Input/ColorPicker";
 import { carForm } from "../../helpers/Static/FormFields";
 import { carSchema } from "../../helpers/Validations/Yup";
 import {
@@ -9,7 +10,8 @@ import {
   gearTypeList,
   fuelTypeList,
   engineCapacityList,
-  doorsNumberList
+  doorsNumberList,
+  color
 } from "../../helpers/Static/Options";
 import { car } from "../../helpers/Static/System";
 import Card from "../../components/Card/Card";
@@ -169,13 +171,6 @@ const CarForm: React.FC<any> = (props: any) => {
               />
             </Card>
             <Card base={car.additionalinfo}>
-              {/* <ColorPicker
-                base={carForm.Color}
-                options={color}
-                touched={touched.Color}
-                errors={errors.Color}
-                values={values.Color}
-              /> */}
               <Fields
                 base={carForm.Plate}
                 touched={touched.Plate}
@@ -200,12 +195,14 @@ const CarForm: React.FC<any> = (props: any) => {
                 errors={errors.KM}
                 values={values.KM}
               />
-              <Fields
+              <ColorPicker
                 base={carForm.Color}
+                options={color}
                 touched={touched.Color}
                 errors={errors.Color}
                 values={values.Color}
               />
+
               <Fields
                 base={carForm.MinDriverLicenseYear}
                 touched={touched.MinDriverLicenseYear}

@@ -16,14 +16,14 @@ const Radiobox = (props: IFormValidation) => {
       <div className="h-12 flex w-full">
         {props.options.map((data: any, index: any) => {
           return (
-            <label key={index} className="relative">
+            <label key={index} className="relative" tabIndex={index}>
               <Field
+                id="gender"
                 type={props.base.type ? props.base.type : "radio"}
                 name={props.base.for}
                 value={data.value}
                 checked={props.values == data.value ? props.values : ""}
                 className="med-radio-type"
-                tabIndex={0}
               />
               <div className="h-12 flex px-4 rounded-lg border border-gray-300 shadow-base med-radio align-middle mr-4 focus:shadow-none  focus:outline-med-500">
                 <div className="rounded-full flex my-auto w-4 h-4 bg-gray-300 mr-4 med-radio-span text-white">

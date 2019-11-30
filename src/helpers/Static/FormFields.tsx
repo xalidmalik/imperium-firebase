@@ -369,9 +369,9 @@ export const reservationForm = {
     required: true
   },
 
-  ReservationStatus: {
+  ReservationTypes: {
     title: "Rezervasyon Durumu",
-    for: "ReservationStatus",
+    for: "ReservationTypes",
     placeholder: "Durum Seçiniz"
   },
 
@@ -433,11 +433,11 @@ export const reservationForm = {
     placeholder: "Değer Giriniz",
     for: "Deposit"
   },
-  AmountPaid: {
+  Paid: {
     title: "Ödenen",
     type: "text",
     placeholder: "Ödenen Tutarı Giriniz",
-    for: "AmountPaid"
+    for: "Paid"
   }
 };
 

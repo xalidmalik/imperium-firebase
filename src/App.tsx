@@ -14,6 +14,11 @@ import ReservationNew from "./pages/Reservation/ReservationNew";
 import ReservationDetail from "./pages/Reservation/ReservationDetail";
 import { GetRecords, IncrenmentRowVersion } from "./database";
 import SettingCorporate from "./pages/Settings/SettingCorporate";
+import Header from "../src/components/Header/Header";
+import {
+  HeaderCustomerNew,
+  HeaderCustomerList
+} from "./helpers/Static/Headers";
 
 const App: React.FC = () => {
   let context = useHistory<any>();
@@ -50,6 +55,34 @@ const App: React.FC = () => {
           style={props}
           className="fixed w-layout bg-gray-200 ml-20 flex h-full"
         >
+          {/* <Switch location={item}>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Header
+                  titleFirst={HeaderCustomerNew.titleFirst}
+                  linkFirst={HeaderCustomerNew.linkFirst}
+                  titleSecond={HeaderCustomerNew.titleSecond}
+                  btnForm={HeaderCustomerNew.btnForm}
+                  btnTitle={HeaderCustomerNew.btnTitle}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/customer"
+              render={() => (
+                <Header
+                  titleFirst={HeaderCustomerList.titleFirst}
+                  OnChange={""}
+                  length={2}
+                  btnLink={HeaderCustomerList.btnLink}
+                  btnTitle={HeaderCustomerList.btnTitle}
+                />
+              )}
+            />
+          </Switch> */}
           <Switch location={item}>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/customer" component={CustomerList} />
