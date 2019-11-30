@@ -77,3 +77,11 @@ export const HeaderCarEdit: IHeaderValidation = {
   btnTitle: "Güncelle",
   btnForm: "CarFormSubmit"
 };
+export const HeaderReservationEdit: IHeaderValidation = {
+  titleFirst: "Rezervasyonlar",
+  linkFirst: "/reservation",
+  linkSecond: "/reservation/detail",
+  titleThird: "Bilgileri Düzenle",
+  btnTitle: "Güncelle",
+  btnForm: "ReservationFormSubmit"
+};

@@ -5,14 +5,13 @@ import { CardWrapper } from "../../components/Card/CardWrapper";
 import { History } from "../../helpers/Static/History";
 import SubLink from "../../components/NavElements/Elements/SubLink";
 import { reservationDetail } from "../../helpers/Static/Links";
-// import ReservationForm from "../../containers/Forms/ReservationForm";
+import ReservationForm from "../../containers/Forms/ReservationForm";
 import ReservationOverview from "../../containers/Overviews/ReservationOverview";
 import moment from "moment";
 import Header from "../../components/Header/Header";
 import {
-  HeaderCustomerOverview,
-  HeaderCustomerEdit,
-  HeaderReservationOverview
+  HeaderReservationOverview,
+  HeaderReservationEdit
 } from "src/helpers/Static/Headers";
 // import { format } from "date-fns";
 import SecureStore from "secure-ls";
@@ -90,8 +89,16 @@ export const ReservationDetail: React.FC = () => {
             path="/reservation/detail/edit"
             render={() => (
               <>
-                {/* <HeaderReservationEdit reservation={reservation} />
-                  <ReservationForm activeReservation={reservation} /> */}
+                <Header
+                  titleFirst={HeaderReservationEdit.titleFirst}
+                  linkFirst={HeaderReservationEdit.linkFirst}
+                  titleSecond={`${reservation.CustomerId.Name} ${reservation.CustomerId.Surname}`}
+                  linkSecond={HeaderReservationEdit.linkSecond}
+                  titleThird={HeaderReservationEdit.titleThird}
+                  btnForm={HeaderReservationEdit.btnForm}
+                  btnTitle={HeaderReservationEdit.btnTitle}
+                />
+                <ReservationForm activeReservation={reservation} />
               </>
             )}
           />
