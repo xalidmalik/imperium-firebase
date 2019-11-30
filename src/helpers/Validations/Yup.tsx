@@ -30,6 +30,10 @@ export const carSchema = yup.object().shape({
   Classes: yup.string().required("Bu alan zorunludur.")
 });
 
+export const departmentSchema = yup.object().shape({
+  Email: yup.string().required("Bu alan zorunludur.")
+});
+
 export const signSchema = yup.object().shape({
   Username: yup.string().required("Bu alan zorunludur."),
   Password: yup.string().required("Bu alan zorunludur.")

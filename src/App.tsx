@@ -13,6 +13,7 @@ import ReservationList from "./pages/Reservation/ReservationList";
 import ReservationNew from "./pages/Reservation/ReservationNew";
 import ReservationDetail from "./pages/Reservation/ReservationDetail";
 import { GetRecords, IncrenmentRowVersion } from "./database";
+import SettingCorporate from "./pages/Settings/SettingCorporate";
 
 const App: React.FC = () => {
   let context = useHistory<any>();
@@ -65,6 +66,7 @@ const App: React.FC = () => {
               path="/reservation/new"
               render={() => <h1>Muhasebe</h1>}
             />
+            <Route path="/settings/corporate" component={SettingCorporate} />
           </Switch>
         </animated.div>
       ))}

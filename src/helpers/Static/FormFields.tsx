@@ -469,9 +469,9 @@ export const departmentForm = {
     for: "Address"
   },
 
-  VisualId: {
+  BrandLogo: {
     title: "Şirket Logosu",
-    type: "image",
+    type: "file",
     for: "VisualId"
   },
 
@@ -556,11 +556,11 @@ export const departmentForm = {
     placeholder: "facebook/carax",
     for: "FacebookUrl"
   },
-  OfficalEMail: {
+  OfficialEmail: {
     title: "Kurumsal Email",
     type: "text",
     placeholder: "Email Adresi Giriniz",
-    for: "OfficialEMail"
+    for: "OfficialEmail"
   },
   PublicSiteUrl: {
     title: "Web Sitesi",
