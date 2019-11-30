@@ -23,7 +23,10 @@ const ReservationTable: React.FC<any> = () => {
   const sc = new SecureStore();
 
   const getAllReservation = () => {
-    GetReservations().then(data => setReservation(data));
+    GetReservations().then(data => {
+      console.log(" reser :", data);
+      setReservation(data);
+    });
   };
 
   useEffect(() => {
@@ -65,20 +68,20 @@ const ReservationTable: React.FC<any> = () => {
                       <div
                         className={`rounded-full bg-gray-300 mr-4 p-2 w-12 h-12 min-h-12 min-w-12 flex items-center justify-center text-gray-800`}
                       >
-                        {i.CustomerId.Name[0] + i.CustomerId.Surname[0]}
+                        {i.Customer.Name[0] + i.Customer.Surname[0]}
                       </div>
                       <div className="block">
-                        <h5 className="flex font-bold">{`${i.CustomerId.Name} ${i.CustomerId.Surname}`}</h5>
-                        <span className="text-sm flex">{`Tel: ${i.CustomerId.FirstPhone}`}</span>
+                        <h5 className="flex font-bold">{`${i.Customer.Name} ${i.Customer.Surname}`}</h5>
+                        <span className="text-sm flex">{`Tel: ${i.Customer.FirstPhone}`}</span>
                       </div>
                     </td>
                     <td>
                       <div className="block">
                         <h5 className="flex font-bold">
-                          {`${i.CarId.BrandName} ${i.CarId.ModelName}`}
+                          {`${i.Car.BrandName} ${i.Car.ModelName}`}
                         </h5>
                         <div className="flex">
-                          <span className="text-sm flex">{`Plaka: ${i.CarId.Plate}`}</span>
+                          <span className="text-sm flex">{`Plaka: ${i.Car.Plate}`}</span>
                         </div>
                       </div>
                     </td>
@@ -95,7 +98,7 @@ const ReservationTable: React.FC<any> = () => {
                     <td>
                       <div className="block">
                         <h5 className="flex font-bold">
-                          {i.Price || i.CarId.Price} <span>&#8378;</span>
+                          {i.Price || i.Car.Price} <span>&#8378;</span>
                         </h5>
                         <span className="text-sm flex">(KDV Dahil)</span>
                       </div>
