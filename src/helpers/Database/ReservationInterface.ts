@@ -23,8 +23,8 @@ export class ReservationModel {
   AdditionalCustomerId?: any;
   ReservationTypes: ReservationType = "Ön Rezerve";
   CarId: any = "";
-  BeginDateTime: string = "";
-  EndDateTime: string = "";
+  BeginDateTime?: Date;
+  EndDateTime?: Date;
   Price: number = 0;
   Deposit: number = 0;
   Paid: number = 0;

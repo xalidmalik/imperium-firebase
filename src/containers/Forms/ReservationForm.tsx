@@ -24,7 +24,7 @@ import {
 } from "../../helpers/Static/Options";
 import { ReservationModel } from "src/helpers/Database/ReservationInterface";
 import { ICustomer } from "../../helpers/Database/CustomerInterfaces";
-import { GetRecords } from "../../database/index";
+import { GetRecords, GetAvailableCars } from "../../database/index";
 
 const ReservationForm: React.FC<any> = (props: any) => {
   //   state = {
@@ -185,6 +185,19 @@ const ReservationForm: React.FC<any> = (props: any) => {
     new Array<ICustomer>()
   );
 
+  const [availableCars, setAvailableCars] = useState<any>();
+
+  const setAvailableCarList = values => {
+    GetAvailableCars(values.BeginDateTime, values.EndDateTime).then(q =>
+      setAvailableCars(
+        q.map(data => ({
+          label: `${data.Car.BrandName} | ${data.Car.ModelName} | ${data.Car.Plate}`,
+          value: data.Id
+        }))
+      )
+    );
+  };
+
   const setCustomersList = () => {
     GetRecords("Customer", "ayazarac").then(data => {
       setCustomer(
@@ -205,68 +218,7 @@ const ReservationForm: React.FC<any> = (props: any) => {
       <Formik
         initialValues={new ReservationModel()}
         onSubmit={(values, { setSubmitting }) => {
-          // if (this.props.activeReservation) {
-          //   alert("active");
-          //   let model = {
-          //     BeginDateTime: moment(values.BeginDateTime.toString()).format(
-          //       "YYYY.MM.DD HH:mm"
-          //     ),
-          //     EndDateTime: moment(values.EndDateTime.toString()).format(
-          //       "YYYY.MM.DD HH:mm"
-          //     ),
-          //     ReservationStatus: this.isObject(values.ReservationStatus)
-          //       ? values.ReservationStatus.value
-          //       : values.ReservationStatus,
-          //     CustomerId: this.isObject(values.CustomerId)
-          //       ? values.CustomerId.value
-          //       : values.CustomerId,
-          //     Price: values.Price || 0,
-          //     KmStart: values.KmStart || 0,
-          //     KmEnd: values.KmEnd || 0,
-          //     CarId: this.isObject(values.CarId)
-          //       ? values.CarId.value
-          //       : values.CarId,
-          //     PaymentType: this.isObject(values.PaymentType)
-          //       ? values.PaymentType.value
-          //       : values.PaymentType,
-          //     FuelCount: values.FuelCount || 0,
-          //     Deposit: values.Deposit || 0,
-          //     AmountPaid: values.AmountPaid || 0,
-          //     IsApproval: true,
-          //     AdditionalCustomerId: this.isObject(values.AdditionalCustomerId)
-          //       ? values.AdditionalCustomerId.value
-          //       : values.AdditionalCustomerId
-          //   };
-          //   this.props.putReservation(model);
-          //   console.log("update reservation :", model);
-          // } else {
-          //   let model = {
-          //     BeginDateTime: moment(values.BeginDateTime.toString()).format(
-          //       "YYYY.MM.DD HH:mm"
-          //     ),
-          //     EndDateTime: moment(values.EndDateTime.toString()).format(
-          //       "YYYY.MM.DD HH:mm"
-          //     ),
-          //     ReservationStatus: values.ReservationStatus.value,
-          //     CustomerId: this.isObject(values.CustomerId)
-          //       ? values.CustomerId.value
-          //       : values.CustomerId,
-          //     Price: values.Price || 0,
-          //     KmStart: values.KmStart || 0,
-          //     KmEnd: values.KmEnd || 0,
-          //     CarId: values.CarId.value,
-          //     PaymentType: values.PaymentType.value || 0,
-          //     FuelCount: values.FuelCount || 0,
-          //     Deposit: values.Deposit || 0,
-          //     AmountPaid: values.AmountPaid || 0,
-          //     IsApproval: true,
-          //     AdditionalCustomerId: this.isObject(values.AdditionalCustomerId)
-          //       ? values.AdditionalCustomerId.value
-          //       : values.AdditionalCustomerId
-          //   };
-          //   console.log(model);
-          //   this.props.postReservation(model);
-          // }
+          console.log("Values :", values);
         }}
       >
         {({
@@ -314,17 +266,14 @@ const ReservationForm: React.FC<any> = (props: any) => {
 
               <Dropdown
                 runFuction={() => {
-                  // this.props.fetchAvailableCars(
-                  //   moment(values.BeginDateTime).format("YYYY-MM-DD HH:mm"),
-                  //   moment(values.EndDateTime).format("YYYY-MM-DD HH:mm")
-                  // );
+                  setAvailableCarList(values);
                 }}
                 onChange={setFieldValue}
                 base={reservationForm.CarId}
                 touched={touched.CarId}
                 errors={errors.CarId}
                 values={values.CarId}
-                // options={this.state.availableCars}
+                options={availableCars}
               />
             </Card>
             <Card base={reservation.customer}>

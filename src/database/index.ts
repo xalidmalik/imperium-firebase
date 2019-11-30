@@ -3,6 +3,20 @@ import { IRecord, ICheckRowVersion } from "../helpers/Types/RecordInterface";
 import React from "react";
 import db, { fb } from "../firebase/firebaseconfig";
 import ls from "secure-ls";
+import { IReservation } from "../helpers/Database/ReservationInterface";
+
+export const GetAvailableCars = async (beginDate: any, endDate: any) => {
+  let reservation = await GetReservations();
+
+  let available = reservation.filter(
+    (a: IReservation) =>
+      !(a.BeginDateTime <= beginDate && a.EndDateTime >= beginDate) ||
+      !(a.BeginDateTime <= endDate && a.EndDateTime >= endDate) ||
+      !(beginDate <= a.BeginDateTime && endDate >= a.EndDateTime)
+  );
+
+  return available;
+};
 
 export const GetReservations = async () => {
   let reservations: any = await GetRecords("Reservation", "ayazarac");
