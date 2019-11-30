@@ -5,15 +5,14 @@ import { defaultForm } from "../../helpers/Static/FormFields";
 // import FieldOutput from "../../components/FormElements/Outputs/FieldOutput";
 // import CheckboxOutput from "../../components/FormElements/Outputs/CheckboxOutput";
 
-class ReservationOverview extends Component {
-  render() {
-    const { data }: any = this.props;
-    console.log("dawd", data);
-    return (
-      <>
-        <Card base={customer.identity}>
-          {/* <FieldOutput base={defaultForm.Name} data={data.Name} /> */}
-          {/* <FieldOutput base={defaultForm.Surname} data={data.Surname} />
+const ReservationOverview: React.FC<any> = (props: any) => {
+  const { data }: any = props;
+  console.log("dawd", data);
+  return (
+    <>
+      <Card base={customer.identity}>
+        {/* <FieldOutput base={defaultForm.Name} data={data.Name} /> */}
+        {/* <FieldOutput base={defaultForm.Surname} data={data.Surname} />
           <FieldOutput base={defaultForm.Tc} data={data.Tc} />
           <FieldOutput
             base={defaultForm.Gender}
@@ -29,9 +28,9 @@ class ReservationOverview extends Component {
             base={defaultForm.CanSendSms}
             data={data.CanSendSms}
           /> */}
-        </Card>
-      </>
-    );
-  }
-}
+      </Card>
+    </>
+  );
+};
+
 export default ReservationOverview;

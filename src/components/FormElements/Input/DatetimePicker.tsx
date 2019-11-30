@@ -3,7 +3,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import InputLayout from "../Layouts/InputLayout";
 
-const DatetimePicker: React.FC = (props: any) => {
+const DatetimePicker: React.FC<any> = (props: any) => {
+  const handleChange = (value: any) => {
+    props.onChange && props.onChange(props.base.for, value);
+    props.selectedDate && props.selectedDate(value);
+  };
   const {
     Label,
     LabelFor,
@@ -19,23 +23,23 @@ const DatetimePicker: React.FC = (props: any) => {
     selectsStart = false,
     selectsEnd = false,
     startDate,
-    endDate
+    endDate,
+    base,
+    touched,
+    errors,
+    values
   } = props;
-  const handleChange = (value: any) => {
-    props.onChange && props.onChange(props.base.for, value);
-    props.selectedDate && props.selectedDate(value);
-  };
 
   return (
     <InputLayout
-      touched={props.touched}
-      errors={props.errors}
-      values={props.values}
-      title={props.base.title}
-      required={props.base.required}
+      touched={touched}
+      errors={errors}
+      values={values}
+      title={base.title}
+      required={base.required}
     >
       <DatePicker
-        selected={props.values}
+        selected={values}
         dateFormat={"MM.DD.YYYY"}
         onChange={value => handleChange(value)}
         showTimeSelect={showTimeSelect}
@@ -43,7 +47,7 @@ const DatetimePicker: React.FC = (props: any) => {
         showYearDropdown={Year}
         timeFormat="HH:mm"
         timeCaption="Saat"
-        value={props.values}
+        value={values}
         required
         inline
         minDate={minDate}

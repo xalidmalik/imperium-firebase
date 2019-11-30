@@ -20,7 +20,7 @@ export const CardWrapper = (props: any) => {
       className={`${
         props.classes
           ? props.classes
-          : "w-card bg-white w-full rounded-lg flex shadow-base mb-4"
+          : "w-card bg-white w-full rounded-lg flex shadow-soft mb-4"
       }`}
     >
       {props.children}

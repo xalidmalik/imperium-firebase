@@ -55,6 +55,10 @@ export const HeaderCarOverview: IHeaderValidation = {
   linkFirst: "/car"
 };
 
+export const HeaderReservationOverview: IHeaderValidation = {
+  titleFirst: "Rezervasyonlar",
+  linkFirst: "/reservation"
+};
 //* Header Edit ---------------------------------------
 
 export const HeaderCustomerEdit: IHeaderValidation = {

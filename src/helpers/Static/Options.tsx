@@ -10,7 +10,7 @@ export const color = [
   { value: "pink-500", label: "pink-500" },
   { value: "indigo-500", label: "indigo-500" },
   { value: "blue-500", label: "blue-500" },
-  { value: "med-500", label: "med-500" },
+  { value: "gray-300", label: "gray-300" },
   { value: "green-500", label: "green-500" },
   { value: "yellow-500", label: "yellow-500" },
   { value: "orange-500", label: "orange-500" }

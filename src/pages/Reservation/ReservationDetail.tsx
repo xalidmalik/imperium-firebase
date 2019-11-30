@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { LeftLayout, RightLayout } from "../../components/Layouts/Layouts";
 import { CardWrapper } from "../../components/Card/CardWrapper";
@@ -6,12 +6,29 @@ import { History } from "../../helpers/Static/History";
 import SubLink from "../../components/NavElements/Elements/SubLink";
 import { reservationDetail } from "../../helpers/Static/Links";
 // import ReservationForm from "../../containers/Forms/ReservationForm";
-// import ReservationOverview from "../../containers/Details/ReservationOverview";
+import ReservationOverview from "../../containers/Overviews/ReservationOverview";
 import moment from "moment";
 import Header from "../../components/Header/Header";
+import {
+  HeaderCustomerOverview,
+  HeaderCustomerEdit,
+  HeaderReservationOverview
+} from "src/helpers/Static/Headers";
 // import { format } from "date-fns";
+import SecureStore from "secure-ls";
 
 export const ReservationDetail: React.FC = () => {
+  const [reservation, setReservation] = useState<any>();
+  const sc = new SecureStore();
+
+  useEffect(() => {
+    const activeReservation = sc.get("SelectedReservation");
+    if (activeReservation) {
+      setReservation(activeReservation);
+    }
+  }, []);
+  if (!reservation) return null;
+
   //   componentWillMount() {
   //     const activeReservation = JSON.parse(
   //       localStorage.getItem("SelectedReservation")
@@ -59,8 +76,12 @@ export const ReservationDetail: React.FC = () => {
             path="/reservation/detail"
             render={() => (
               <>
-                {/* <HeaderReservationDetails reservation={reservation} />
-                  <ReservationOverview data={reservation} /> */}
+                <Header
+                  titleFirst={HeaderReservationOverview.titleFirst}
+                  linkFirst={HeaderReservationOverview.linkFirst}
+                  // titleSecond={`${customers.Name} ${customers.Surname}`}
+                />
+                <ReservationOverview data={reservation} />
               </>
             )}
           />
