@@ -21,7 +21,6 @@ const ReservationTable: React.FC<any> = () => {
     new Array<IReservation>()
   );
   const sc = new SecureStore();
-
   const getAllReservation = () => {
     GetReservations().then(data => {
       console.log(" reser :", data);

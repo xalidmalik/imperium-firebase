@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import Fields from "../../components/FormElements/Input/Fields";
 import Checkbox from "../../components/FormElements/Input/Checkbox";
 import Radiobox from "../../components/FormElements/Input/Radiobox";
@@ -23,6 +23,8 @@ import {
   color
 } from "../../helpers/Static/Options";
 import { ReservationModel } from "src/helpers/Database/ReservationInterface";
+import { ICustomer } from "../../helpers/Database/CustomerInterfaces";
+import { GetRecords } from "../../database/index";
 
 const ReservationForm: React.FC<any> = (props: any) => {
   //   state = {
@@ -179,6 +181,25 @@ const ReservationForm: React.FC<any> = (props: any) => {
   //     return false;
   //   };
 
+  const [customers, setCustomer] = useState<ICustomer[]>(
+    new Array<ICustomer>()
+  );
+
+  const setCustomersList = () => {
+    GetRecords("Customer", "ayazarac").then(data => {
+      setCustomer(
+        data.map((d: ICustomer) => ({
+          label: `${d.Name} ${d.Surname}-${d.TCNumber}`,
+          value: d.Id
+        }))
+      );
+    });
+  };
+
+  useEffect(() => {
+    setCustomersList();
+  }, []);
+
   return (
     <>
       <Formik
@@ -312,17 +333,7 @@ const ReservationForm: React.FC<any> = (props: any) => {
                 base={reservationForm.CustomerId}
                 touched={touched.CustomerId}
                 errors={errors.CustomerId}
-                // values={
-                //   this.state.isNewCustomer && !this.state.IsAdditionalDriver
-                //     ? this.props.customers[this.props.customers.length - 1].Id
-                //     : values.CustomerId
-                // }
-                // options={this.state.customers}
-                // selectedValue={value => {
-                //   if (value.value == "addNew") {
-                //     this.OpenModal();
-                //   }
-                // }}
+                options={customers}
                 onCustomerChange={value => {
                   if (value) {
                     values.CustomerId = value.value;
