@@ -9900,7 +9900,7 @@ body {
 }
 
 .w-layout {
-  width: calc(100% - 5rem);
+  width: calc(100% - 15rem);
 }
 
 .w-screen {
@@ -18751,7 +18751,7 @@ body {
   }
 
   .sm\:w-layout {
-    width: calc(100% - 5rem);
+    width: calc(100% - 15rem);
   }
 
   .sm\:w-screen {
@@ -27603,7 +27603,7 @@ body {
   }
 
   .md\:w-layout {
-    width: calc(100% - 5rem);
+    width: calc(100% - 15rem);
   }
 
   .md\:w-screen {
@@ -36455,7 +36455,7 @@ body {
   }
 
   .lg\:w-layout {
-    width: calc(100% - 5rem);
+    width: calc(100% - 15rem);
   }
 
   .lg\:w-screen {
@@ -45307,7 +45307,7 @@ body {
   }
 
   .xl\:w-layout {
-    width: calc(100% - 5rem);
+    width: calc(100% - 15rem);
   }
 
   .xl\:w-screen {
@@ -54159,7 +54159,7 @@ body {
   }
 
   .xxl\:w-layout {
-    width: calc(100% - 5rem);
+    width: calc(100% - 15rem);
   }
 
   .xxl\:w-screen {

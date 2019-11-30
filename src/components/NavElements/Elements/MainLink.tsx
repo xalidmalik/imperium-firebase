@@ -7,11 +7,11 @@ const MainLink = (props: INavLinks) => {
     <NavLink
       exact
       to={props.base.link}
-      className="h-20 block bg-gray-900 text-white py-3 border-b border-car-400 hover:bg-gray-800"
-      activeClassName="bg-gray-800"
+      className="h-16 flex bg-gray-100 text-gray-900 py-4 border-b border-gray-200"
+      activeClassName="bg-orange-400 text-white"
     >
-      <span className="w-8 block mx-auto">{props.base.icon}</span>
-      <span className="flex leading-none mt-1 justify-center text-base">
+      <span className="w-8 block mx-4 my-auto">{props.base.icon}</span>
+      <span className="flex leading-none items-center justify-center text-base">
         {props.base.title}
       </span>
     </NavLink>

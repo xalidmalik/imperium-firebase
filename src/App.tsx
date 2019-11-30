@@ -1,24 +1,20 @@
 import React, { useContext, useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
-import Leftbar from "./containers/Navbar/Leftbar";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CustomerNew from "./pages/Customer/CustomerNew";
-import CustomerList from "./pages/Customer/CustomerList";
+import CustomerBoard from "./pages/Customer/CustomerBoard";
 import CustomerDetail from "./pages/Customer/CustomerDetail";
-import CarList from "./pages/Car/CarList";
+import CarBoard from "./pages/Car/CarBoard";
 import CarNew from "./pages/Car/CarNew";
 import CarDetail from "./pages/Car/CarDetail";
-import ReservationList from "./pages/Reservation/ReservationList";
+import ReservationBoard from "./pages/Reservation/ReservationBoard";
 import ReservationNew from "./pages/Reservation/ReservationNew";
 import ReservationDetail from "./pages/Reservation/ReservationDetail";
 import { GetRecords, IncrenmentRowVersion } from "./database";
 import SettingCorporate from "./pages/Settings/SettingCorporate";
-import Header from "../src/components/Header/Header";
-import {
-  HeaderCustomerNew,
-  HeaderCustomerList
-} from "./helpers/Static/Headers";
+import MenuBar from "./containers/Navbar/MenuBar";
+import AccountingBoard from "./pages/Accounting/AccountingBoard";
 
 const App: React.FC = () => {
   let context = useHistory<any>();
@@ -26,15 +22,15 @@ const App: React.FC = () => {
   const transition = useTransition(location, location => location.pathname, {
     from: {
       opacity: 1,
-      transform: "translate3d(-20%,0,0)"
+      transform: "translate3d(0,-100%,0)"
     },
     enter: {
       opacity: 1,
-      transform: "translate3d(0%,0,0)"
+      transform: "translate3d(0,0%,0)"
     },
     leave: {
       opacity: 1,
-      transform: "translate3d(-20%,0,0)"
+      transform: "translate3d(0,100%,0)"
     },
     config: { mass: 1, tension: 300, friction: 40 }
   });
@@ -48,57 +44,25 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Leftbar />
+      <MenuBar />
       {transition.map(({ key, item, props }) => (
         <animated.div
           key={key}
           style={props}
-          className="fixed w-layout bg-gray-200 ml-20 flex h-full"
+          className="fixed w-layout bg-gray-200 ml-60 flex h-full"
         >
-          {/* <Switch location={item}>
-            <Route
-              exact
-              path="/"
-              render={() => (
-                <Header
-                  titleFirst={HeaderCustomerNew.titleFirst}
-                  linkFirst={HeaderCustomerNew.linkFirst}
-                  titleSecond={HeaderCustomerNew.titleSecond}
-                  btnForm={HeaderCustomerNew.btnForm}
-                  btnTitle={HeaderCustomerNew.btnTitle}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/customer"
-              render={() => (
-                <Header
-                  titleFirst={HeaderCustomerList.titleFirst}
-                  OnChange={""}
-                  length={2}
-                  btnLink={HeaderCustomerList.btnLink}
-                  btnTitle={HeaderCustomerList.btnTitle}
-                />
-              )}
-            />
-          </Switch> */}
           <Switch location={item}>
             <Route exact path="/" component={Dashboard} />
-            <Route exact path="/customer" component={CustomerList} />
+            <Route exact path="/customer" component={CustomerBoard} />
+            <Route exact path="/car" component={CarBoard} />
+            <Route exact path="/reservation" component={ReservationBoard} />
+            <Route exact path="/accounting" component={AccountingBoard} />
             <Route path="/customer/new" component={CustomerNew} />
-            <Route exact path="/car" component={CarList} />
-            <Route path="/customer/detail" component={CustomerDetail} />
             <Route path="/car/new" component={CarNew} />
-            <Route path="/car/detail" component={CarDetail} />
-            <Route exact path="/reservation" component={ReservationList} />
             <Route path="/reservation/new" component={ReservationNew} />
+            <Route path="/customer/detail" component={CustomerDetail} />
+            <Route path="/car/detail" component={CarDetail} />
             <Route path="/reservation/detail" component={ReservationDetail} />
-            <Route
-              exact
-              path="/reservation/new"
-              render={() => <h1>Muhasebe</h1>}
-            />
             <Route path="/settings/corporate" component={SettingCorporate} />
           </Switch>
         </animated.div>
