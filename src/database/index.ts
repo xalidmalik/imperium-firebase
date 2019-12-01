@@ -81,12 +81,14 @@ export const AddRecord = (
       delete model[keys[i]];
     }
   }
-
-  return db
+  let task = db
     .collection(documentType)
     .doc()
     .set(Object.assign({}, model))
-    .then(() => IncrenmentRowVersion(documentType, code));
+    .finally(() => {
+      IncrenmentRowVersion(documentType, code);
+    });
+  return task;
 };
 
 export const RemoveRecord = (
