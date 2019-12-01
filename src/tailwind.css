@@ -18,16 +18,19 @@ body {
 .w-card-table {
   height: calc(100vh - 7rem);
 }
+.w-card-table-info {
+  height: calc(100vh - 16rem);
+}
 .med-table {
   @apply w-full border-collapse;
 }
 
 .med-table thead tr th {
-  @apply text-left sticky top-0 bg-white h-16 shadow-table z-40;
+  @apply text-left sticky top-0 bg-white h-16 shadow-table z-40 text-base;
 }
 .med-table th,
 .med-table td {
-  @apply px-4 py-4;
+  @apply px-4 py-2;
 }
 /* .med-table tbody tr {
   @apply border-b border-gray-200;
@@ -112,7 +115,7 @@ body {
 /* Button Style-------------- */
 
 .btn-style-1 {
-  @apply px-8 py-2 rounded bg-orange-400 text-white font-bold shadow-base;
+  @apply px-8 py-2 rounded bg-orange-400 text-white text-sm font-bold shadow-base;
 }
 .btn-style-1:hover {
   @apply bg-orange-500;

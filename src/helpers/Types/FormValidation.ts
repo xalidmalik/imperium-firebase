@@ -9,6 +9,7 @@ export interface IFormValidation {
 }
 export interface INavLinks {
   base: any;
+  classes?: string;
 }
 export interface ICard {
   base: any;

@@ -8,15 +8,17 @@ import { AlertSwalDelete, AlertSwal } from "../../helpers/Alert/Alert";
 import { SearchCustomer } from "../../helpers/Function/Search";
 import { isEmpty } from "lodash";
 import { customerListHeader } from "../../helpers//Static/ListHeader";
-import { GetRecords, GetReservations } from "../../database/";
+import { GetRecords } from "../../database/";
 import { ICustomer } from "src/helpers/Database/CustomerInterfaces";
-import { HeaderCustomerBoard } from "src/helpers/Static/Headers";
+import { HeaderAccountingBoard } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
 import Header from "../../components/Header/Header";
 import moment from "moment";
 import { RemoveRecord } from "../../database/index";
+import CardInfo from "src/components/Card/CardInfo";
+import { AccountingListHeader } from "../../helpers/Static/ListHeader";
 
-const CustomerTable: React.FC = () => {
+const AccountingTable: React.FC = () => {
   const [customers, setCustomers] = useState<ICustomer[]>(
     new Array<ICustomer>()
   );
@@ -42,84 +44,89 @@ const CustomerTable: React.FC = () => {
   return (
     <>
       <Header
-        titleFirst={HeaderCustomerBoard.titleFirst}
-        OnChange={(value?: any) => {
-          let searched = SearchCustomer(customers, value);
-          if ((isEmpty(searched) && searched != []) || !value) {
-            getAllRecords();
-          } else {
-            setCustomers(searched);
-          }
-        }}
-        length={customers.length}
-        btnLink={HeaderCustomerBoard.btnLink}
-        btnTitle={HeaderCustomerBoard.btnTitle}
+        titleFirst={HeaderAccountingBoard.titleFirst}
+        btnLink={HeaderAccountingBoard.btnLink}
+        btnTitle={HeaderAccountingBoard.btnTitle}
       />
-      <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
+      <div className="flex flex-row">
+        <CardInfo
+          title="Gider"
+          desc="12.000"
+          date="01.12.2019"
+          color="red-100"
+          classes=" w-1/3"
+        />
+        <CardInfo
+          title="Ciro"
+          desc="40.000"
+          date="01.12.2019"
+          color="green-100"
+          classes="mx-4 w-1/3"
+        />
+        <CardInfo
+          title="Kar"
+          desc="28.000"
+          date="01.12.2019"
+          color="blue-100"
+          classes=" w-1/3"
+        />
+      </div>
+      <CardWrapper classes="w-card-table-info bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
         <div className="w-full overflow-auto rounded-lg med-table-wrapper">
           <table className="table-auto med-table">
             <thead>
               <tr>
-                {customerListHeader.map((i, index) => {
+                {AccountingListHeader.map((i, index) => {
                   return <th key={index}>{i.col}</th>;
                 })}
               </tr>
             </thead>
             <tbody>
-              {customers.map((i, numb: any) => {
+              {/* {cars.map((i, index) => {
                 return (
                   <tr
-                    className={`border-gray-300 border-b hover:border-med-500 hover:bg-gray-100 cursor-pointer`}
-                    key={numb}
+                    className={`border-gray-300 border-b hover:border-${i.Color} hover:bg-gray-100 cursor-pointer`}
+                    key={index}
                     onDoubleClick={() => {
-                      sc.set("SelectedCustomer", i);
-                      History.push("/customer/detail");
+                      sc.set("SelectedCar", i);
+                      History.push("/car/detail");
                     }}
                   >
-                    <td>
-                      <div className="flex items-center">
-                        <div className="rounded-full bg-gray-300 mr-4 p-2 w-10 h-10 min-h-10 min-w-10 flex items-center justify-center text-gray-800">
-                          {i.Name[0] + i.Surname[0]}
-                        </div>
-                        {`${i.Name} ${i.Surname}`}
+                    <td className="flex items-center relative">
+                      <div
+                        className={`rounded mr-4 w-32 min-w-32 flex items-center justify-center text-white text-xl`}
+                      >
+                        <Img src={i.Image} />
+                      </div>
+                      <div className="block">
+                        <span className="flex leading-none">{i.BrandName}</span>
+                        <h5 className="flex text-xl font-bold ">
+                          {i.ModelName}
+                        </h5>
                       </div>
                     </td>
-                    <td>{i.TCNumber}</td>
-                    <td>{i.FirstPhone}</td>
-                    <td>{i.Email}</td>
-                    <td
-                      className={`font-bold ${
-                        new Date().getFullYear() -
-                          moment(i.DrivingLicenseYear)
-                            .toDate()
-                            .getFullYear() <=
-                        1
-                          ? "text-red-500"
-                          : "text-green-500"
-                      }`}
-                    >
-                      <span className="mr-2">•</span>
-                      {new Date().getFullYear() -
-                        moment(i.DrivingLicenseYear)
-                          .toDate()
-                          .getFullYear() +
-                        " Yıl"}
+                    <td>{i.KM}</td>
+                    <td>{i.GearType}</td>
+                    <td>{i.FuelType}</td>
+                    <td>{i.isMaintenance ? "Bakımda " : "Aktif"}</td>
+                    <td className="font-bold">
+                      {i.Price} <span>&#8378;</span>
                     </td>
                     <td>
                       <div className="flex">
                         <Link
                           className="w-12 h-12 text-gray-600 block rounded-lg hover:text-orange-400 mr-2"
                           onClick={() => {
-                            sc.set("SelectedCustomer", i);
+                            sc.set("SelectedCar", i);
                           }}
-                          to="/customer/detail"
+                          to="/car/detail"
                         >
                           <span className="w-12 block my-auto">
                             {Carax.More}
                           </span>
                         </Link>
                         <button
-                          onClick={() => RemoveCar(i.Id)}
+                          onClick={() => removeCars(i.Id)}
                           className="w-12 h-12 text-red-400 block rounded-lg hover:text-red-500"
                         >
                           <span className="w-12 h-12 block my-auto p-3">
@@ -130,7 +137,7 @@ const CustomerTable: React.FC = () => {
                     </td>
                   </tr>
                 );
-              })}
+              })} */}
             </tbody>
           </table>
         </div>
@@ -139,4 +146,4 @@ const CustomerTable: React.FC = () => {
   );
 };
 
-export default CustomerTable;
+export default AccountingTable;

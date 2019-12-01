@@ -10,10 +10,10 @@ import { SearchReservation } from "../../helpers/Function/Search";
 import { ReservationListHeader } from "../../helpers/Static/ListHeader";
 import { IReservation } from "../../helpers/Database/ReservationInterface";
 import {
-  HeaderReservationList,
-  HeaderCustomerList
+  HeaderReservationBoard,
+  HeaderCustomerBoard
 } from "src/helpers/Static/Headers";
-import { GetRecords, AddRecord } from "src/database";
+import { GetRecords, AddRecord, GetReservations } from "src/database";
 import SecureStore from "secure-ls";
 
 const ReservationTable: React.FC<any> = () => {
@@ -21,34 +21,11 @@ const ReservationTable: React.FC<any> = () => {
     new Array<IReservation>()
   );
   const sc = new SecureStore();
-
   const getAllReservation = () => {
-    GetRecords("Reservation", "ayazarac").then(data => setReservation(data));
-
-    let obj: IReservation = {
-      Price: 150,
-      AdditionalCustomerId: "",
-      BeginDateTime: new Date(Date.now()).toString(),
-      EndDateTime: new Date(Date.now()).toString(),
-      CarId: {
-        BrandName: "Reno",
-        ModelName: "Meno",
-        Plate: "99 be 946",
-        Price: ""
-      },
-      Code: "ayazarac",
-      CustomerId: {
-        Name: "Agha",
-        Surname: "Huseynov",
-        FirstPhone: "5530829742"
-      },
-      Deposit: 150,
-      Paid: 50,
-      PaymentType: "Kredi",
-      ReservationTypes: "Ön Rezerve"
-    };
-
-    AddRecord("Reservation", "ayazarac", obj);
+    GetReservations().then(data => {
+      console.log(" reser :", data);
+      setReservation(data);
+    });
   };
 
   useEffect(() => {
@@ -59,9 +36,9 @@ const ReservationTable: React.FC<any> = () => {
   return (
     <>
       <Header
-        titleFirst={HeaderReservationList.titleFirst}
-        btnLink={HeaderReservationList.btnLink}
-        btnTitle={HeaderReservationList.btnTitle}
+        titleFirst={HeaderReservationBoard.titleFirst}
+        btnLink={HeaderReservationBoard.btnLink}
+        btnTitle={HeaderReservationBoard.btnTitle}
         OnChange={value => {}}
         length={reservations.length}
       />
@@ -127,7 +104,7 @@ const ReservationTable: React.FC<any> = () => {
                     </td>
                     <td>
                       <span className="px-3 py-1 bg-blue-400 rounded-lg text-white">
-                        {/* {StringReservationStatus(i.ReservationState)} */}
+                        {i.ReservationTypes}
                       </span>
                     </td>
                     <td>

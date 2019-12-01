@@ -250,10 +250,10 @@ module.exports = {
     fontFamily: {
       base: ["Quicksand", "sans-serif"],
       sans: [
-        "Roboto",
         "-apple-system",
         "BlinkMacSystemFont",
         '"Segoe UI"',
+        "Roboto",
         '"Helvetica Neue"',
         "Arial",
         '"Noto Sans"',
@@ -431,7 +431,7 @@ module.exports = {
       "10/12": "83.333333%",
       "11/12": "91.666667%",
       full: "100%",
-      layout: "calc(100% - 5rem)",
+      layout: "calc(100% - 18rem)",
       screen: "100vw"
     }),
     zIndex: {

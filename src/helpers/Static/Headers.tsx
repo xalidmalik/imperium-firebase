@@ -1,22 +1,27 @@
 import react from "react";
 import { IHeaderValidation } from "../Types/HeaderValidation";
 
-//* Header List ---------------------------------------
+//* Header Board ---------------------------------------
 
-export const HeaderCustomerList: IHeaderValidation = {
+export const HeaderCustomerBoard: IHeaderValidation = {
   titleFirst: "Müşteriler",
   btnTitle: "Yeni Ekle",
   btnLink: "/customer/new"
 };
-export const HeaderCarList: IHeaderValidation = {
+export const HeaderCarBoard: IHeaderValidation = {
   titleFirst: "Arabalar",
   btnTitle: "Yeni Ekle",
   btnLink: "/car/new"
 };
-export const HeaderReservationList: IHeaderValidation = {
+export const HeaderReservationBoard: IHeaderValidation = {
   titleFirst: "Rezervasyonlar",
   btnTitle: "Yeni Ekle",
   btnLink: "/reservation/new"
+};
+export const HeaderAccountingBoard: IHeaderValidation = {
+  titleFirst: "Ön Mühasebe",
+  btnTitle: "Gelir / Gider Ekle",
+  btnLink: "/accounting/new"
 };
 
 //* Header New ---------------------------------------

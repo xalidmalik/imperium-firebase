@@ -9,7 +9,7 @@ import { SearchCar } from "../../helpers/Function/Search";
 import { isEmpty } from "lodash";
 import { carListHeader } from "../../helpers/Static/ListHeader";
 import { GetRecords, RemoveRecord } from "../../database";
-import { HeaderCarList } from "src/helpers/Static/Headers";
+import { HeaderCarBoard } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
 import Img from "react-image";
 import Header from "../../components/Header/Header";
@@ -47,9 +47,9 @@ const CarTable: React.FC = () => {
           }
         }}
         length={cars.length}
-        titleFirst={HeaderCarList.titleFirst}
-        btnLink={HeaderCarList.btnLink}
-        btnTitle={HeaderCarList.btnTitle}
+        titleFirst={HeaderCarBoard.titleFirst}
+        btnLink={HeaderCarBoard.btnLink}
+        btnTitle={HeaderCarBoard.btnTitle}
       />
       <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
         <div className="w-full overflow-auto rounded-lg med-table-wrapper">
@@ -74,7 +74,7 @@ const CarTable: React.FC = () => {
                   >
                     <td className="flex items-center relative">
                       <div
-                        className={`rounded mr-4 w-40 min-w-40 flex items-center justify-center text-white text-xl`}
+                        className={`rounded mr-4 w-32 min-w-32 flex items-center justify-center text-white text-xl`}
                       >
                         <Img src={i.Image} />
                       </div>

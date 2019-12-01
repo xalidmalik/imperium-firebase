@@ -23,3 +23,11 @@ export const ReservationListHeader = [
   { col: "Durum" },
   { col: "" }
 ];
+export const AccountingListHeader = [
+  { col: "Tarih" },
+  { col: "Kullanici" },
+  { col: "Tür" },
+  { col: "İşlem" },
+  { col: "Tutar" },
+  { col: "" }
+];

@@ -1,14 +1,28 @@
 import { DocumentTypes } from "../helpers/Database/DocumentTypes";
 import { IRecord, ICheckRowVersion } from "../helpers/Types/RecordInterface";
 import React from "react";
-import db from "../firebase/firebaseconfig";
+import db, { fb } from "../firebase/firebaseconfig";
 import ls from "secure-ls";
 
-export const GetRecords = async (
-  documentType: DocumentTypes,
-  Code: string,
-  UpdateModel?: any
-) => {
+export const GetReservations = async () => {
+  let reservations: any = await GetRecords("Reservation", "ayazarac");
+  let customers = await GetRecords("Customer", "ayazarac");
+  let cars = await GetRecords("Car", "ayazarac");
+
+  for (let i = 0; i < reservations.length; i++) {
+    reservations[i]["Customer"] = customers.filter(
+      q => q.Id == reservations[i].CustomerId
+    )[0];
+  }
+
+  for (let i = 0; i < reservations.length; i++) {
+    reservations[i]["Car"] = cars.filter(q => q.Id == reservations[i].CarId)[0];
+  }
+
+  return reservations;
+};
+
+export const GetRecords = async (documentType: DocumentTypes, Code: string) => {
   let secureStore = new ls();
 
   if (await ChechRowVersion(Code, documentType)) {
@@ -50,7 +64,6 @@ export const RemoveRecord = (
   Id: string,
   Code: string
 ) => {
-  console.log("ID :", Id);
   return db
     .collection(documentType)
     .doc(Id)
@@ -75,6 +88,7 @@ const ChechRowVersion = async (code: any, documentType: DocumentTypes) => {
 
   let findedRowVersion = db.collection("RowVersion").doc(code);
   let data: any = await findedRowVersion.get().then(data => data.data());
+  console.log("dadadad :", data);
   let oldSecureStore = secureStore.get(`${"RowVersion"}-${code}`);
   let localData: number = oldSecureStore[documentType];
   let serverData: number = data[documentType];

@@ -25,7 +25,7 @@ const Header = (props: IHeaderValidation) => {
       {props.length ? (
         <>
           <span className="text-2xl font-bold leading-none mx-2">|</span>
-          <h4 className="text-sm font-normal leading-none justify-between">
+          <h4 className="text-base font-normal leading-none justify-between">
             Toplam : {props.length}
           </h4>
           <input
