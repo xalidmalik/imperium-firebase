@@ -25,7 +25,7 @@ export const ReservationListHeader = [
 ];
 export const AccountingListHeader = [
   { col: "Tarih" },
-  { col: "Kullanici" },
+  { col: "Kullanıcı" },
   { col: "Tür" },
   { col: "İşlem" },
   { col: "Tutar" },
