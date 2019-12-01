@@ -5,34 +5,37 @@ export const mainLink = {
     title: "Kontrol Paneli",
     link: "/",
     icon: Carax.Dashboard,
-    index: "0"
+    index: 1
   },
   customer: {
     title: "Müşteriler",
     link: "/customer",
     icon: Carax.Customer,
-    index: "1"
+    index: 2
   },
   car: {
     title: "Arabalar",
     link: "/car",
     icon: Carax.Cars,
-    index: "2"
+    index: 3
   },
   reservation: {
     title: "Rezervasyonlar",
     link: "/reservation",
-    icon: Carax.Reservation
-  },
-  settings: {
-    title: "Ayarlar",
-    link: "/settings/corporate",
-    icon: Carax.Setting
+    icon: Carax.Reservation,
+    index: 4
   },
   accounting: {
     title: "Mühasebe",
     link: "/accounting",
-    icon: Carax.Debt
+    icon: Carax.Debt,
+    index: 5
+  },
+  settings: {
+    title: "Ayarlar",
+    link: "/settings",
+    icon: Carax.Setting,
+    index: 6
   }
 };
 

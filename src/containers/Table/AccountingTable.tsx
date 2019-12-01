@@ -53,21 +53,21 @@ const AccountingTable: React.FC = () => {
           title="Gider"
           desc="12.000"
           date="01.12.2019"
-          color="red-100"
+          color="red-300"
           classes=" w-1/3"
         />
         <CardInfo
           title="Ciro"
           desc="40.000"
           date="01.12.2019"
-          color="green-100"
+          color="green-300"
           classes="mx-4 w-1/3"
         />
         <CardInfo
           title="Kar"
           desc="28.000"
           date="01.12.2019"
-          color="blue-100"
+          color="blue-300"
           classes=" w-1/3"
         />
       </div>

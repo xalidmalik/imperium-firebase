@@ -51,6 +51,7 @@ const MenuBar = () => {
         <Route exact path="/car" component={DefaultLink} />
         <Route exact path="/reservation" component={DefaultLink} />
         <Route exact path="/accounting" component={DefaultLink} />
+        <Route exact path="/settings" component={DefaultLink} />
         <Route path="/settings/corporate" component={DefaultLink} />
         <Route
           path="/customer/detail"

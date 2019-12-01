@@ -15,77 +15,49 @@ import { GetRecords, IncrenmentRowVersion } from "./database";
 import SettingCorporate from "./pages/Settings/SettingCorporate";
 import MenuBar from "./containers/Navbar/MenuBar";
 import AccountingBoard from "./pages/Accounting/AccountingBoard";
+import SettingBoard from "./pages/Settings/SettingBoard";
 
 const App: React.FC = () => {
-  const [linkIndex, SetLinkIndex] = useState(0);
+  const [linkIndex, SetlinkIndex] = useState(false);
+  const [up, SetUp] = useState(1);
   let context = useHistory<any>();
   const { location } = context;
   const transition = useTransition(location, location => location.pathname, {
     from: {
-      opacity: 1,
-      transform: "translate3d(0,-100%,0)"
+      transform: linkIndex ? "translate3d(0,-100%,0)" : "translate3d(0,100%,0)"
     },
     enter: {
-      opacity: 1,
       transform: "translate3d(0,0%,0)"
     },
     leave: {
-      opacity: 1,
-      transform: "translate3d(0,100%,0)"
+      transform: linkIndex ? "translate3d(0,100%,0)" : "translate3d(0,-100%,0)"
     },
     config: { mass: 1, tension: 300, friction: 40 }
   });
 
   useEffect(() => {
-    // IncrenmentRowVersion("RowVersion", "Car", "ayazarac");
-    GetRecords("Customer", "ayazarac").then(va =>
-      console.log("Benim geriye donen degerim: ", va)
-    );
+    GetRecords("Customer", "ayazarac");
   }, []);
 
-  // useEffect(() => {
-  //   console.log("dene", AniChange());
-  //   const ada = AniChange();
-  // });
+  useEffect(() => {
+    AniChange();
 
-  // const AniChange = () => {
-  //   if (location.state == undefined) {
-  //     console.log("ilk");
-  //   } else if (location.state.index && location.state.index > linkIndex) {
-  //     return {
-  //       from: {
-  //         opacity: 1,
-  //         transform: "translate3d(0,-100%,0)"
-  //       },
-  //       enter: {
-  //         opacity: 1,
-  //         transform: "translate3d(0,0%,0)"
-  //       },
-  //       leave: {
-  //         opacity: 1,
-  //         transform: "translate3d(0,100%,0)"
-  //       },
-  //       config: { mass: 1, tension: 300, friction: 40 }
-  //     };
-  //   } else if (location.state.index && location.state.index < linkIndex) {
-  //     return {
-  //       from: {
-  //         opacity: 1,
-  //         transform: "translate3d(0,200%,0)"
-  //       },
-  //       enter: {
-  //         opacity: 1,
-  //         transform: "translate3d(0,0%,0)"
-  //       },
-  //       leave: {
-  //         opacity: 1,
-  //         transform: "translate3d(0,-200%,0)"
-  //       },
-  //       config: { mass: 1, tension: 300, friction: 40 }
-  //     };
-  //     SetLinkIndex(location.state.index);
-  //   }
-  // };
+    console.log("up", up);
+    console.log("tarnsition", linkIndex);
+    console.log("loc", location);
+  });
+
+  const AniChange = () => {
+    if (location.state == undefined) {
+      SetlinkIndex(true);
+    } else if (location.state.index > up) {
+      SetlinkIndex(false);
+      SetUp(location.state.index);
+    } else if (location.state.index < up) {
+      SetlinkIndex(true);
+      SetUp(location.state.index);
+    }
+  };
 
   return (
     <>
@@ -102,6 +74,7 @@ const App: React.FC = () => {
             <Route exact path="/car" component={CarBoard} />
             <Route exact path="/reservation" component={ReservationBoard} />
             <Route exact path="/accounting" component={AccountingBoard} />
+            <Route exact path="/settings" component={SettingBoard} />
             <Route path="/customer/new" component={CustomerNew} />
             <Route path="/car/new" component={CarNew} />
             <Route path="/reservation/new" component={ReservationNew} />

@@ -23,6 +23,9 @@ export const HeaderAccountingBoard: IHeaderValidation = {
   btnTitle: "Gelir / Gider Ekle",
   btnLink: "/accounting/new"
 };
+export const HeaderSettingBoard: IHeaderValidation = {
+  titleFirst: "Ayarlar"
+};
 
 //* Header New ---------------------------------------
 
