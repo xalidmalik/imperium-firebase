@@ -4,7 +4,8 @@ import SubLink from "../../components/NavElements/Elements/SubLink";
 import {
   mainLink,
   customerDetail,
-  carDetail
+  carDetail,
+  reservationDetail
 } from "../../helpers/Static/Links";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
@@ -72,7 +73,16 @@ const MenuBar = () => {
             </>
           )}
         />
-        <Route path="/reservation/detail" />
+        <Route
+          path="/reservation/detail"
+          render={() => (
+            <>
+              <MainLink base={mainLink.reservation} />
+              <SubLink base={reservationDetail.overview} />
+              <SubLink base={reservationDetail.edit} />
+            </>
+          )}
+        />
         <Route path="/customer/new" />
         <Route path="/car/new" />
         <Route path="/reservation/new" />

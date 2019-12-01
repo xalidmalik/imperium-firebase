@@ -250,13 +250,13 @@ module.exports = {
     fontFamily: {
       base: ["Quicksand", "sans-serif"],
       sans: [
-        "Roboto",
-        '"Helvetica Neue"',
-        '"Noto Sans"',
         "-apple-system",
         "BlinkMacSystemFont",
         '"Segoe UI"',
+        "Roboto",
+        '"Helvetica Neue"',
         "Arial",
+        '"Noto Sans"',
         "sans-serif",
         '"Apple Color Emoji"',
         '"Segoe UI Emoji"',
