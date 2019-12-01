@@ -67,7 +67,7 @@ const Dropdown: React.FC<any> = (props: any) => {
     >
       <Select
         backspaceRemovesValue={true}
-        onFocus={() => props.runFuction && props.runFuction()}
+        onFocus={() => props.runFuction()}
         isClearable={props.isClearable}
         noOptionsMessage={() => "Aradığınız sonuç bulunamadı"}
         options={props.options}

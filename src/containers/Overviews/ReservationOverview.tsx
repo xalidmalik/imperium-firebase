@@ -7,7 +7,7 @@ import { defaultForm } from "../../helpers/Static/FormFields";
 
 const ReservationOverview: React.FC<any> = (props: any) => {
   const { data }: any = props;
-  console.log("dawd", data);
+  console.log("reservation overview", data);
   return (
     <>
       <Card base={customer.identity}>

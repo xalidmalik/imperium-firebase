@@ -26,8 +26,9 @@ import { ReservationModel } from "src/helpers/Database/ReservationInterface";
 import { ICustomer } from "../../helpers/Database/CustomerInterfaces";
 import { GetRecords, GetAvailableCars, AddRecord } from "../../database/index";
 import { IReservation } from "../../helpers/Database/ReservationInterface";
+import { isEmpty } from "lodash";
 
-const ReservationForm: React.FC<any> = (props: any) => {
+const ReservationForm: React.FC<any> = (data: any) => {
   //   state = {
   //     customers: [],
   //     additionalCustomer: [],
@@ -181,6 +182,8 @@ const ReservationForm: React.FC<any> = (props: any) => {
 
   //     return false;
   //   };
+  const { activeReservation } = data;
+  console.log("active :", activeReservation);
 
   const [customers, setCustomer] = useState<ICustomer[]>(
     new Array<ICustomer>()
@@ -192,14 +195,25 @@ const ReservationForm: React.FC<any> = (props: any) => {
   const [availableCars, setAvailableCars] = useState<any>();
 
   const setAvailableCarList = values => {
-    GetAvailableCars(values.BeginDateTime, values.EndDateTime).then(q =>
-      setAvailableCars(
-        q.map((data: any) => ({
-          label: `${data.Car.BrandName} | ${data.Car.ModelName} | ${data.Car.Plate}`,
-          value: data.CarId
-        }))
-      )
-    );
+    GetAvailableCars(values.BeginDateTime, values.EndDateTime).then(q => {
+      if (isEmpty(q)) {
+        GetRecords("Car", "ayazarac").then(q => {
+          setAvailableCars(
+            q.map((data: any) => ({
+              label: `${data.BrandName} | ${data.ModelName} | ${data.Plate}`,
+              value: data.Id
+            }))
+          );
+        });
+      } else {
+        setAvailableCars(
+          q.map((data: any) => ({
+            label: `${data.Car.BrandName} | ${data.Car.ModelName} | ${data.Car.Plate}`,
+            value: data.CarId
+          }))
+        );
+      }
+    });
   };
 
   const setCustomersList = () => {
@@ -230,7 +244,7 @@ const ReservationForm: React.FC<any> = (props: any) => {
   return (
     <>
       <Formik
-        initialValues={new ReservationModel()}
+        initialValues={activeReservation || new ReservationModel()}
         onSubmit={(values, { setSubmitting }) => {
           CreateRecord(values);
         }}
@@ -255,7 +269,7 @@ const ReservationForm: React.FC<any> = (props: any) => {
                 values={values.BeginDateTime}
                 seletedStart={true}
                 startDate={values.BeginDateTime}
-                endDate={values.EndDateTime}
+                // endDate={values.EndDateTime}
               />
               <DatetimePicker
                 showTimeSelect={true}
@@ -271,12 +285,12 @@ const ReservationForm: React.FC<any> = (props: any) => {
               />
             </Card>
             <Card base={reservation.car}>
-              {/* {this.props.activeReservation ? (
-                  <FieldOutput
-                    base={reservationForm.SelectedCar}
-                    data={`${selectedCar.CarBrandName} ${selectedCar.CarModelName} | ${selectedCar.CarPlate} `}
-                  />
-                ) : null} */}
+              {activeReservation ? (
+                <FieldOutput
+                  base={reservationForm.SelectedCar}
+                  data={`${activeReservation.Car.BrandName} ${activeReservation.Car.ModelName} | ${activeReservation.Car.Plate} `}
+                />
+              ) : null}
 
               <Dropdown
                 runFuction={() => {
@@ -301,8 +315,8 @@ const ReservationForm: React.FC<any> = (props: any) => {
                 touched={touched.CustomerId}
                 errors={errors.CustomerId}
                 options={customers}
+                values={values.CustomerId}
                 selectedValue={val => {
-                  alert(val.value);
                   setSelectedCustomerId(val.value);
                 }}
                 onCustomerChange={value => {
