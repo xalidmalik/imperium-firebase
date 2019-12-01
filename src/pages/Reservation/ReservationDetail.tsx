@@ -11,6 +11,7 @@ import {
 } from "src/helpers/Static/Headers";
 // import { format } from "date-fns";
 import SecureStore from "secure-ls";
+import moment from "moment";
 
 export const ReservationDetail: React.FC = () => {
   const [reservation, setReservation] = useState<any>();
@@ -19,6 +20,9 @@ export const ReservationDetail: React.FC = () => {
   useEffect(() => {
     const activeReservation = sc.get("SelectedReservation");
     if (activeReservation) {
+      activeReservation.BeginDateTime = new Date(
+        moment(activeReservation.BeginDateTime).toDate()
+      );
       setReservation(activeReservation);
     }
   }, []);

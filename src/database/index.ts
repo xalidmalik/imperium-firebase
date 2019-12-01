@@ -3,6 +3,27 @@ import { IRecord, ICheckRowVersion } from "../helpers/Types/RecordInterface";
 import React from "react";
 import db, { fb } from "../firebase/firebaseconfig";
 import ls from "secure-ls";
+import { IReservation } from "../helpers/Database/ReservationInterface";
+
+import { uniqBy } from "lodash";
+
+const distinct = (value, index, self) => {
+  return self.indexOf(value.CarId) === index;
+};
+
+export const GetAvailableCars = async (beginDate: any, endDate: any) => {
+  let reservation = await GetReservations();
+
+  let available = reservation.filter(
+    (a: IReservation) =>
+      !(a.BeginDateTime <= beginDate && a.EndDateTime >= beginDate) ||
+      !(a.BeginDateTime <= endDate && a.EndDateTime >= endDate) ||
+      !(beginDate <= a.BeginDateTime && endDate >= a.EndDateTime)
+  );
+
+  const unique = uniqBy(available, "CarId");
+  return unique;
+};
 
 export const GetReservations = async () => {
   let reservations: any = await GetRecords("Reservation", "ayazarac");
@@ -52,6 +73,15 @@ export const AddRecord = (
   model: object
 ) => {
   delete model["Id"];
+
+  let keys = Object.keys(model);
+
+  for (let i = 0; i < keys.length; i++) {
+    if (model[keys[i]] == undefined) {
+      delete model[keys[i]];
+    }
+  }
+
   return db
     .collection(documentType)
     .doc()
@@ -90,6 +120,7 @@ const ChechRowVersion = async (code: any, documentType: DocumentTypes) => {
   let data: any = await findedRowVersion.get().then(data => data.data());
   console.log("dadadad :", data);
   let oldSecureStore = secureStore.get(`${"RowVersion"}-${code}`);
+  console.log("oldSecureStore :", oldSecureStore);
   let localData: number = oldSecureStore[documentType];
   let serverData: number = data[documentType];
   secureStore.set(`${"RowVersion"}-${code}`, data);

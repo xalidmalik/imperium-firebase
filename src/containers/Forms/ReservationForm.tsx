@@ -24,9 +24,11 @@ import {
 } from "../../helpers/Static/Options";
 import { ReservationModel } from "src/helpers/Database/ReservationInterface";
 import { ICustomer } from "../../helpers/Database/CustomerInterfaces";
-import { GetRecords } from "../../database/index";
+import { GetRecords, GetAvailableCars, AddRecord } from "../../database/index";
+import { IReservation } from "../../helpers/Database/ReservationInterface";
+import { isEmpty } from "lodash";
 
-const ReservationForm: React.FC<any> = (props: any) => {
+const ReservationForm: React.FC<any> = (data: any) => {
   //   state = {
   //     customers: [],
   //     additionalCustomer: [],
@@ -180,19 +182,58 @@ const ReservationForm: React.FC<any> = (props: any) => {
 
   //     return false;
   //   };
+  const { activeReservation } = data;
+  console.log("active :", activeReservation);
 
   const [customers, setCustomer] = useState<ICustomer[]>(
     new Array<ICustomer>()
   );
 
+  const [selectedCarId, setSelectedCarId] = useState<any>();
+  const [selectedCustomerId, setSelectedCustomerId] = useState<any>();
+
+  const [availableCars, setAvailableCars] = useState<any>();
+
+  const setAvailableCarList = values => {
+    GetAvailableCars(values.BeginDateTime, values.EndDateTime).then(q => {
+      if (isEmpty(q)) {
+        GetRecords("Car", "ayazarac").then(q => {
+          setAvailableCars(
+            q.map((data: any) => ({
+              label: `${data.BrandName} | ${data.ModelName} | ${data.Plate}`,
+              value: data.Id
+            }))
+          );
+        });
+      } else {
+        setAvailableCars(
+          q.map((data: any) => ({
+            label: `${data.Car.BrandName} | ${data.Car.ModelName} | ${data.Car.Plate}`,
+            value: data.CarId
+          }))
+        );
+      }
+    });
+  };
+
   const setCustomersList = () => {
     GetRecords("Customer", "ayazarac").then(data => {
       setCustomer(
-        data.map((d: ICustomer) => ({
+        data.map((d: any) => ({
           label: `${d.Name} ${d.Surname}-${d.TCNumber}`,
           value: d.Id
         }))
       );
+    });
+  };
+
+  const CreateRecord = (values: IReservation) => {
+    values.CustomerId = selectedCustomerId;
+    values.CarId = selectedCarId;
+    values.Code = "ayazarac";
+    values.BeginDateTime = moment(values.BeginDateTime).toDate();
+    AddRecord("Reservation", "ayazarac", values).then(() => {
+      AlertSwal(message.success.title, message.success.type);
     });
   };
 
@@ -203,70 +244,9 @@ const ReservationForm: React.FC<any> = (props: any) => {
   return (
     <>
       <Formik
-        initialValues={new ReservationModel()}
+        initialValues={activeReservation || new ReservationModel()}
         onSubmit={(values, { setSubmitting }) => {
-          // if (this.props.activeReservation) {
-          //   alert("active");
-          //   let model = {
-          //     BeginDateTime: moment(values.BeginDateTime.toString()).format(
-          //       "YYYY.MM.DD HH:mm"
-          //     ),
-          //     EndDateTime: moment(values.EndDateTime.toString()).format(
-          //       "YYYY.MM.DD HH:mm"
-          //     ),
-          //     ReservationStatus: this.isObject(values.ReservationStatus)
-          //       ? values.ReservationStatus.value
-          //       : values.ReservationStatus,
-          //     CustomerId: this.isObject(values.CustomerId)
-          //       ? values.CustomerId.value
-          //       : values.CustomerId,
-          //     Price: values.Price || 0,
-          //     KmStart: values.KmStart || 0,
-          //     KmEnd: values.KmEnd || 0,
-          //     CarId: this.isObject(values.CarId)
-          //       ? values.CarId.value
-          //       : values.CarId,
-          //     PaymentType: this.isObject(values.PaymentType)
-          //       ? values.PaymentType.value
-          //       : values.PaymentType,
-          //     FuelCount: values.FuelCount || 0,
-          //     Deposit: values.Deposit || 0,
-          //     AmountPaid: values.AmountPaid || 0,
-          //     IsApproval: true,
-          //     AdditionalCustomerId: this.isObject(values.AdditionalCustomerId)
-          //       ? values.AdditionalCustomerId.value
-          //       : values.AdditionalCustomerId
-          //   };
-          //   this.props.putReservation(model);
-          //   console.log("update reservation :", model);
-          // } else {
-          //   let model = {
-          //     BeginDateTime: moment(values.BeginDateTime.toString()).format(
-          //       "YYYY.MM.DD HH:mm"
-          //     ),
-          //     EndDateTime: moment(values.EndDateTime.toString()).format(
-          //       "YYYY.MM.DD HH:mm"
-          //     ),
-          //     ReservationStatus: values.ReservationStatus.value,
-          //     CustomerId: this.isObject(values.CustomerId)
-          //       ? values.CustomerId.value
-          //       : values.CustomerId,
-          //     Price: values.Price || 0,
-          //     KmStart: values.KmStart || 0,
-          //     KmEnd: values.KmEnd || 0,
-          //     CarId: values.CarId.value,
-          //     PaymentType: values.PaymentType.value || 0,
-          //     FuelCount: values.FuelCount || 0,
-          //     Deposit: values.Deposit || 0,
-          //     AmountPaid: values.AmountPaid || 0,
-          //     IsApproval: true,
-          //     AdditionalCustomerId: this.isObject(values.AdditionalCustomerId)
-          //       ? values.AdditionalCustomerId.value
-          //       : values.AdditionalCustomerId
-          //   };
-          //   console.log(model);
-          //   this.props.postReservation(model);
-          // }
+          CreateRecord(values);
         }}
       >
         {({
@@ -289,7 +269,7 @@ const ReservationForm: React.FC<any> = (props: any) => {
                 values={values.BeginDateTime}
                 seletedStart={true}
                 startDate={values.BeginDateTime}
-                endDate={values.EndDateTime}
+                // endDate={values.EndDateTime}
               />
               <DatetimePicker
                 showTimeSelect={true}
@@ -305,26 +285,27 @@ const ReservationForm: React.FC<any> = (props: any) => {
               />
             </Card>
             <Card base={reservation.car}>
-              {/* {this.props.activeReservation ? (
-                  <FieldOutput
-                    base={reservationForm.SelectedCar}
-                    data={`${selectedCar.CarBrandName} ${selectedCar.CarModelName} | ${selectedCar.CarPlate} `}
-                  />
-                ) : null} */}
+              {activeReservation ? (
+                <FieldOutput
+                  base={reservationForm.SelectedCar}
+                  data={`${activeReservation.Car.BrandName} ${activeReservation.Car.ModelName} | ${activeReservation.Car.Plate} `}
+                />
+              ) : null}
 
               <Dropdown
                 runFuction={() => {
-                  // this.props.fetchAvailableCars(
-                  //   moment(values.BeginDateTime).format("YYYY-MM-DD HH:mm"),
-                  //   moment(values.EndDateTime).format("YYYY-MM-DD HH:mm")
-                  // );
+                  setAvailableCarList(values);
                 }}
                 onChange={setFieldValue}
                 base={reservationForm.CarId}
                 touched={touched.CarId}
                 errors={errors.CarId}
                 values={values.CarId}
-                // options={this.state.availableCars}
+                options={availableCars}
+                selectedValue={val => {
+                  alert(val.value);
+                  setSelectedCarId(val.value);
+                }}
               />
             </Card>
             <Card base={reservation.customer}>
@@ -334,6 +315,10 @@ const ReservationForm: React.FC<any> = (props: any) => {
                 touched={touched.CustomerId}
                 errors={errors.CustomerId}
                 options={customers}
+                values={values.CustomerId}
+                selectedValue={val => {
+                  setSelectedCustomerId(val.value);
+                }}
                 onCustomerChange={value => {
                   if (value) {
                     values.CustomerId = value.value;

@@ -26,7 +26,7 @@ export const mainLink = {
     index: 4
   },
   accounting: {
-    title: "Mühasebe",
+    title: "Muhasebe",
     link: "/accounting",
     icon: Carax.Debt,
     index: 5
