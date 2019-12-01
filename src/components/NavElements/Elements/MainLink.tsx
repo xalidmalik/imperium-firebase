@@ -18,7 +18,7 @@ const MainLink: React.FC<any> = (props: INavLinks) => {
       activeClassName="bg-gray-100 border-orange-400"
     >
       <span className="w-8 block mr-4 ml-3 p-1 my-auto">{props.base.icon}</span>
-      <span className="flex leading-none items-center justify-center text-base">
+      <span className="flex leading-none items-center justify-center">
         {props.base.title}
       </span>
     </NavLink>

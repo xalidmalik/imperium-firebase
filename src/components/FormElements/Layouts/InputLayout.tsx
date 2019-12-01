@@ -11,7 +11,7 @@ const InputLayout: FC<IFormValidation> = props => {
   return (
     <div className="flex mb-4">
       <div className="w-2/6 max-h-full">
-        <h5 className="font-bold leading-none text-base">{`${props.title} :`}</h5>
+        <h5 className="font-bold leading-none text-lg">{`${props.title} :`}</h5>
         {props.required ? (
           <small
             className={`text-xs mt-1 flex leading-tight ${textColorChange(
