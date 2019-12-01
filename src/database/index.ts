@@ -5,6 +5,12 @@ import db, { fb } from "../firebase/firebaseconfig";
 import ls from "secure-ls";
 import { IReservation } from "../helpers/Database/ReservationInterface";
 
+import { uniqBy } from "lodash";
+
+const distinct = (value, index, self) => {
+  return self.indexOf(value.CarId) === index;
+};
+
 export const GetAvailableCars = async (beginDate: any, endDate: any) => {
   let reservation = await GetReservations();
 
@@ -15,7 +21,8 @@ export const GetAvailableCars = async (beginDate: any, endDate: any) => {
       !(beginDate <= a.BeginDateTime && endDate >= a.EndDateTime)
   );
 
-  return available;
+  const unique = uniqBy(available, "CarId");
+  return unique;
 };
 
 export const GetReservations = async () => {
@@ -66,6 +73,15 @@ export const AddRecord = (
   model: object
 ) => {
   delete model["Id"];
+
+  let keys = Object.keys(model);
+
+  for (let i = 0; i < keys.length; i++) {
+    if (model[keys[i]] == undefined) {
+      delete model[keys[i]];
+    }
+  }
+
   return db
     .collection(documentType)
     .doc()

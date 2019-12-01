@@ -24,7 +24,8 @@ import {
 } from "../../helpers/Static/Options";
 import { ReservationModel } from "src/helpers/Database/ReservationInterface";
 import { ICustomer } from "../../helpers/Database/CustomerInterfaces";
-import { GetRecords, GetAvailableCars } from "../../database/index";
+import { GetRecords, GetAvailableCars, AddRecord } from "../../database/index";
+import { IReservation } from "../../helpers/Database/ReservationInterface";
 
 const ReservationForm: React.FC<any> = (props: any) => {
   //   state = {
@@ -185,14 +186,17 @@ const ReservationForm: React.FC<any> = (props: any) => {
     new Array<ICustomer>()
   );
 
+  const [selectedCarId, setSelectedCarId] = useState<any>();
+  const [selectedCustomerId, setSelectedCustomerId] = useState<any>();
+
   const [availableCars, setAvailableCars] = useState<any>();
 
   const setAvailableCarList = values => {
     GetAvailableCars(values.BeginDateTime, values.EndDateTime).then(q =>
       setAvailableCars(
-        q.map(data => ({
+        q.map((data: any) => ({
           label: `${data.Car.BrandName} | ${data.Car.ModelName} | ${data.Car.Plate}`,
-          value: data.Id
+          value: data.CarId
         }))
       )
     );
@@ -201,11 +205,21 @@ const ReservationForm: React.FC<any> = (props: any) => {
   const setCustomersList = () => {
     GetRecords("Customer", "ayazarac").then(data => {
       setCustomer(
-        data.map((d: ICustomer) => ({
+        data.map((d: any) => ({
           label: `${d.Name} ${d.Surname}-${d.TCNumber}`,
           value: d.Id
         }))
       );
+    });
+  };
+
+  const CreateRecord = (values: IReservation) => {
+    values.CustomerId = selectedCustomerId;
+    values.CarId = selectedCarId;
+    values.Code = "ayazarac";
+    values.BeginDateTime = moment(values.BeginDateTime).toDate();
+    AddRecord("Reservation", "ayazarac", values).then(() => {
+      AlertSwal(message.success.title, message.success.type);
     });
   };
 
@@ -218,7 +232,7 @@ const ReservationForm: React.FC<any> = (props: any) => {
       <Formik
         initialValues={new ReservationModel()}
         onSubmit={(values, { setSubmitting }) => {
-          console.log("Values :", values);
+          CreateRecord(values);
         }}
       >
         {({
@@ -274,6 +288,10 @@ const ReservationForm: React.FC<any> = (props: any) => {
                 errors={errors.CarId}
                 values={values.CarId}
                 options={availableCars}
+                selectedValue={val => {
+                  alert(val.value);
+                  setSelectedCarId(val.value);
+                }}
               />
             </Card>
             <Card base={reservation.customer}>
@@ -283,6 +301,10 @@ const ReservationForm: React.FC<any> = (props: any) => {
                 touched={touched.CustomerId}
                 errors={errors.CustomerId}
                 options={customers}
+                selectedValue={val => {
+                  alert(val.value);
+                  setSelectedCustomerId(val.value);
+                }}
                 onCustomerChange={value => {
                   if (value) {
                     values.CustomerId = value.value;
