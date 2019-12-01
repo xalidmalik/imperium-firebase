@@ -104,6 +104,7 @@ const ChechRowVersion = async (code: any, documentType: DocumentTypes) => {
   let data: any = await findedRowVersion.get().then(data => data.data());
   console.log("dadadad :", data);
   let oldSecureStore = secureStore.get(`${"RowVersion"}-${code}`);
+  console.log("oldSecureStore :", oldSecureStore);
   let localData: number = oldSecureStore[documentType];
   let serverData: number = data[documentType];
   secureStore.set(`${"RowVersion"}-${code}`, data);

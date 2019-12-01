@@ -30,7 +30,7 @@ export const mainLink = {
     icon: Carax.Setting
   },
   accounting: {
-    title: "Mühasebe",
+    title: "Muhasebe",
     link: "/accounting",
     icon: Carax.Debt
   }
