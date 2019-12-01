@@ -10,11 +10,12 @@ import { isEmpty } from "lodash";
 import { customerListHeader } from "../../helpers//Static/ListHeader";
 import { GetRecords } from "../../database/";
 import { ICustomer } from "src/helpers/Database/CustomerInterfaces";
-import { HeaderCustomerList } from "src/helpers/Static/Headers";
+import { HeaderAccountingBoard } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
 import Header from "../../components/Header/Header";
 import moment from "moment";
 import { RemoveRecord } from "../../database/index";
+import CardInfo from "src/components/Card/CardInfo";
 
 const AccountingTable: React.FC = () => {
   const [customers, setCustomers] = useState<ICustomer[]>(
@@ -42,97 +43,27 @@ const AccountingTable: React.FC = () => {
   return (
     <>
       <Header
-        titleFirst={HeaderCustomerList.titleFirst}
-        OnChange={(value?: any) => {
-          let searched = SearchCustomer(customers, value);
-          if ((isEmpty(searched) && searched != []) || !value) {
-            getAllRecords();
-          } else {
-            setCustomers(searched);
-          }
-        }}
-        length={customers.length}
-        btnLink={HeaderCustomerList.btnLink}
-        btnTitle={HeaderCustomerList.btnTitle}
+        titleFirst={HeaderAccountingBoard.titleFirst}
+        btnLink={HeaderAccountingBoard.btnLink}
+        btnTitle={HeaderAccountingBoard.btnTitle}
       />
-      <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
-        {/* <div className="w-full overflow-auto rounded-lg med-table-wrapper">
-          <table className="table-auto med-table">
-            <thead>
-              <tr>
-                {customerListHeader.map((i, index) => {
-                  return <th key={index}>{i.col}</th>;
-                })}
-              </tr>
-            </thead>
-            <tbody>
-              {customers.map((i, numb: any) => {
-                return (
-                  <tr
-                    className={`border-gray-300 border-b hover:border-med-500 hover:bg-gray-100 cursor-pointer`}
-                    key={numb}
-                    onDoubleClick={() => {
-                      sc.set("SelectedCustomer", i);
-                      History.push("/customer/detail");
-                    }}
-                  >
-                    <td className="flex items-center">
-                      <div className="rounded-full bg-gray-300 mr-4 p-2 w-12 h-12 min-h-12 min-w-12 flex items-center justify-center text-gray-800">
-                        {i.Name[0] + i.Surname[0]}
-                      </div>
-                      {`${i.Name} ${i.Surname}`}
-                    </td>
-                    <td>{i.TCNumber}</td>
-                    <td>{i.FirstPhone}</td>
-                    <td>{i.Email}</td>
-                    <td
-                      className={`font-bold ${
-                        new Date().getFullYear() -
-                          moment(i.DrivingLicenseYear)
-                            .toDate()
-                            .getFullYear() <=
-                        1
-                          ? "text-red-500"
-                          : "text-green-500"
-                      }`}
-                    >
-                      <span className="mr-2">•</span>
-                      {new Date().getFullYear() -
-                        moment(i.DrivingLicenseYear)
-                          .toDate()
-                          .getFullYear() +
-                        " Yıl"}
-                    </td>
-                    <td>
-                      <div className="flex">
-                        <Link
-                          className="w-12 h-12 text-gray-600 block rounded-lg hover:text-orange-400 mr-2"
-                          onClick={() => {
-                            sc.set("SelectedCustomer", i);
-                          }}
-                          to="/customer/detail"
-                        >
-                          <span className="w-12 block my-auto">
-                            {Carax.More}
-                          </span>
-                        </Link>
-                        <button
-                          onClick={() => RemoveCar(i.Id)}
-                          className="w-12 h-12 text-red-400 block rounded-lg hover:text-red-500"
-                        >
-                          <span className="w-12 h-12 block my-auto p-3">
-                            {Carax.Delete}
-                          </span>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div> */}
-      </CardWrapper>
+      <div className="flex flex-row">
+        <CardInfo
+          title="Merhaba"
+          desc="Hakkinda dhwihdiawda"
+          classes=" w-1/4"
+        />
+        <CardInfo
+          title="Merhaba"
+          desc="Hakkinda dhwihdiawda"
+          classes="mx-4 w-1/4"
+        />
+        <CardInfo
+          title="Merhaba"
+          desc="Hakkinda dhwihdiawda"
+          classes=" w-2/4"
+        />
+      </div>
     </>
   );
 };

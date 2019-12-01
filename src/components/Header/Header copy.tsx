@@ -9,27 +9,23 @@ const Header = (props: IHeaderValidation) => {
       {props.linkFirst ? (
         <>
           <h2
-            className="text-2xl font-bold font-sans leading-none justify-between cursor-pointer text-orange-400"
+            className="text-2xl font-bold leading-none justify-between cursor-pointer text-orange-400"
             onClick={() => History.push(props.linkFirst)}
           >
             {props.titleFirst}
           </h2>
-          <span className="text-2xl font-bold font-sans leading-none mx-2">
-            >
-          </span>
+          <span className="text-2xl font-bold leading-none mx-2">></span>
         </>
       ) : (
-        <h2 className="text-2xl font-bold font-sans leading-none justify-between">
+        <h2 className="text-2xl font-bold leading-none justify-between">
           {props.titleFirst}
         </h2>
       )}
 
       {props.length ? (
         <>
-          <span className="text-2xl font-sans font-bold leading-none mx-2">
-            |
-          </span>
-          <h4 className="text-sm font-normal leading-none justify-between">
+          <span className="text-2xl font-bold leading-none mx-2">|</span>
+          <h4 className="text-base font-normal leading-none justify-between">
             Toplam : {props.length}
           </h4>
           <input
@@ -44,20 +40,18 @@ const Header = (props: IHeaderValidation) => {
         props.linkSecond ? (
           <>
             <h2
-              className="text-2xl font-bold font-sans leading-none justify-between cursor-pointer text-orange-400"
+              className="text-2xl font-bold leading-none justify-between cursor-pointer text-orange-400"
               onClick={() => History.push(props.linkSecond)}
             >
               {props.titleSecond}
             </h2>
-            <span className="text-2xl font-bold font-sans leading-none mx-2 ">
-              >
-            </span>
-            <h2 className="text-2xl font-bold font-sans leading-none justify-between">
+            <span className="text-2xl font-bold leading-none mx-2 ">></span>
+            <h2 className="text-2xl font-bold leading-none justify-between">
               {props.titleThird}
             </h2>
           </>
         ) : (
-          <h2 className="text-2xl font-bold font-sans leading-none justify-between">
+          <h2 className="text-2xl font-bold leading-none justify-between">
             {props.titleSecond}
           </h2>
         )

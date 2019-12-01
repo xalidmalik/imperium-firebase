@@ -55,7 +55,7 @@ const MenuBar = () => {
           path="/customer/detail"
           render={() => (
             <>
-              <MainLink base={mainLink.customer} />
+              <MainLink base={mainLink.customer} classes="border-orange-400" />
               <SubLink base={customerDetail.overview} />
               <SubLink base={customerDetail.edit} />
             </>

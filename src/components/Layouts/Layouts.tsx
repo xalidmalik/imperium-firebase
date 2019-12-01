@@ -13,7 +13,7 @@ export const LeftLayout = (props: any) => {
   return (
     <animated.div
       // style={LeftTransition}
-      className="w-left fixed h-full w-60 left-0 bottom-0 bg-white shadow-base z-50"
+      className="w-left fixed h-full w-72 left-0 bottom-0 bg-white shadow-base z-50"
     >
       <span
         className="h-20 w-full flex mx-auto py-4 border-b border-gray-200 cursor-pointer hover:bg-gray-100"
@@ -25,10 +25,13 @@ export const LeftLayout = (props: any) => {
     </animated.div>
   );
 };
+export const ContainerLayout = (props: any) => {
+  return <div className="z-40 pt-4 px-4 container">{props.children}</div>;
+};
 export const RightLayout = (props: any) => {
   return (
     <div className="w-right w-full overflow-auto">
-      <div className="z-40 pt-4 px-4 container">{props.children}</div>
+      <ContainerLayout>{props.children}</ContainerLayout>
     </div>
   );
 };

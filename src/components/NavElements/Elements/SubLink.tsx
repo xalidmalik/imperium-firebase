@@ -7,10 +7,10 @@ const SubLink = (props: INavLinks) => {
     <NavLink
       exact
       to={props.base.link}
-      className="h-16 flex bg-gray-100 text-gray-900 py-4 border-l-8 border-gray-200"
+      className="h-12 flex bg-gray-100 text-gray-900 py-2 border-l-4 border-gray-200"
       activeClassName="border-orange-400 text-white"
     >
-      <span className="w-8 block mr-4 ml-2 my-auto">{props.base.icon}</span>
+      <span className="w-8 block mr-4 ml-3 p-1 my-auto">{props.base.icon}</span>
       <span className="flex leading-none items-center justify-center text-base">
         {props.base.title}
       </span>

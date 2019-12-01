@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -17,6 +17,7 @@ import MenuBar from "./containers/Navbar/MenuBar";
 import AccountingBoard from "./pages/Accounting/AccountingBoard";
 
 const App: React.FC = () => {
+  const [linkIndex, SetLinkIndex] = useState(0);
   let context = useHistory<any>();
   const { location } = context;
   const transition = useTransition(location, location => location.pathname, {
@@ -42,6 +43,50 @@ const App: React.FC = () => {
     );
   }, []);
 
+  // useEffect(() => {
+  //   console.log("dene", AniChange());
+  //   const ada = AniChange();
+  // });
+
+  // const AniChange = () => {
+  //   if (location.state == undefined) {
+  //     console.log("ilk");
+  //   } else if (location.state.index && location.state.index > linkIndex) {
+  //     return {
+  //       from: {
+  //         opacity: 1,
+  //         transform: "translate3d(0,-100%,0)"
+  //       },
+  //       enter: {
+  //         opacity: 1,
+  //         transform: "translate3d(0,0%,0)"
+  //       },
+  //       leave: {
+  //         opacity: 1,
+  //         transform: "translate3d(0,100%,0)"
+  //       },
+  //       config: { mass: 1, tension: 300, friction: 40 }
+  //     };
+  //   } else if (location.state.index && location.state.index < linkIndex) {
+  //     return {
+  //       from: {
+  //         opacity: 1,
+  //         transform: "translate3d(0,200%,0)"
+  //       },
+  //       enter: {
+  //         opacity: 1,
+  //         transform: "translate3d(0,0%,0)"
+  //       },
+  //       leave: {
+  //         opacity: 1,
+  //         transform: "translate3d(0,-200%,0)"
+  //       },
+  //       config: { mass: 1, tension: 300, friction: 40 }
+  //     };
+  //     SetLinkIndex(location.state.index);
+  //   }
+  // };
+
   return (
     <>
       <MenuBar />
@@ -49,7 +94,7 @@ const App: React.FC = () => {
         <animated.div
           key={key}
           style={props}
-          className="fixed w-layout bg-gray-200 ml-60 flex h-full"
+          className="fixed w-layout bg-gray-200 ml-72 flex h-full"
         >
           <Switch location={item}>
             <Route exact path="/" component={Dashboard} />

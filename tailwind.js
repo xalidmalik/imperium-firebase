@@ -251,12 +251,12 @@ module.exports = {
       base: ["Quicksand", "sans-serif"],
       sans: [
         "Roboto",
+        '"Helvetica Neue"',
+        '"Noto Sans"',
         "-apple-system",
         "BlinkMacSystemFont",
         '"Segoe UI"',
-        '"Helvetica Neue"',
         "Arial",
-        '"Noto Sans"',
         "sans-serif",
         '"Apple Color Emoji"',
         '"Segoe UI Emoji"',
@@ -431,7 +431,7 @@ module.exports = {
       "10/12": "83.333333%",
       "11/12": "91.666667%",
       full: "100%",
-      layout: "calc(100% - 15rem)",
+      layout: "calc(100% - 18rem)",
       screen: "100vw"
     }),
     zIndex: {

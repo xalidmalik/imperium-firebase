@@ -10,7 +10,7 @@ import { isEmpty } from "lodash";
 import { customerListHeader } from "../../helpers//Static/ListHeader";
 import { GetRecords, GetReservations } from "../../database/";
 import { ICustomer } from "src/helpers/Database/CustomerInterfaces";
-import { HeaderCustomerList } from "src/helpers/Static/Headers";
+import { HeaderCustomerBoard } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
 import Header from "../../components/Header/Header";
 import moment from "moment";
@@ -42,7 +42,7 @@ const CustomerTable: React.FC = () => {
   return (
     <>
       <Header
-        titleFirst={HeaderCustomerList.titleFirst}
+        titleFirst={HeaderCustomerBoard.titleFirst}
         OnChange={(value?: any) => {
           let searched = SearchCustomer(customers, value);
           if ((isEmpty(searched) && searched != []) || !value) {
@@ -52,8 +52,8 @@ const CustomerTable: React.FC = () => {
           }
         }}
         length={customers.length}
-        btnLink={HeaderCustomerList.btnLink}
-        btnTitle={HeaderCustomerList.btnTitle}
+        btnLink={HeaderCustomerBoard.btnLink}
+        btnTitle={HeaderCustomerBoard.btnTitle}
       />
       <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
         <div className="w-full overflow-auto rounded-lg med-table-wrapper">
@@ -76,11 +76,13 @@ const CustomerTable: React.FC = () => {
                       History.push("/customer/detail");
                     }}
                   >
-                    <td className="flex items-center">
-                      <div className="rounded-full bg-gray-300 mr-4 p-2 w-12 h-12 min-h-12 min-w-12 flex items-center justify-center text-gray-800">
-                        {i.Name[0] + i.Surname[0]}
+                    <td>
+                      <div className="flex items-center">
+                        <div className="rounded-full bg-gray-300 mr-4 p-2 w-10 h-10 min-h-10 min-w-10 flex items-center justify-center text-gray-800">
+                          {i.Name[0] + i.Surname[0]}
+                        </div>
+                        {`${i.Name} ${i.Surname}`}
                       </div>
-                      {`${i.Name} ${i.Surname}`}
                     </td>
                     <td>{i.TCNumber}</td>
                     <td>{i.FirstPhone}</td>
