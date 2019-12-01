@@ -10,8 +10,8 @@ import { SearchReservation } from "../../helpers/Function/Search";
 import { ReservationListHeader } from "../../helpers/Static/ListHeader";
 import { IReservation } from "../../helpers/Database/ReservationInterface";
 import {
-  HeaderReservationList,
-  HeaderCustomerList
+  HeaderReservationBoard,
+  HeaderCustomerBoard
 } from "src/helpers/Static/Headers";
 import { GetRecords, AddRecord, GetReservations } from "src/database";
 import SecureStore from "secure-ls";
@@ -36,9 +36,9 @@ const ReservationTable: React.FC<any> = () => {
   return (
     <>
       <Header
-        titleFirst={HeaderReservationList.titleFirst}
-        btnLink={HeaderReservationList.btnLink}
-        btnTitle={HeaderReservationList.btnTitle}
+        titleFirst={HeaderReservationBoard.titleFirst}
+        btnLink={HeaderReservationBoard.btnLink}
+        btnTitle={HeaderReservationBoard.btnTitle}
         OnChange={value => {}}
         length={reservations.length}
       />
@@ -67,20 +67,20 @@ const ReservationTable: React.FC<any> = () => {
                       <div
                         className={`rounded-full bg-gray-300 mr-4 p-2 w-12 h-12 min-h-12 min-w-12 flex items-center justify-center text-gray-800`}
                       >
-                        {i.Customer.Name[0] + i.Customer.Surname[0]}
+                        {i.CustomerId.Name[0] + i.CustomerId.Surname[0]}
                       </div>
                       <div className="block">
-                        <h5 className="flex font-bold">{`${i.Customer.Name} ${i.Customer.Surname}`}</h5>
-                        <span className="text-sm flex">{`Tel: ${i.Customer.FirstPhone}`}</span>
+                        <h5 className="flex font-bold">{`${i.CustomerId.Name} ${i.CustomerId.Surname}`}</h5>
+                        <span className="text-sm flex">{`Tel: ${i.CustomerId.FirstPhone}`}</span>
                       </div>
                     </td>
                     <td>
                       <div className="block">
                         <h5 className="flex font-bold">
-                          {`${i.Car.BrandName} ${i.Car.ModelName}`}
+                          {`${i.CarId.BrandName} ${i.CarId.ModelName}`}
                         </h5>
                         <div className="flex">
-                          <span className="text-sm flex">{`Plaka: ${i.Car.Plate}`}</span>
+                          <span className="text-sm flex">{`Plaka: ${i.CarId.Plate}`}</span>
                         </div>
                       </div>
                     </td>
@@ -97,7 +97,7 @@ const ReservationTable: React.FC<any> = () => {
                     <td>
                       <div className="block">
                         <h5 className="flex font-bold">
-                          {i.Price || i.Car.Price} <span>&#8378;</span>
+                          {i.Price || i.CarId.Price} <span>&#8378;</span>
                         </h5>
                         <span className="text-sm flex">(KDV Dahil)</span>
                       </div>

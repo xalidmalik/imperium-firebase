@@ -16,7 +16,7 @@ export const CardWrapper = (props: any) => {
   });
   return (
     <animated.div
-      style={CardTransition}
+      // style={CardTransition}
       className={`${
         props.classes
           ? props.classes
@@ -37,7 +37,7 @@ export const ServiceHeaderWrapper = (props: any) => {
   });
   return (
     <animated.div
-      style={CardTransition}
+      // style={CardTransition}
       className={`w-card bg-white w-full rounded-tl-lg flex sticky top-0 z-40 shadow-table`}
     >
       <div className="px-4 h-16 w-full flex items-center">{props.children}</div>

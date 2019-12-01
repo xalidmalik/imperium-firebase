@@ -23,11 +23,11 @@ body {
 }
 
 .med-table thead tr th {
-  @apply text-left sticky top-0 bg-white h-16 shadow-table z-40;
+  @apply text-left sticky top-0 bg-white h-16 shadow-table z-40 text-sm;
 }
 .med-table th,
 .med-table td {
-  @apply px-4 py-4;
+  @apply px-4 py-2 text-sm;
 }
 /* .med-table tbody tr {
   @apply border-b border-gray-200;
@@ -112,7 +112,7 @@ body {
 /* Button Style-------------- */
 
 .btn-style-1 {
-  @apply px-8 py-2 rounded bg-orange-400 text-white font-bold shadow-base;
+  @apply px-8 py-2 rounded bg-orange-400 text-white text-sm font-bold shadow-base;
 }
 .btn-style-1:hover {
   @apply bg-orange-500;

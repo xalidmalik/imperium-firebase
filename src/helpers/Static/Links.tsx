@@ -2,22 +2,25 @@ import { Carax } from "./Icons";
 
 export const mainLink = {
   dashboard: {
-    title: "Pano",
+    title: "Kontrol Paneli",
     link: "/",
-    icon: Carax.Dashboard
+    icon: Carax.Dashboard,
+    index: "0"
   },
   customer: {
-    title: "Müşteri",
+    title: "Müşteriler",
     link: "/customer",
-    icon: Carax.Customer
+    icon: Carax.Customer,
+    index: "1"
   },
   car: {
-    title: "Araba",
+    title: "Arabalar",
     link: "/car",
-    icon: Carax.Cars
+    icon: Carax.Cars,
+    index: "2"
   },
   reservation: {
-    title: "Rezerve",
+    title: "Rezervasyonlar",
     link: "/reservation",
     icon: Carax.Reservation
   },
@@ -27,7 +30,7 @@ export const mainLink = {
     icon: Carax.Setting
   },
   accounting: {
-    title: "Cari",
+    title: "Mühasebe",
     link: "/accounting",
     icon: Carax.Debt
   }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { LeftLayout, RightLayout } from "../../components/Layouts/Layouts";
-import { CardWrapper } from "../../components/Card/CardWrapper";
-import DepartmentForm from "../../containers/Forms/DepartmentForm";
+import { RightLayout } from "../../components/Layouts/Layouts";
+
 import Header from "../../components/Header/Header";
 import DepartmentOverview from "src/containers/Overviews/DepartmentOverview";
 import { IDepartment } from "src/helpers/Database/DepartmentInterface";
@@ -22,16 +21,11 @@ const SettingCorporate: React.FC = () => {
     getDepartment();
   }, []);
   return (
-    <>
-      <LeftLayout>
-        {/* <SubLink base={reservationList.overview} /> */}
-      </LeftLayout>
-      <RightLayout>
-        <Header titleFirst="test" />
-        {/* <DepartmentForm /> */}
-        <DepartmentOverview data={department} />
-      </RightLayout>
-    </>
+    <RightLayout>
+      <Header titleFirst="test" />
+      {/* <DepartmentForm /> */}
+      <DepartmentOverview data={department} />
+    </RightLayout>
   );
 };
 
