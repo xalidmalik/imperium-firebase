@@ -6,8 +6,8 @@ export interface IReservation {
   AdditionalCustomerId?: any;
   ReservationTypes: ReservationType;
   CarId: any;
-  BeginDateTime: Date;
-  EndDateTime: Date;
+  BeginDateTime: any;
+  EndDateTime: any;
   Price: number;
   Deposit: number;
   Paid: number;
@@ -23,8 +23,8 @@ export class ReservationModel {
   AdditionalCustomerId?: any;
   ReservationTypes: ReservationType = "Ön Rezerve";
   CarId: any = "";
-  BeginDateTime: Date = new Date(Date.now());
-  EndDateTime: Date = new Date(Date.now());
+  BeginDateTime: any = ""
+  EndDateTime: any = ""
   Price: number = 0;
   Deposit: number = 0;
   Paid: number = 0;

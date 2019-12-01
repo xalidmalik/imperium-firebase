@@ -24,7 +24,12 @@ import {
 } from "../../helpers/Static/Options";
 import { ReservationModel } from "src/helpers/Database/ReservationInterface";
 import { ICustomer } from "../../helpers/Database/CustomerInterfaces";
-import { GetRecords, GetAvailableCars, AddRecord } from "../../database/index";
+import {
+  GetRecords,
+  GetAvailableCars,
+  AddRecord,
+  UpdateRecord
+} from "../../database/index";
 import { IReservation } from "../../helpers/Database/ReservationInterface";
 import { isEmpty } from "lodash";
 
@@ -231,8 +236,21 @@ const ReservationForm: React.FC<any> = (data: any) => {
     values.CustomerId = selectedCustomerId;
     values.CarId = selectedCarId;
     values.Code = "ayazarac";
-    values.BeginDateTime = moment(values.BeginDateTime).toDate();
+    values.BeginDateTime = values.BeginDateTime.toString();
+    values.EndDateTime = values.EndDateTime.toString();
+
     AddRecord("Reservation", "ayazarac", values).then(() => {
+      AlertSwal(message.success.title, message.success.type);
+    });
+  };
+
+  const PutRecord = (values: IReservation) => {
+    values.CustomerId = selectedCustomerId || values.CustomerId;
+    values.CarId = selectedCarId || values.CarId;
+    values.Code = "ayazarac";
+    values.BeginDateTime = values.BeginDateTime.toString();
+    values.EndDateTime = values.EndDateTime.toString();
+    UpdateRecord("ayazarac", "Reservation", values).then(() => {
       AlertSwal(message.success.title, message.success.type);
     });
   };
@@ -246,7 +264,11 @@ const ReservationForm: React.FC<any> = (data: any) => {
       <Formik
         initialValues={activeReservation || new ReservationModel()}
         onSubmit={(values, { setSubmitting }) => {
-          CreateRecord(values);
+          if (activeReservation) {
+            PutRecord(values);
+          } else {
+            CreateRecord(values);
+          }
         }}
       >
         {({
@@ -269,7 +291,7 @@ const ReservationForm: React.FC<any> = (data: any) => {
                 values={values.BeginDateTime}
                 seletedStart={true}
                 startDate={values.BeginDateTime}
-                // endDate={values.EndDateTime}
+                endDate={values.EndDateTime}
               />
               <DatetimePicker
                 showTimeSelect={true}

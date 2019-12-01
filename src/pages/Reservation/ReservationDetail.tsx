@@ -23,6 +23,9 @@ export const ReservationDetail: React.FC = () => {
       activeReservation.BeginDateTime = new Date(
         moment(activeReservation.BeginDateTime).toDate()
       );
+      activeReservation.EndDateTime = new Date(
+        moment(activeReservation.EndDateTime).toDate()
+      );
       setReservation(activeReservation);
     }
   }, []);

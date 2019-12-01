@@ -90,7 +90,7 @@ const ReservationTable: React.FC<any> = () => {
                           {moment(i.BeginDateTime).format("DD.MM.YYYY (HH:mm)")}
                         </h5>
                         <h5 className="flex">
-                          {moment(i.EndDateTime).format("DD.MM.YYYY (HH:mm)")}
+                          {/* {moment(i.EndDateTime).format("DD.MM.YYYY (HH:mm)")} */}
                         </h5>
                       </div>
                     </td>
