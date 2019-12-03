@@ -223,12 +223,20 @@ const ReservationForm: React.FC<any> = (data: any) => {
 
   const setCustomersList = () => {
     GetRecords("Customer", "ayazarac").then((data: any) => {
-      setCustomer(
-        data.map((d: any) => ({
+      let temp: any = [];
+
+      temp.push({
+        label: "Yeni Ekle",
+        value: "addNew"
+      });
+
+      data.map((d: any) => {
+        temp.push({
           label: `${d.Name} ${d.Surname}-${d.TCNumber}`,
           value: d.Id
-        }))
-      );
+        });
+      });
+      setCustomer(temp);
     });
   };
 
@@ -417,9 +425,10 @@ const ReservationForm: React.FC<any> = (data: any) => {
           </Form>
         )}
       </Formik>
-      {/* <RightModal ref="modal"> */}
-      {/* <HeaderReservationCustomerNew closeModal={() => this.OpenModal()} /> */}
-      {/* <CustomerForm
+
+      {/* <RightModal ref="modal"> 
+      <HeaderReservationCustomerNew closeModal={() => this.OpenModal()} /> 
+       <CustomerForm
             AdditionalCustomerId={this.state.IsAdditionalDriver}
             IsCustomerCreate={value => {
               if (value) {
@@ -436,8 +445,8 @@ const ReservationForm: React.FC<any> = (data: any) => {
               }
             }}
             isModal={true}
-          /> */}
-      {/* </RightModal> */}
+          /> 
+      </RightModal> */}
     </>
   );
 };

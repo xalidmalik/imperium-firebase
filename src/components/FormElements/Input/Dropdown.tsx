@@ -4,16 +4,16 @@ import Select from "react-select";
 import { borderColorChange } from "../../../helpers/Validations/FormValidations";
 
 const Dropdown: React.FC<any> = (props: any) => {
-  // const colourStyles = {
-  //   control: (styles: any) => ({ ...styles, backgroundColor: "white" }),
-  //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-  //     return {
-  //       ...styles,
-  //       backgroundColor: data.value == "addNew" ? "orange" : "white",
-  //       color: data.value == "addNew" ? "white" : "black"
-  //     };
-  //   }
-  // };
+  const colourStyles = {
+    control: (styles: any) => ({ ...styles, backgroundColor: "white" }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      return {
+        ...styles,
+        backgroundColor: data.value == "addNew" ? "orange" : "white",
+        color: data.value == "addNew" ? "white" : "black"
+      };
+    }
+  };
 
   const handleChange = (value: any, action: any) => {
     if (action.action == "remove-value") {
@@ -83,7 +83,7 @@ const Dropdown: React.FC<any> = (props: any) => {
         )}`}
         placeholder={props.base.placeholder}
         classNamePrefix="med"
-        // styles={colourStyles}
+        styles={colourStyles}
       />
     </InputLayout>
   );
