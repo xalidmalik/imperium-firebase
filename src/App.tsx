@@ -15,6 +15,7 @@ import { GetRecords, IncrenmentRowVersion } from "./database";
 import SettingCorporate from "./pages/Settings/SettingCorporate";
 import MenuBar from "./containers/Navbar/MenuBar";
 import AccountingBoard from "./pages/Accounting/AccountingBoard";
+import CustomerForm from "./containers/Forms/CustomerForm";
 
 const App: React.FC = () => {
   const [linkIndex, SetLinkIndex] = useState(0);
@@ -102,7 +103,7 @@ const App: React.FC = () => {
             <Route exact path="/car" component={CarBoard} />
             <Route exact path="/reservation" component={ReservationBoard} />
             <Route exact path="/accounting" component={AccountingBoard} />
-            <Route path="/customer/new" component={CustomerNew} />
+            <Route path="/customer/new" component={CustomerForm} />
             <Route path="/car/new" component={CarNew} />
             <Route path="/reservation/new" component={ReservationNew} />
             <Route path="/customer/detail" component={CustomerDetail} />

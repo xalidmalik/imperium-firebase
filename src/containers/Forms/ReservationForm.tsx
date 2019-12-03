@@ -347,7 +347,7 @@ const ReservationForm: React.FC<any> = (data: any) => {
                   }
                 }}
               />
-              <Dropdown
+              {/* <Dropdown
                 onChange={setFieldValue}
                 onCustomerChange={value => {
                   if (value) {
@@ -375,7 +375,7 @@ const ReservationForm: React.FC<any> = (data: any) => {
                 //     );
                 //   }
                 // }}
-              />
+              /> */}
             </Card>
             <Card base={reservation.payment}>
               <Fields
