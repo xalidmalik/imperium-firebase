@@ -222,7 +222,7 @@ const ReservationForm: React.FC<any> = (data: any) => {
   };
 
   const setCustomersList = () => {
-    GetRecords("Customer", "ayazarac").then(data => {
+    GetRecords("Customer", "ayazarac").then((data: any) => {
       setCustomer(
         data.map((d: any) => ({
           label: `${d.Name} ${d.Surname}-${d.TCNumber}`,

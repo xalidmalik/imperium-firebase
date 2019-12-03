@@ -23,7 +23,6 @@ const ReservationTable: React.FC<any> = () => {
   const sc = new SecureStore();
   const getAllReservation = () => {
     GetReservations().then(data => {
-      console.log(" reser :", data);
       setReservation(data);
     });
   };
@@ -90,7 +89,7 @@ const ReservationTable: React.FC<any> = () => {
                           {moment(i.BeginDateTime).format("DD.MM.YYYY (HH:mm)")}
                         </h5>
                         <h5 className="flex">
-                          {/* {moment(i.EndDateTime).format("DD.MM.YYYY (HH:mm)")} */}
+                          {moment(i.EndDateTime).format("DD.MM.YYYY (HH:mm)")}
                         </h5>
                       </div>
                     </td>

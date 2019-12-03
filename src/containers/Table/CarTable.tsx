@@ -25,12 +25,14 @@ const CarTable: React.FC = () => {
   }, []);
 
   const getAllCars = () => {
-    GetRecords("Car", "ayazarac").then(data => setCars(data));
+    GetRecords("Car", "ayazarac").then((data:any) => setCars(data));
   };
 
   const removeCars = (Id: any) => {
     AlertSwalDelete(response => {
-      RemoveRecord("Car", Id, "ayazarac").then(() => getAllCars());
+      if (response) {
+        RemoveRecord("Car", Id, "ayazarac").then(() => getAllCars());
+      }
     });
   };
 

@@ -28,7 +28,7 @@ const AccountingTable: React.FC = () => {
   }, []);
 
   const getAllRecords = () => {
-    GetRecords("Customer", "ayazarac").then(value => {
+    GetRecords("Customer", "ayazarac").then((value: any) => {
       setCustomers(value);
     });
   };
