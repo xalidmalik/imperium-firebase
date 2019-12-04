@@ -103,7 +103,7 @@ const App: React.FC = () => {
             <Route exact path="/car" component={CarBoard} />
             <Route exact path="/reservation" component={ReservationBoard} />
             <Route exact path="/accounting" component={AccountingBoard} />
-            <Route path="/customer/new" component={CustomerForm} />
+            <Route path="/customer/new" component={CustomerNew} />
             <Route path="/car/new" component={CarNew} />
             <Route path="/reservation/new" component={ReservationNew} />
             <Route path="/customer/detail" component={CustomerDetail} />
