@@ -38,7 +38,7 @@ export const GetReservations = async () => {
 };
 
 export const GetRecords = async (documentType: DocumentTypes, Code: string) => {
-  let secureStore = new ls();
+  // let secureStore = new ls();
 
   // if (await ChechRowVersion(Code, documentType)) {
   //   const dbValue = db

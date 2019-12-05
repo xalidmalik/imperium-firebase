@@ -5,13 +5,15 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Router as BrowserRouter } from "react-router-dom";
 import { History } from "./helpers/Static/History";
-require("dotenv").config();
+import Login from "./pages/Auth/Login";
+import { auth } from "./firebase/firebaseconfig";
+import SecureStore from "secure-ls";
 
-process.env.CI = "false";
+const sc = new SecureStore();
 
 ReactDOM.render(
   <BrowserRouter history={History}>
-    <App />
+    {sc.get("userId") ? <App /> : <Login />}
   </BrowserRouter>,
   document.getElementById("root")
 );

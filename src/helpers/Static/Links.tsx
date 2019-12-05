@@ -33,6 +33,11 @@ export const mainLink = {
     title: "Muhasebe",
     link: "/accounting",
     icon: Carax.Debt
+  },
+  logout: {
+    title: "Çıkış",
+    link: "",
+    icon: Carax.Logout
   }
 };
 
