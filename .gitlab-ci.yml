@@ -1,0 +1,16 @@
+image: node:alpine
+cache: 
+  paths: 
+    - node_modules/
+
+deploy_production:
+ stage: deploy
+ environment: Production
+ only:
+  - master
+ script:
+  - unset CI 
+  - npm install
+  - npm i -g firebase-tools
+  - npm run build
+  - firebase deploy  --non-interactive --token  "1//03NniGjjVeK9ECgYIARAAGAMSNwF-L9IrwiTulVSwd3rWYhDW3gnARleEJiNYV-A44KFm2YAFBsn3jx6t8I1FixqWaK3-OSvktn0"

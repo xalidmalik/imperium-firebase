@@ -23,7 +23,6 @@ const ReservationTable: React.FC<any> = () => {
   const sc = new SecureStore();
   const getAllReservation = () => {
     GetReservations().then(data => {
-      console.log(" reser :", data);
       setReservation(data);
     });
   };

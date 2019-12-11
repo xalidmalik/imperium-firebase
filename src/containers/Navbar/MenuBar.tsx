@@ -10,6 +10,7 @@ import {
 import { Route, Switch, useHistory } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import { LeftLayout } from "src/components/Layouts/Layouts";
+import SecureStore from "secure-ls";
 
 const MenuBar = () => {
   let context = useHistory<any>();
@@ -39,6 +40,15 @@ const MenuBar = () => {
         <MainLink base={mainLink.reservation} />
         <MainLink base={mainLink.accounting} />
         <MainLink base={mainLink.settings} />
+
+        <div
+          onClick={() => {
+            new SecureStore().removeAll();
+            window.location.reload();
+          }}
+        >
+          <MainLink base={mainLink.logout} />
+        </div>
       </>
     );
   };

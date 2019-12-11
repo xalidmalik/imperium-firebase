@@ -24,7 +24,12 @@ import {
 } from "../../helpers/Static/Options";
 import { ReservationModel } from "src/helpers/Database/ReservationInterface";
 import { ICustomer } from "../../helpers/Database/CustomerInterfaces";
-import { GetRecords, GetAvailableCars, AddRecord } from "../../database/index";
+import {
+  GetRecords,
+  GetAvailableCars,
+  AddRecord,
+  UpdateRecord
+} from "../../database/index";
 import { IReservation } from "../../helpers/Database/ReservationInterface";
 import { isEmpty } from "lodash";
 
@@ -217,13 +222,21 @@ const ReservationForm: React.FC<any> = (data: any) => {
   };
 
   const setCustomersList = () => {
-    GetRecords("Customer", "ayazarac").then(data => {
-      setCustomer(
-        data.map((d: any) => ({
+    GetRecords("Customer", "ayazarac").then((data: any) => {
+      let temp: any = [];
+
+      temp.push({
+        label: "Yeni Ekle",
+        value: "addNew"
+      });
+
+      data.map((d: any) => {
+        temp.push({
           label: `${d.Name} ${d.Surname}-${d.TCNumber}`,
           value: d.Id
-        }))
-      );
+        });
+      });
+      setCustomer(temp);
     });
   };
 
@@ -231,8 +244,21 @@ const ReservationForm: React.FC<any> = (data: any) => {
     values.CustomerId = selectedCustomerId;
     values.CarId = selectedCarId;
     values.Code = "ayazarac";
-    values.BeginDateTime = moment(values.BeginDateTime).toDate();
+    values.BeginDateTime = values.BeginDateTime.toString();
+    values.EndDateTime = values.EndDateTime.toString();
+
     AddRecord("Reservation", "ayazarac", values).then(() => {
+      AlertSwal(message.success.title, message.success.type);
+    });
+  };
+
+  const PutRecord = (values: IReservation) => {
+    values.CustomerId = selectedCustomerId || values.CustomerId;
+    values.CarId = selectedCarId || values.CarId;
+    values.Code = "ayazarac";
+    values.BeginDateTime = values.BeginDateTime.toString();
+    values.EndDateTime = values.EndDateTime.toString();
+    UpdateRecord("ayazarac", "Reservation", values).then(() => {
       AlertSwal(message.success.title, message.success.type);
     });
   };
@@ -246,7 +272,11 @@ const ReservationForm: React.FC<any> = (data: any) => {
       <Formik
         initialValues={activeReservation || new ReservationModel()}
         onSubmit={(values, { setSubmitting }) => {
-          CreateRecord(values);
+          if (activeReservation) {
+            PutRecord(values);
+          } else {
+            CreateRecord(values);
+          }
         }}
       >
         {({
@@ -269,7 +299,7 @@ const ReservationForm: React.FC<any> = (data: any) => {
                 values={values.BeginDateTime}
                 seletedStart={true}
                 startDate={values.BeginDateTime}
-                // endDate={values.EndDateTime}
+                endDate={values.EndDateTime}
               />
               <DatetimePicker
                 showTimeSelect={true}
@@ -325,7 +355,7 @@ const ReservationForm: React.FC<any> = (data: any) => {
                   }
                 }}
               />
-              <Dropdown
+              {/* <Dropdown
                 onChange={setFieldValue}
                 onCustomerChange={value => {
                   if (value) {
@@ -353,7 +383,7 @@ const ReservationForm: React.FC<any> = (data: any) => {
                 //     );
                 //   }
                 // }}
-              />
+              /> */}
             </Card>
             <Card base={reservation.payment}>
               <Fields
@@ -395,9 +425,10 @@ const ReservationForm: React.FC<any> = (data: any) => {
           </Form>
         )}
       </Formik>
-      {/* <RightModal ref="modal"> */}
-      {/* <HeaderReservationCustomerNew closeModal={() => this.OpenModal()} /> */}
-      {/* <CustomerForm
+
+      {/* <RightModal ref="modal"> 
+      <HeaderReservationCustomerNew closeModal={() => this.OpenModal()} /> 
+       <CustomerForm
             AdditionalCustomerId={this.state.IsAdditionalDriver}
             IsCustomerCreate={value => {
               if (value) {
@@ -414,8 +445,8 @@ const ReservationForm: React.FC<any> = (data: any) => {
               }
             }}
             isModal={true}
-          /> */}
-      {/* </RightModal> */}
+          /> 
+      </RightModal> */}
     </>
   );
 };

@@ -1,18 +1,12 @@
 import { DocumentTypes } from "../helpers/Database/DocumentTypes";
-import { IRecord, ICheckRowVersion } from "../helpers/Types/RecordInterface";
 import React from "react";
-import db, { fb } from "../firebase/firebaseconfig";
+import db from "../firebase/firebaseconfig";
 import ls from "secure-ls";
 import { IReservation } from "../helpers/Database/ReservationInterface";
-
 import { uniqBy } from "lodash";
 
-const distinct = (value, index, self) => {
-  return self.indexOf(value.CarId) === index;
-};
-
 export const GetAvailableCars = async (beginDate: any, endDate: any) => {
-  let reservation = await GetReservations();
+  let reservation: any = await GetReservations();
 
   let available = reservation.filter(
     (a: IReservation) =>
@@ -27,8 +21,8 @@ export const GetAvailableCars = async (beginDate: any, endDate: any) => {
 
 export const GetReservations = async () => {
   let reservations: any = await GetRecords("Reservation", "ayazarac");
-  let customers = await GetRecords("Customer", "ayazarac");
-  let cars = await GetRecords("Car", "ayazarac");
+  let customers: any = await GetRecords("Customer", "ayazarac");
+  let cars: any = await GetRecords("Car", "ayazarac");
 
   for (let i = 0; i < reservations.length; i++) {
     reservations[i]["Customer"] = customers.filter(
@@ -44,27 +38,40 @@ export const GetReservations = async () => {
 };
 
 export const GetRecords = async (documentType: DocumentTypes, Code: string) => {
-  let secureStore = new ls();
+  // let secureStore = new ls();
 
-  if (await ChechRowVersion(Code, documentType)) {
-    const dbValue = db
-      .collection(documentType)
-      .where("Code", "==", Code)
-      .get()
-      .then(value =>
-        value.docs.map(doc => {
-          let d = doc.data();
-          d.Id = doc.id;
-          return d;
-        })
-      );
-    dbValue.then(data => secureStore.set(`${documentType}-List-${Code}`, data));
-    return dbValue;
-  } else {
-    const localData = secureStore.get(`${documentType}-List-${Code}`);
-    console.log("Localden dondu agaM");
-    return localData || [];
-  }
+  // if (await ChechRowVersion(Code, documentType)) {
+  //   const dbValue = db
+  //     .collection(documentType)
+  //     .where("Code", "==", Code)
+  //     .get()
+  //     .then(value =>
+  //       value.docs.map(doc => {
+  //         let d = doc.data();
+  //         d.Id = doc.id;
+  //         return d;
+  //       })
+  //     );
+  //   dbValue.then(data => secureStore.set(`${documentType}-List-${Code}`, data));
+  //   return dbValue;
+  // } else {
+  //   const localData = secureStore.get(`${documentType}-List-${Code}`);
+  //   console.log("from local");
+  //   return localData || [];
+  // }
+
+  // dbValue.then(data => secureStore.set(`${documentType}-List-${Code}`, data));
+  return await db
+    .collection(documentType)
+    .where("Code", "==", Code)
+    .get()
+    .then(value =>
+      value.docs.map(doc => {
+        let d = doc.data();
+        d.Id = doc.id;
+        return d;
+      })
+    );
 };
 
 export const AddRecord = (
@@ -73,6 +80,8 @@ export const AddRecord = (
   model: object
 ) => {
   delete model["Id"];
+  delete model["Car"];
+  delete model["Customer"];
 
   let keys = Object.keys(model);
 
@@ -86,7 +95,7 @@ export const AddRecord = (
     .collection(documentType)
     .doc()
     .set(Object.assign({}, model))
-    .then(() => IncrenmentRowVersion(documentType, code));
+    .then(success => IncrenmentRowVersion(documentType, code));
 };
 
 export const RemoveRecord = (
@@ -98,7 +107,7 @@ export const RemoveRecord = (
     .collection(documentType)
     .doc(Id)
     .delete()
-    .then(() => IncrenmentRowVersion(documentType, Code));
+    .then(success => IncrenmentRowVersion(documentType, Code));
 };
 
 export const UpdateRecord = (
@@ -106,7 +115,8 @@ export const UpdateRecord = (
   documentType: DocumentTypes,
   updatedModel: any
 ) => {
-  console.log("ID ID IDI :", updatedModel.Id);
+  delete updatedModel["Car"];
+  delete updatedModel["Customer"];
   let findedProduct = db.collection(documentType).doc(updatedModel.Id);
   return findedProduct
     .update(Object.assign({}, updatedModel))
@@ -118,9 +128,7 @@ const ChechRowVersion = async (code: any, documentType: DocumentTypes) => {
 
   let findedRowVersion = db.collection("RowVersion").doc(code);
   let data: any = await findedRowVersion.get().then(data => data.data());
-  console.log("dadadad :", data);
   let oldSecureStore = secureStore.get(`${"RowVersion"}-${code}`);
-  console.log("oldSecureStore :", oldSecureStore);
   let localData: number = oldSecureStore[documentType];
   let serverData: number = data[documentType];
   secureStore.set(`${"RowVersion"}-${code}`, data);
@@ -135,21 +143,8 @@ export const IncrenmentRowVersion = async (
   increntmentData: DocumentTypes,
   code?: string
 ) => {
-  let secureStore = new ls();
-
   let findedRowVersion = db.collection("RowVersion").doc(code);
-
   let data: any = await findedRowVersion.get().then(data => data.data());
   data[increntmentData] = data[increntmentData] + 1;
-
-  // Write Local Storage
-  // secureStore.set(`${increntmentData}-${code}`, data);
-
-  // Write Db
-  findedRowVersion.update(data);
-
-  console.log(data[increntmentData]);
-  console.log(data);
-
-  return findedRowVersion;
+  return findedRowVersion.update(data);
 };

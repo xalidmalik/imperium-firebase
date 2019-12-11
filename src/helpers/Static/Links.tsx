@@ -36,6 +36,11 @@ export const mainLink = {
     link: "/settings",
     icon: Carax.Setting,
     index: 6
+  },
+  logout: {
+    title: "Çıkış",
+    link: "",
+    icon: Carax.Logout
   }
 };
 

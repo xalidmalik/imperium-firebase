@@ -12,7 +12,7 @@ const SettingCorporate: React.FC = () => {
   );
 
   const getDepartment = () => {
-    GetRecords("Department", "ayazarac").then(data => {
+    GetRecords("Department", "ayazarac").then((data:any) => {
       console.log("department :", data);
       setDepartment(data[0]);
     });
