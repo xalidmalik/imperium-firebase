@@ -66,11 +66,16 @@ const ReservationTable: React.FC<any> = () => {
                       <div
                         className={`rounded-full bg-gray-300 mr-4 p-2 w-12 h-12 min-h-12 min-w-12 flex items-center justify-center text-gray-800`}
                       >
-                        {i.Customer.Name[0] + i.Customer.Surname[0]}
+                        {i.Customer &&
+                          i.Customer.Name[0] + i.Customer &&
+                          i.Customer.Surname[0]}
                       </div>
                       <div className="block">
-                        <h5 className="flex font-bold">{`${i.Customer.Name} ${i.Customer.Surname}`}</h5>
-                        <span className="text-sm flex">{`Tel: ${i.Customer.FirstPhone}`}</span>
+                        <h5 className="flex font-bold">{`${i.Customer &&
+                          i.Customer.Name} ${i.Customer &&
+                          i.Customer.Surname}`}</h5>
+                        <span className="text-sm flex">{`Tel: ${i.Customer &&
+                          i.Customer.FirstPhone}`}</span>
                       </div>
                     </td>
                     <td>
