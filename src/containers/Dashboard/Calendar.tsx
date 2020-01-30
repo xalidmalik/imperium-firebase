@@ -5,7 +5,7 @@ import Timeline, {
   DateHeader,
   CursorMarker
 } from "react-calendar-timeline";
-// import "react-calendar-timeline/lib/Timeline.css";
+import "react-calendar-timeline/lib/Timeline.css";
 import moment from "moment";
 import "moment/locale/tr";
 import Img from "react-image";
@@ -72,7 +72,7 @@ class Calendar extends Component {
         <div
           className={`rounded mr-4 w-28 min-w-28 flex items-center justify-center text-white text-xl`}
         >
-          <Img  />
+          <Img />
         </div>
         <div className="block">
           <span className="flex leading-none text-sm">{group.brandName}</span>

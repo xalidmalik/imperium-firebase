@@ -1,7 +1,6 @@
 import React from "react";
 import { RightLayout } from "../../components/Layouts/Layouts";
-
-// import DashboardCalendar from "../containers/Dashboard/DashboardCalendar";
+import DashboardCalendar from "../../containers/Dashboard/Calendar";
 import { CardWrapper } from "../../components/Card/CardWrapper";
 import Header from "../../components/Header/Header";
 
@@ -14,7 +13,7 @@ const Dashboard = () => {
         btnTitle="Rezervasyon Yap"
       />
       <CardWrapper classes="w-card bg-white w-full rounded-lg shadow-base mb-4 overflow-hidden">
-        {/* <DashboardCalendar /> */}
+        <DashboardCalendar />
       </CardWrapper>
     </RightLayout>
   );
