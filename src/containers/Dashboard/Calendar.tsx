@@ -76,7 +76,7 @@ class Calendar extends Component {
     return (
       <div
         {...getItemProps({
-          // className: "bg-gray-500",
+          className: "bg-gray-500",
           style: {
             color: "white",
             borderWidth: 0,
@@ -131,7 +131,7 @@ class Calendar extends Component {
           ""
         )}
 
-        {/* {itemContext.useResizeHandle ? <div {...rightResizeProps} /> : null} */}
+        {itemContext.useResizeHandle ? <div {...rightResizeProps} /> : null}
       </div>
     );
   };
