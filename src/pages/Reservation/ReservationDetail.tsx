@@ -12,6 +12,8 @@ import {
 // import { format } from "date-fns";
 import SecureStore from "secure-ls";
 import moment from "moment";
+import PrintComponents from "react-print-components";
+import ContractOverview from "src/containers/Overviews/ContractOverview";
 
 export const ReservationDetail: React.FC = () => {
   const [reservation, setReservation] = useState<any>();
@@ -31,39 +33,6 @@ export const ReservationDetail: React.FC = () => {
   }, []);
   if (!reservation) return null;
 
-  //   componentWillMount() {
-  //     const activeReservation = JSON.parse(
-  //       localStorage.getItem("SelectedReservation")
-  //     );
-
-  //     if (activeReservation) {
-  //       console.log("istedigim :", activeReservation);
-
-  //       let model = {
-  //         BeginDateTime: new Date(activeReservation.ReservationStartDateTime),
-  //         EndDateTime: new Date(activeReservation.ReservationEndDateTime),
-  //         ReservationStatus: activeReservation.ReservationState,
-  //         CustomerId: activeReservation.CustomerId,
-  //         Price: activeReservation.ReservationPrice,
-  //         KmStart: activeReservation.ReservationKmStart,
-  //         KmEnd: activeReservation.ReservationKmEnd,
-  //         CarId: activeReservation.CarId,
-  //         PaymentType: activeReservation.ReservationPaymentType,
-  //         FuelCount: activeReservation.ReservationFuelCount,
-  //         Deposit: activeReservation.ReservationDeposit,
-  //         AmountPaid: activeReservation.AmountPaid,
-  //         IsApproval: true,
-  //         AdditionalCustomerId: activeReservation.AdditionalCustomerId
-  //       };
-
-  //       // activeReservation.BeginDateTime = format(
-  //       //   activeReservation.BeginDateTime,
-  //       //   "DD MMM, YYYY HH:mm:ss"
-  //       // );
-  //       this.setState({ reservation: model });
-  //     }
-  //   }
-
   return (
     <RightLayout>
       <Switch>
@@ -75,7 +44,16 @@ export const ReservationDetail: React.FC = () => {
               <Header
                 titleFirst={HeaderReservationOverview.titleFirst}
                 linkFirst={HeaderReservationOverview.linkFirst}
-                // titleSecond={`${customers.Name} ${customers.Surname}`}
+                titleSecond={`${reservation.Customer.Name} ${reservation.Customer.Surname}`}
+                btnCustom={
+                  <PrintComponents
+                    trigger={
+                      <button className="btn-style-1 ml-auto ">Yazdir</button>
+                    }
+                  >
+                    <ContractOverview data={reservation} />
+                  </PrintComponents>
+                }
               />
               <ReservationOverview data={reservation} />
             </>
@@ -89,7 +67,7 @@ export const ReservationDetail: React.FC = () => {
               <Header
                 titleFirst={HeaderReservationEdit.titleFirst}
                 linkFirst={HeaderReservationEdit.linkFirst}
-                titleSecond={`${reservation.CustomerId.Name} ${reservation.CustomerId.Surname}`}
+                titleSecond={`${reservation.Customer.Name} ${reservation.Customer.Surname}`}
                 linkSecond={HeaderReservationEdit.linkSecond}
                 titleThird={HeaderReservationEdit.titleThird}
                 btnForm={HeaderReservationEdit.btnForm}

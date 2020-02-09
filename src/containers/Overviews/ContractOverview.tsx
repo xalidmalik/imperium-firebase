@@ -5,7 +5,7 @@ import { defaultForm } from "../../helpers/Static/FormFields";
 import FieldOutput from "../../components/FormElements/Output/FieldOutput";
 // import CheckboxOutput from "../../components/FormElements/Outputs/CheckboxOutput";
 
-const ReservationOverview: React.FC<any> = (props: any) => {
+const ContractOverview: React.FC<any> = (props: any) => {
   const { data }: any = props;
   console.log("reservation overview", data);
   return (
@@ -74,4 +74,4 @@ const ReservationOverview: React.FC<any> = (props: any) => {
   );
 };
 
-export default ReservationOverview;
+export default ContractOverview;

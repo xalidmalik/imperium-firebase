@@ -73,6 +73,7 @@ const Header = (props: IHeaderValidation) => {
           {props.btnTitle}
         </button>
       ) : null}
+      {props.btnCustom ? props.btnCustom : null}
     </HeaderWrapper>
   );
 };

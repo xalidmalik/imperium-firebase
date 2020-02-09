@@ -10,4 +10,5 @@ export interface IHeaderValidation {
   btnLink?: any;
   OnChange?: any;
   length?: any;
+  btnCustom?: any;
 }

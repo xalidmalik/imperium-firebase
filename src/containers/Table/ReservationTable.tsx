@@ -24,6 +24,7 @@ const ReservationTable: React.FC<any> = () => {
   const getAllReservation = () => {
     GetReservations().then(data => {
       setReservation(data);
+      console.log(data);
     });
   };
 
