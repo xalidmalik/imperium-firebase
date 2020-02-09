@@ -25,13 +25,16 @@ const App: React.FC = () => {
   const { location } = context;
   const transition = useTransition(location, location => location.pathname, {
     from: {
-      transform: linkIndex ? "translate3d(0,-100%,0)" : "translate3d(0,100%,0)"
+      transform: "translate3d(0,20%,0)",
+      opacity: 0.8
     },
     enter: {
-      transform: "translate3d(0,0%,0)"
+      transform: "translate3d(0,0%,0)",
+      opacity: 1
     },
     leave: {
-      transform: linkIndex ? "translate3d(0,100%,0)" : "translate3d(0,-100%,0)"
+      transform: "translate3d(0,0%,0)",
+      opacity: 0
     },
     config: { mass: 1, tension: 300, friction: 40 }
   });
@@ -39,27 +42,7 @@ const App: React.FC = () => {
   useEffect(() => {
     GetRecords("Customer", "ayazarac");
   }, []);
-
-  useEffect(() => {
-    AniChange();
-
-    console.log("up", up);
-    console.log("tarnsition", linkIndex);
-    console.log("loc", location);
-  });
-
-  const AniChange = () => {
-    if (location.state == undefined) {
-      SetlinkIndex(true);
-    } else if (location.state.index > up) {
-      SetlinkIndex(false);
-      SetUp(location.state.index);
-    } else if (location.state.index < up) {
-      SetlinkIndex(true);
-      SetUp(location.state.index);
-    }
-  };
-
+  // TODO yapla
   return (
     <>
       <MenuBar />
