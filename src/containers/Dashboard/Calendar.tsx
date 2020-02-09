@@ -11,6 +11,7 @@ import "moment/locale/tr";
 import Img from "react-image";
 // import { ImageUrl } from "../../helpers/Static/Extensions";
 import { Link } from "react-router-dom";
+import GetCalendar from "src/helpers/CalendarLogic";
 
 // import LoadingOverlay from "react-loading-overlay";
 
@@ -28,43 +29,20 @@ class Calendar extends Component {
     groupLabelKey: "title"
   };
 
-  state = {
-    calendarItems: [],
+  state: any = {
+    calendarItems: null,
     isLoading: true,
     showModal: null
   };
 
   componentDidMount() {
-    // this.props.fetchDasboardCalendar();
+    GetCalendar().then(calen => {
+      this.setState({
+        calendarItems: calen,
+        isLoading: false
+      });
+    });
   }
-
-  //   componentDidUpdate(prevProps) {
-  //     const { dashboardCalendarIsLoading, dashboardCalendar } = this.props;
-
-  //     if (
-  //       prevProps.dashboardCalendarIsLoading &&
-  //       !dashboardCalendarIsLoading &&
-  //       dashboardCalendar
-  //     ) {
-  //       let temp = [];
-  //       dashboardCalendar.Items.map(item => {
-  //         temp.push({
-  //           id: item.id,
-  //           tip: "salam",
-  //           group: item.group,
-  //           title: item.title,
-  //           start_time: moment(item.start_time),
-  //           end_time: moment(item.end_time),
-  //           color: "red"
-  //         });
-  //       });
-
-  //       this.setState({
-  //         calendarItems: temp,
-  //         isLoading: false
-  //       });
-  //     }
-  //   }
 
   groupRenderer = ({ group }) => {
     return (
@@ -72,10 +50,10 @@ class Calendar extends Component {
         <div
           className={`rounded mr-4 w-28 min-w-28 flex items-center justify-center text-white text-xl`}
         >
-          <Img />
+          <Img src={group.visualId} />
         </div>
         <div className="block">
-          <span className="flex leading-none text-sm">{group.brandName}</span>
+          <span className="flex leading-none text-sm">{group.title}</span>
           <h5 className="flex text-lg font-bold leading-normal ">
             {group.modelName}
           </h5>
@@ -113,14 +91,14 @@ class Calendar extends Component {
         })}
         onMouseOver={() => {
           this.setState({ showModal: true });
-          // itemContext.selected = true;
+          itemContext.selected = true;
         }}
         onMouseLeave={() => {
           this.setState({ showModal: false });
-          // itemContext.selected = false;
+          itemContext.selected = false;
         }}
       >
-        {/* {itemContext.useResizeHandle ? <div {...leftResizeProps} /> : null} */}
+        {itemContext.useResizeHandle ? <div {...leftResizeProps} /> : null}
 
         <div
           className="text-sm pl-4 py-2"
@@ -135,11 +113,11 @@ class Calendar extends Component {
             borderTopRightRadius: "0.5rem"
           }}
         >
-          {itemContext.title}
+          {item.title}
         </div>
         {this.state.showModal ? (
           <div className="p-4 rounded-b-lg min-w-28 absolute z-50 bg-gray-200 text-gray-900 shadow-lg">
-            <p className="leading-none text-sm"> {itemContext.title}</p>
+            <p className="leading-none text-sm"> {item.title}</p>
             <Link
               className="w-12 h-12 text-gray-600 block rounded-lg hover:text-med-500"
               to={{
@@ -159,9 +137,9 @@ class Calendar extends Component {
   };
 
   render() {
-    // if (!this.props.dashboardCalendar) {
-    //   return <div></div>;
-    // }
+    if (this.state.isLoading) {
+      return <div />;
+    }
 
     return (
       // <LoadingOverlay
@@ -179,13 +157,12 @@ class Calendar extends Component {
         showCursorLine
         canMove={false}
         canResize={false}
-        // groups={this.props.dashboardCalendar.Groups}
-        items={this.state.calendarItems}
+        groups={this.state.calendarItems.Groups}
+        items={this.state.calendarItems.Items}
         defaultTimeStart={moment().add(-12, "hour")}
         defaultTimeEnd={moment().add(12, "hour")}
         itemRenderer={this.itemRenderer}
         groupRenderer={this.groupRenderer}
-        // minZoom={5}
       >
         <TimelineHeaders className="h-20">
           <SidebarHeader>
