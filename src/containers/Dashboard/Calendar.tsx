@@ -37,6 +37,21 @@ class Calendar extends Component {
 
   componentDidMount() {
     GetCalendar().then(calen => {
+      let temp: any = [];
+
+      calen.Items.map(c => {
+        temp.push({
+          id: c.id,
+          group: c.group,
+          start_time: moment(c.start_time),
+          end_time: moment(c.end_time),
+          title: "Agha Huseynov"
+        });
+      });
+
+      calen.Items = temp;
+
+      console.log("calendar:", calen);
       this.setState({
         calendarItems: calen,
         isLoading: false
