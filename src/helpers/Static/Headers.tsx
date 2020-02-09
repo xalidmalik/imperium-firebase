@@ -50,6 +50,13 @@ export const HeaderReservationNew: IHeaderValidation = {
   btnTitle: "Kaydet",
   btnForm: "ReservationFormSubmit"
 };
+export const HeaderAccountingNew: IHeaderValidation = {
+  titleFirst: "Muhasebe",
+  linkFirst: "/accounting",
+  titleSecond: "Gelir - gider ekle",
+  btnTitle: "Kaydet",
+  btnForm: "AccountingFormSubmit"
+};
 
 //* Header overview ---------------------------------------
 

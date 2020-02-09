@@ -345,6 +345,33 @@ export const carForm = {
   }
 };
 
+export const accountingForm = {
+  ReservationTypes: {
+    title: "Rezervasyon Durumu",
+    for: "ReservationTypes",
+    placeholder: "Durum Seçiniz"
+  },
+
+  Price: {
+    title: "Tutar",
+    placeholder: "Tutar Giriniz",
+    type: "text",
+    for: "Price"
+  },
+
+  CarId: {
+    title: "Araba",
+    placeholder: "Araba Seçiniz",
+    for: "CarId"
+  },
+
+  PaymentType: {
+    title: "Ödeme Tipi",
+    type: "radio",
+    for: "PaymentType"
+  }
+};
+
 export const reservationForm = {
   SelectedCar: {
     title: "Seçilen Araba",

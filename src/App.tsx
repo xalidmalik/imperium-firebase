@@ -15,6 +15,7 @@ import { GetRecords, IncrenmentRowVersion } from "./database";
 import SettingCorporate from "./pages/Settings/SettingCorporate";
 import MenuBar from "./containers/Navbar/MenuBar";
 import AccountingBoard from "./pages/Accounting/AccountingBoard";
+import AccountingNew from "./pages/Accounting/AccountingNew";
 import SettingBoard from "./pages/Settings/SettingBoard";
 
 const App: React.FC = () => {
@@ -78,6 +79,7 @@ const App: React.FC = () => {
             <Route path="/customer/new" component={CustomerNew} />
             <Route path="/car/new" component={CarNew} />
             <Route path="/reservation/new" component={ReservationNew} />
+            <Route path="/accounting/new" component={AccountingNew} />
             <Route path="/customer/detail" component={CustomerDetail} />
             <Route path="/car/detail" component={CarDetail} />
             <Route path="/reservation/detail" component={ReservationDetail} />
