@@ -51,6 +51,11 @@ export const reservationType = [
   { value: 3, label: "Bitir" }
 ];
 
+export const accountingType = [
+  { value: 0, label: "Gelir" },
+  { value: 1, label: "Gider" }
+];
+
 export const carClasses = [
   { value: "Ekonomik", label: "Ekonomik" },
   { value: "Lüks", label: "Lüks" }
