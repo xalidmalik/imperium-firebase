@@ -9,25 +9,18 @@ const DatetimePicker: React.FC<any> = (props: any) => {
     props.selectedDate && props.selectedDate(value);
   };
   const {
-    Label,
-    LabelFor,
     showTimeSelect = false,
-    dateFormat,
     Month,
     Year,
-    Rez,
-    CurrentValue,
     minDate,
     maxDate,
     disabled = false,
-    selectsStart = false,
-    selectsEnd = false,
     startDate,
     endDate,
     base,
     touched,
     errors,
-    values
+    values,
   } = props;
 
   return (
@@ -41,7 +34,7 @@ const DatetimePicker: React.FC<any> = (props: any) => {
       <DatePicker
         selected={values}
         dateFormat={"MM.DD.YYYY"}
-        onChange={value => handleChange(value)}
+        onChange={(value) => handleChange(value)}
         showTimeSelect={showTimeSelect}
         showMonthDropdown={Month}
         showYearDropdown={Year}

@@ -8,20 +8,21 @@ import SecureStore from "secure-ls";
 import Header from "../../components/Header/Header";
 import {
   HeaderCustomerOverview,
-  HeaderCustomerEdit
+  HeaderCustomerEdit,
 } from "src/helpers/Static/Headers";
 
 const CustomerDetail: React.FC = () => {
   const sc = new SecureStore();
 
   const [customers, setCustomers] = useState<any>();
-
   useEffect(() => {
     const activeCustomer = sc.get("SelectedCustomer");
+    console.log(activeCustomer);
     if (activeCustomer) {
       setCustomers(activeCustomer);
     }
   }, []);
+
   if (!customers) return null;
   return (
     <RightLayout>

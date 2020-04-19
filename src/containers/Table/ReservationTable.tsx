@@ -1,19 +1,17 @@
-import React, { PureComponent, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Carax } from "../../helpers/Static/Icons";
 import { History } from "../../helpers/Static/History";
 import moment from "moment";
 import Header from "../../components/Header/Header";
 import { CardWrapper } from "../../components/Card/CardWrapper";
-import { isEmpty } from "lodash";
-import { SearchReservation } from "../../helpers/Function/Search";
 import { ReservationListHeader } from "../../helpers/Static/ListHeader";
 import { IReservation } from "../../helpers/Database/ReservationInterface";
 import {
   HeaderReservationBoard,
-  HeaderCustomerBoard
+  HeaderCustomerBoard,
 } from "src/helpers/Static/Headers";
-import { GetRecords, AddRecord, GetReservations } from "src/database";
+import { GetReservations } from "src/database";
 import SecureStore from "secure-ls";
 
 const ReservationTable: React.FC<any> = () => {
@@ -22,7 +20,7 @@ const ReservationTable: React.FC<any> = () => {
   );
   const sc = new SecureStore();
   const getAllReservation = () => {
-    GetReservations().then(data => {
+    GetReservations().then((data) => {
       setReservation(data);
       console.log(data);
     });
@@ -39,7 +37,7 @@ const ReservationTable: React.FC<any> = () => {
         titleFirst={HeaderReservationBoard.titleFirst}
         btnLink={HeaderReservationBoard.btnLink}
         btnTitle={HeaderReservationBoard.btnTitle}
-        OnChange={value => {}}
+        OnChange={(value) => {}}
         length={reservations.length}
       />
       <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
@@ -72,11 +70,12 @@ const ReservationTable: React.FC<any> = () => {
                           i.Customer.Surname[0]}
                       </div>
                       <div className="block">
-                        <h5 className="flex font-bold">{`${i.Customer &&
-                          i.Customer.Name} ${i.Customer &&
-                          i.Customer.Surname}`}</h5>
-                        <span className="text-sm flex">{`Tel: ${i.Customer &&
-                          i.Customer.FirstPhone}`}</span>
+                        <h5 className="flex font-bold">{`${
+                          i.Customer && i.Customer.Name
+                        } ${i.Customer && i.Customer.Surname}`}</h5>
+                        <span className="text-sm flex">{`Tel: ${
+                          i.Customer && i.Customer.FirstPhone
+                        }`}</span>
                       </div>
                     </td>
                     <td>

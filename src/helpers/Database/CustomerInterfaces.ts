@@ -29,6 +29,7 @@ export interface ICustomer {
   Code: string;
   IsActive?: boolean;
   InBlackList?: boolean;
+  Balance: number;
 }
 
 export class CustomerModel {
@@ -61,4 +62,6 @@ export class CustomerModel {
   Code: string = "";
   IsActive?: boolean = true;
   InBlackList?: boolean = false;
+  Balance: number = 0;
+  CreatedAt: Date = new Date();
 }

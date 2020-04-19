@@ -11,7 +11,7 @@ import CarDetail from "./pages/Car/CarDetail";
 import ReservationBoard from "./pages/Reservation/ReservationBoard";
 import ReservationNew from "./pages/Reservation/ReservationNew";
 import ReservationDetail from "./pages/Reservation/ReservationDetail";
-import { GetRecords, IncrenmentRowVersion } from "./database";
+import { GetRecords } from "./database";
 import SettingCorporate from "./pages/Settings/SettingCorporate";
 import MenuBar from "./containers/Navbar/MenuBar";
 import AccountingBoard from "./pages/Accounting/AccountingBoard";
@@ -23,20 +23,20 @@ const App: React.FC = () => {
   const [up, SetUp] = useState(1);
   let context = useHistory<any>();
   const { location } = context;
-  const transition = useTransition(location, location => location.pathname, {
+  const transition = useTransition(location, (location) => location.pathname, {
     from: {
       transform: "translate3d(0,20%,0)",
-      opacity: 0.8
+      opacity: 0.8,
     },
     enter: {
       transform: "translate3d(0,0%,0)",
-      opacity: 1
+      opacity: 1,
     },
     leave: {
       transform: "translate3d(0,0%,0)",
-      opacity: 0
+      opacity: 0,
     },
-    config: { mass: 1, tension: 300, friction: 40 }
+    config: { mass: 1, tension: 300, friction: 40 },
   });
 
   useEffect(() => {
