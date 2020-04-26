@@ -1,4 +1,5 @@
-import { GET_ALL_BOOKING } from './../actions/ActionsType';
+import { GET_ALL_BOOKING } from '../actions/TypeGenerator';
+
 
 const INITIAL_STATE_BOOKING_LIST = {
     bookingIsLoading: false,

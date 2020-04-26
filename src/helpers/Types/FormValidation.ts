@@ -14,4 +14,5 @@ export interface INavLinks {
 export interface ICard {
   base: any;
   children: any;
+  classes?: any;
 }

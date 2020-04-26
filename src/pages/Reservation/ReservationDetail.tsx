@@ -77,6 +77,15 @@ export const ReservationDetail: React.FC = () => {
             </>
           )}
         />
+        <Route
+          exact
+          path="/reservation/detail/contract"
+          render={() => (
+            <>
+              <ContractOverview data={reservation} />
+            </>
+          )}
+        />
       </Switch>
     </RightLayout>
   );

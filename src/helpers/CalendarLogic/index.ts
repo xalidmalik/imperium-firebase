@@ -1,5 +1,8 @@
+import React, { useState, useEffect } from "react";
 import { GetAllCar } from './../../database/Car';
 import { GetAllBooking } from "src/database/Booking";
+import { useSelector, useDispatch } from "react-redux"
+
 
 const GetCalendar = async () => {
   let groups: any[] = [];
@@ -23,14 +26,15 @@ const GetCalendar = async () => {
 
   const reservation = await GetAllBooking("ayazarac").then((data) => {
     console.log("calres", data)
+
     data.map((f: any) => {
-      console.log(f)
+      console.log("adw", f)
       items.push({
         id: f.Id,
-        group: f.CarId,
+        group: f.Car.Id,
         start_time: f.BeginDateTime,
         end_time: f.EndDateTime,
-        title: f.CustomerId
+        title: f.Customer.Name + " " + f.Customer.Surname
       });
     });
   });

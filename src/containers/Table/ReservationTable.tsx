@@ -15,13 +15,12 @@ import { GetAllBookingActions } from "src/redux/actions/Booking";
 
 const ReservationTable: React.FC<any> = () => {
   const dispatch = useDispatch();
-  const booking = useSelector((state => state.booking.booking));
-  console.log("boook", booking)
+  const { booking, bookingIsLoading, bookingErrorMessage } = useSelector((state: any) => state.booking);
 
   const sc = new SecureStore();
   const getAllReservation = () => {
     dispatch(GetAllBookingActions("ayazarac"))
-  }
+  };
 
 
   useEffect(() => {
@@ -39,7 +38,7 @@ const ReservationTable: React.FC<any> = () => {
         length={booking && booking.length}
       />
       <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
-        {booking ?
+        {!bookingIsLoading && booking ?
           <div className="w-full overflow-auto rounded-lg med-table-wrapper">
             <table className="table-auto med-table">
               <thead>
@@ -80,10 +79,10 @@ const ReservationTable: React.FC<any> = () => {
                       <td>
                         <div className="block">
                           <h5 className="flex font-bold">
-                            {`${data.BrandName && data.BrandName} ${data.ModelName}`}
+                            {`${data.Car.BrandName && data.Car.BrandName} ${data.Car.ModelName}`}
                           </h5>
                           <div className="flex">
-                            <span className="text-sm flex">{`Plaka: ${data.Plate}`}</span>
+                            <span className="text-sm flex">{`Plaka: ${data.Car.Plate}`}</span>
                           </div>
                         </div>
                       </td>

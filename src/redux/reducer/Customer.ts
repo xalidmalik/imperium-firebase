@@ -1,4 +1,4 @@
-import { GET_ALL_CUSTOMERS, GET_CUSTOMER_BY_ID } from './../actions/ActionsType';
+import { GET_ALL_CUSTOMERS, GET_CUSTOMER_BY_ID } from '../actions/TypeGenerator';
 
 const INITIAL_STATE_CUSTOMER_LIST = {
     customersIsLoading: false,

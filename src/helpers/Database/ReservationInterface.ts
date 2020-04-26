@@ -2,10 +2,8 @@ export type ReservationType = "Ön Rezerve" | "Rezerve" | "Başlat" | "Bitir";
 
 export interface IReservation {
   Id?: string;
-  CustomerId: any;
   AdditionalCustomerId?: any;
   ReservationTypes: ReservationType;
-  CarId: any;
   BeginDateTime: any;
   EndDateTime: any;
   Price: number;
@@ -15,14 +13,14 @@ export interface IReservation {
   Code: string;
   Customer?: any;
   Car?: any;
+  CarId?: any,
+  CustomerId: any,
 }
 
 export class ReservationModel {
   Id: string = "";
-  CustomerId: any = "";
   AdditionalCustomerId?: any;
   ReservationTypes: ReservationType = "Ön Rezerve";
-  CarId: any = "";
   BeginDateTime: any = ""
   EndDateTime: any = ""
   Price: number = 0;
@@ -32,4 +30,6 @@ export class ReservationModel {
   Code: string = "";
   Customer?: any;
   Car?: any;
+  CarId?: string = "";
+  CustomerId: string = "";
 }

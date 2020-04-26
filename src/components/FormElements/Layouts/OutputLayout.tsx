@@ -4,7 +4,7 @@ const OutputLayout = (props: any) => {
   return (
     <div className="flex mb-4">
       <div className="w-2/6 max-h-full items-center flex">
-        <h5 className="text-lg font-bold leading-none">{`${props.title} :`}</h5>
+        <h5 className=" text-sm font-bold leading-none">{`${props.title} :`}</h5>
         {/* <small
           className={`text-xs mt-1 flex leading-tight ${textColorChange(
             props.touched,

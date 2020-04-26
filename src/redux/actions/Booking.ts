@@ -1,6 +1,8 @@
+import { GetCustomerById } from './../../database/Customer';
 import { GetAllBooking } from 'src/database/Booking';
 import { GetAllCustomer } from 'src/database/Customer';
-import { GET_ALL_BOOKING } from "./ActionsType"
+import { GET_ALL_BOOKING } from "./TypeGenerator"
+import { GetCarById } from 'src/database/Car';
 
 export const GetAllBookingActions = (code: any) => (dispatch) => (
     dispatch({

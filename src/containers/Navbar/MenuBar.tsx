@@ -38,8 +38,8 @@ const MenuBar = () => {
         <MainLink base={mainLink.customer} />
         <MainLink base={mainLink.car} />
         <MainLink base={mainLink.reservation} />
-        <MainLink base={mainLink.accounting} />
-        <MainLink base={mainLink.settings} />
+        {/* <MainLink base={mainLink.accounting} />
+        <MainLink base={mainLink.settings} /> */}
 
         <div
           onClick={() => {

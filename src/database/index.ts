@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { GetAllCar } from 'src/database/Car';
 import { GetAllBooking } from 'src/database/Booking';
 import { DocumentTypes } from "../helpers/Database/DocumentTypes";
@@ -7,22 +8,47 @@ import { IReservation } from "../helpers/Database/ReservationInterface";
 import { uniqBy } from "lodash";
 
 export const GetAvailableCars = async (beginDate: any, endDate: any) => {
-    let reservation: any = await GetAllBooking("ayazarac");
-    console.log(reservation)
-    if (reservation == "") {
+    let temp: any = [];
+    let booking: any = await GetAllBooking("ayazarac");
+    if (booking.length == 0) {
         let allCar = await GetAllCar("ayazarac");
+        console.log("allcar", allCar)
         return allCar
     } else {
+        console.log("allBook", booking)
+        const Parseint = (date) => {
+            return moment(date).format("X")
+        }
+        console.log(Parseint(beginDate))
 
-        let available = reservation.filter(
+
+        let available = booking.filter(
             (a: IReservation) =>
-                !(a.BeginDateTime <= beginDate && a.EndDateTime >= beginDate) ||
-                !(a.BeginDateTime <= endDate && a.EndDateTime >= endDate) ||
-                !(beginDate <= a.BeginDateTime && endDate >= a.EndDateTime)
-        );
+                (Parseint(beginDate) > Parseint(a.BeginDateTime) && Parseint(beginDate) <= Parseint(a.EndDateTime) ||
+                    (Parseint(beginDate) <= Parseint(a.BeginDateTime) && Parseint(endDate) >= Parseint(a.EndDateTime) ||
+                        (Parseint(endDate) >= Parseint(a.BeginDateTime) && Parseint(beginDate) <= Parseint(a.EndDateTime) ||
+                            (Parseint(beginDate) >= Parseint(a.BeginDateTime) && Parseint(endDate) <= Parseint(a.EndDateTime)
 
-        const unique = uniqBy(available, "CarId");
-        return unique;
+                            )))))
+        let cars: any = await GetAllCar("ayazarac")
+        let findCars = available.map((i: any) => {
+            return i.Car
+        })
+        console.log("find", findCars)
+        console.log("cars", cars)
+
+        const comparer = (otherArray) => {
+            return (current) => {
+                return otherArray.filter((other) => {
+                    return other.Id == current.Id
+                }).length == 0;
+            }
+        }
+        const onlyInA = findCars.filter(comparer(cars));
+        const onlyInB = cars.filter(comparer(findCars));
+        let result = onlyInA.concat(onlyInB);
+
+        return result;
     }
 };
 

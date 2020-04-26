@@ -1,6 +1,5 @@
 import React, { forwardRef, useEffect, useState } from "react";
 import Fields from "../../components/FormElements/Input/Fields";
-import Checkbox from "../../components/FormElements/Input/Checkbox";
 import Radiobox from "../../components/FormElements/Input/Radiobox";
 import Dropdown from "../../components/FormElements/Input/Dropdown";
 import { reservationForm } from "../../helpers/Static/FormFields";
@@ -9,7 +8,6 @@ import Card from "../../components/Card/Card";
 import { Formik, Form } from "formik";
 import { message } from "../../helpers/Static/System";
 import { AlertSwal } from "../../helpers/Alert/Alert";
-import { History } from "../../helpers/Static/History";
 import DatetimePicker from "../../components/FormElements/Input/DatetimePicker";
 import RightModal from "../../components/Modal/RightModal";
 import CustomerForm from "./CustomerForm";
@@ -31,7 +29,7 @@ import { isEmpty } from "lodash";
 import { ICar } from "src/helpers/Database/CarInterfaces";
 import { CreateBooking, UpdateBooking } from "src/database/Booking";
 import { GetAllCar, GetCarById } from "src/database/Car";
-import { GetAllCustomer } from "src/database/Customer";
+import { GetAllCustomer, GetCustomerById } from "src/database/Customer";
 
 const ReservationForm: React.FC<any> = (data: any) => {
   const { activeReservation } = data;
@@ -40,25 +38,24 @@ const ReservationForm: React.FC<any> = (data: any) => {
     new Array<ICustomer>()
   );
 
-  const [selectedCarId, setSelectedCarId] = useState<any>();
-  const [selectedCustomerId, setSelectedCustomerId] = useState<any>();
+  const [selectedCar, setSelectedCar] = useState<any>();
+  const [selectedCustomer, setSelectedCustomer] = useState<any>();
 
   const [availableCars, setAvailableCars] = useState<any>();
 
   const setAvailableCarList = (values) => {
-    GetAvailableCars(values.BeginDateTime, values.EndDateTime).then((q) => {
-      if (!isEmpty(q)) {
-        GetAllCar("ayazarac").then((q) => {
-          console.log("arabalar", q);
-          setAvailableCars(
-            q.map((data: any) => ({
-              label: `${data.BrandName} | ${data.ModelName} | ${data.Plate}`,
-              value: data.Id,
-            }))
-          );
-        });
-      }
-    });
+    GetAvailableCars(values.BeginDateTime, values.EndDateTime).then(async (ids) => {
+      console.log("sadaw", ids)
+
+      setAvailableCars(
+        ids.map((data: any) => ({
+          label: `${data.BrandName} | ${data.ModelName} | ${data.Plate}`,
+          value: data.Id,
+        }))
+      );
+
+    }
+    );
   };
 
   const setCustomersList = () => {
@@ -82,20 +79,22 @@ const ReservationForm: React.FC<any> = (data: any) => {
   };
 
   const CreateRecord = (values: IReservation) => {
-    values.CustomerId = selectedCustomerId;
-    values.CarId = selectedCarId;
+    values.Customer = selectedCustomer;
+    values.Car = selectedCar;
+    values.CarId = selectedCar.Id
     values.Code = "ayazarac";
     values.BeginDateTime = values.BeginDateTime.toString();
     values.EndDateTime = values.EndDateTime.toString();
 
+    console.log("Giderkem", values)
     CreateBooking(values).then(() => {
       AlertSwal(message.success.title, message.success.type);
     });
   };
 
   const PutRecord = (values: IReservation) => {
-    values.CustomerId = selectedCustomerId || values.CustomerId;
-    values.CarId = selectedCarId || values.CarId;
+    values.Customer = selectedCustomer || values.Customer;
+    values.Car = selectedCar || values.Car;
     values.Code = "ayazarac";
     values.BeginDateTime = values.BeginDateTime.toString();
     values.EndDateTime = values.EndDateTime.toString();
@@ -107,6 +106,9 @@ const ReservationForm: React.FC<any> = (data: any) => {
   useEffect(() => {
     setCustomersList();
   }, []);
+  useEffect(() => {
+    console.log("delected customer", selectedCustomer)
+  }, [selectedCustomer]);
   // useEffect(() => {
   // }, [selectedCar]);
 
@@ -177,9 +179,10 @@ const ReservationForm: React.FC<any> = (data: any) => {
                   options={availableCars}
                   selectedValue={(val) => {
                     alert(val.value);
-                    setSelectedCarId(val.value);
                     GetCarById(val.value).then((find) => {
-                      console.log(find);
+                      find.Id = val.value;
+                      setSelectedCar(find);
+                      console.log("carlar", find);
                     });
                   }}
                 />
@@ -193,7 +196,11 @@ const ReservationForm: React.FC<any> = (data: any) => {
                   options={customers}
                   values={values.CustomerId}
                   selectedValue={(val) => {
-                    setSelectedCustomerId(val.value);
+                    GetCustomerById(val.value).then((find) => {
+                      find.Id = val.value;
+                      setSelectedCustomer(find);
+                      console.log("cuslar", find);
+                    });
                   }}
                   onCustomerChange={(value) => {
                     if (value) {

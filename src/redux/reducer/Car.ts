@@ -1,4 +1,4 @@
-import { GET_ALL_CARS } from './../actions/ActionsType';
+import { GET_ALL_CARS } from '../actions/TypeGenerator';
 
 const INITIAL_STATE_CAR_LIST = {
     carListIsLoading: false,

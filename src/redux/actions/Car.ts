@@ -1,5 +1,5 @@
 import { GetAllCar } from './../../database/Car';
-import { GET_ALL_CARS } from "./ActionsType"
+import { GET_ALL_CARS } from "./TypeGenerator"
 
 export const GetAllCarsActions = (code: any) => (dispatch) => (
     dispatch({

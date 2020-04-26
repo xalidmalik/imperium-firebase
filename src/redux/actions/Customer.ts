@@ -1,5 +1,5 @@
 import { GetAllCustomer } from 'src/database/Customer';
-import { GET_ALL_CUSTOMERS } from "./ActionsType"
+import { GET_ALL_CUSTOMERS } from "./TypeGenerator"
 
 export const GetAllCustomerActions = (code: any) => (dispatch) => (
     dispatch({

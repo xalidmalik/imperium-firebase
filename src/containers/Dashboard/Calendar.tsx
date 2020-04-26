@@ -36,27 +36,28 @@ class Calendar extends Component {
   };
 
   componentDidMount() {
-    GetCalendar().then(calen => {
-      let temp: any = [];
-      console.log("dawdaw", calen)
-      calen.Items.map(c => {
-        temp.push({
-          id: c.id,
-          group: c.group,
-          start_time: moment(c.start_time),
-          end_time: moment(c.end_time),
-          title: c.title
+    GetCalendar()
+      .then(calen => {
+        let temp: any = [];
+        console.log("dawdaw", calen)
+        calen.Items.map(c => {
+          temp.push({
+            id: c.id,
+            group: c.group,
+            start_time: moment(c.start_time),
+            end_time: moment(c.end_time),
+            title: c.title
+          });
+        });
+
+        calen.Items = temp;
+
+        console.log("calendar:", calen);
+        this.setState({
+          calendarItems: calen,
+          isLoading: false
         });
       });
-
-      calen.Items = temp;
-
-      console.log("calendar:", calen);
-      this.setState({
-        calendarItems: calen,
-        isLoading: false
-      });
-    });
   }
 
   groupRenderer = ({ group }) => {

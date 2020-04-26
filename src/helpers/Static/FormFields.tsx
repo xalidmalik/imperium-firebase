@@ -1,3 +1,81 @@
+export const contactForm = {
+  NameSurname: {
+    title: "İsim Soyisim",
+  },
+  TCNumber: {
+    title: "T.C. Numarası",
+  },
+  PassportNumber: {
+    title: "Pasaport Numarası",
+  },
+  Gender: {
+    title: "Cinsiyet",
+  },
+  BirthDate: {
+    title: "Doğum Tarihi",
+  },
+  BirthPlace: {
+    title: "Doğum Yeri",
+  },
+  BloodGroup: {
+    title: "Kan Grubu",
+  },
+  FatherAndMotherName: {
+    title: "Baba ve Anne Adı",
+  },
+  FirstPhone: {
+    title: "Cep Telefonu",
+  },
+  EmergencyPhone: {
+    title: "Acil Durum Telefonu",
+  },
+  EmergencyPhoneOwner: {
+    title: "Acil Durum Telefonu Sahibi",
+  },
+  Email: {
+    title: "Email Adresi",
+  },
+  WorkPhone: {
+    title: "İş Telefonu",
+  },
+  WorkPlace: {
+    title: "İş Yeri",
+  },
+  Profession: {
+    title: "Meslek",
+  },
+  Address: {
+    title: "Açık Adres",
+  },
+  Plate: {
+    title: "Plaka",
+  },
+  BrandAndModelName: {
+    title: "Marka ve Model",
+  },
+  Color: {
+    title: "Renk",
+  },
+  GearType: {
+    title: "Vites Tipi",
+  },
+  Note: {
+    title: "Not",
+  },
+  StartEndDate: {
+    title: "Başlangıç ve Bitiş Tarihi",
+  },
+  RentTime: {
+    title: "Kira Süresi",
+  },
+  AddRentDate: {
+    title: "Uzatma Tarihi",
+  },
+  AddRentTime: {
+    title: "Uzatma Süresi",
+  },
+
+};
 export const defaultForm = {
   Name: {
     title: "İsim",
