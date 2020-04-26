@@ -4,7 +4,7 @@ import { RightLayout } from "../../components/Layouts/Layouts";
 import Header from "../../components/Header/Header";
 import DepartmentOverview from "src/containers/Overviews/DepartmentOverview";
 import { IDepartment } from "src/helpers/Database/DepartmentInterface";
-import { GetRecords } from "../../database";
+import { GetDepartment } from "src/database/Department";
 
 const SettingCorporate: React.FC = () => {
   const [department, setDepartment] = useState<IDepartment[]>(
@@ -12,7 +12,7 @@ const SettingCorporate: React.FC = () => {
   );
 
   const getDepartment = () => {
-    GetRecords("Department", "ayazarac").then((data:any) => {
+    GetDepartment("ayazarac").then((data: any) => {
       console.log("department :", data);
       setDepartment(data[0]);
     });

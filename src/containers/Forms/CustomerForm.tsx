@@ -18,8 +18,8 @@ import {
   ICustomer,
   CustomerModel
 } from "src/helpers/Database/CustomerInterfaces";
-import { AddRecord, UpdateRecord } from "../../database/index";
 import { locations } from "../../helpers/Static/CountriesAndCities";
+import { CreateCustomer, UpdateCustomer } from "src/database/Customer";
 
 const CustomerForm: React.FC<any> = (data: any) => {
   const { activeCustomer } = data;
@@ -56,14 +56,14 @@ const CustomerForm: React.FC<any> = (data: any) => {
 
   const CreateRecord = (values: ICustomer) => {
     values.Code = "ayazarac";
-    AddRecord("Customer", "ayazarac", values).then(success => {
+    CreateCustomer(values).then(success => {
       AlertSwal(message.success.title, message.success.type);
     });
   };
 
   const PutRecord = (values: ICustomer) => {
     values.Code = "ayazarac";
-    UpdateRecord("ayazarac", "Customer", values).then(success => {
+    UpdateCustomer(values).then(success => {
       AlertSwal(message.success.title, message.success.type);
     });
   };
@@ -92,187 +92,187 @@ const CustomerForm: React.FC<any> = (data: any) => {
           handleReset,
           dirty
         }) => (
-          <Form id="CustomerFormSubmit">
-            <Card base={customer.identity}>
-              <Fields
-                base={defaultForm.Name}
-                touched={touched.Name}
-                errors={errors.Name}
-                values={values.Name}
-              />
-              <Fields
-                base={defaultForm.Surname}
-                touched={touched.Surname}
-                errors={errors.Surname}
-                values={values.Surname}
-              />
-              <Fields
-                base={defaultForm.TCNumber}
-                touched={touched.TCNumber}
-                errors={errors.TCNumber}
-                values={values.TCNumber}
-              />
-              <Radiobox
-                touched={touched.Gender}
-                errors={errors.Gender}
-                values={values.Gender}
-                options={gender}
-                base={defaultForm.Gender}
-              />
+            <Form id="CustomerFormSubmit">
+              <Card base={customer.identity}>
+                <Fields
+                  base={defaultForm.Name}
+                  touched={touched.Name}
+                  errors={errors.Name}
+                  values={values.Name}
+                />
+                <Fields
+                  base={defaultForm.Surname}
+                  touched={touched.Surname}
+                  errors={errors.Surname}
+                  values={values.Surname}
+                />
+                <Fields
+                  base={defaultForm.TCNumber}
+                  touched={touched.TCNumber}
+                  errors={errors.TCNumber}
+                  values={values.TCNumber}
+                />
+                <Radiobox
+                  touched={touched.Gender}
+                  errors={errors.Gender}
+                  values={values.Gender}
+                  options={gender}
+                  base={defaultForm.Gender}
+                />
 
-              <Fields
-                base={defaultForm.BirthDate}
-                touched={touched.BirthDate}
-                errors={errors.BirthDate}
-                values={values.BirthDate}
-              />
-              <Dropdown
-                base={defaultForm.BirthPlace}
-                touched={touched.BirthPlace}
-                errors={errors.BirthPlace}
-                values={values.BirthPlace}
-                options={NationalityCities}
-                onChange={setFieldValue}
-              />
-              <Dropdown
-                base={defaultForm.BloodGroup}
-                touched={touched.BloodGroup}
-                errors={errors.BloodGroup}
-                values={values.BloodGroup}
-                options={bloodGroup}
-                onChange={setFieldValue}
-              />
+                <Fields
+                  base={defaultForm.BirthDate}
+                  touched={touched.BirthDate}
+                  errors={errors.BirthDate}
+                  values={values.BirthDate}
+                />
+                <Dropdown
+                  base={defaultForm.BirthPlace}
+                  touched={touched.BirthPlace}
+                  errors={errors.BirthPlace}
+                  values={values.BirthPlace}
+                  options={NationalityCities}
+                  onChange={setFieldValue}
+                />
+                <Dropdown
+                  base={defaultForm.BloodGroup}
+                  touched={touched.BloodGroup}
+                  errors={errors.BloodGroup}
+                  values={values.BloodGroup}
+                  options={bloodGroup}
+                  onChange={setFieldValue}
+                />
 
-              <Fields
-                base={defaultForm.MotherName}
-                touched={touched.MotherName}
-                errors={errors.MotherName}
-                values={values.MotherName}
-              />
-              <Fields
-                base={defaultForm.FatherName}
-                touched={touched.FatherName}
-                errors={errors.FatherName}
-                values={values.FatherName}
-              />
-            </Card>
-            <Card base={customer.contact}>
-              <Fields
-                base={defaultForm.FirstPhone}
-                touched={touched.FirstPhone}
-                errors={errors.FirstPhone}
-                values={values.FirstPhone}
-              />
-              <Fields
-                base={defaultForm.EmergencyPhone}
-                touched={touched.EmergencyPhone}
-                errors={errors.EmergencyPhone}
-                values={values.EmergencyPhone}
-              />
+                <Fields
+                  base={defaultForm.MotherName}
+                  touched={touched.MotherName}
+                  errors={errors.MotherName}
+                  values={values.MotherName}
+                />
+                <Fields
+                  base={defaultForm.FatherName}
+                  touched={touched.FatherName}
+                  errors={errors.FatherName}
+                  values={values.FatherName}
+                />
+              </Card>
+              <Card base={customer.contact}>
+                <Fields
+                  base={defaultForm.FirstPhone}
+                  touched={touched.FirstPhone}
+                  errors={errors.FirstPhone}
+                  values={values.FirstPhone}
+                />
+                <Fields
+                  base={defaultForm.EmergencyPhone}
+                  touched={touched.EmergencyPhone}
+                  errors={errors.EmergencyPhone}
+                  values={values.EmergencyPhone}
+                />
 
-              <Fields
-                base={defaultForm.EmergencyPhoneOwner}
-                touched={touched.EmergencyPhoneOwner}
-                errors={errors.EmergencyPhoneOwner}
-                values={values.EmergencyPhoneOwner}
-              />
+                <Fields
+                  base={defaultForm.EmergencyPhoneOwner}
+                  touched={touched.EmergencyPhoneOwner}
+                  errors={errors.EmergencyPhoneOwner}
+                  values={values.EmergencyPhoneOwner}
+                />
 
-              <Fields
-                base={defaultForm.Email}
-                touched={touched.Email}
-                errors={errors.Email}
-                values={values.Email}
-              />
+                <Fields
+                  base={defaultForm.Email}
+                  touched={touched.Email}
+                  errors={errors.Email}
+                  values={values.Email}
+                />
 
-              <Fields
-                base={defaultForm.WorkPhone}
-                touched={touched.WorkPhone}
-                errors={errors.WorkPhone}
-                values={values.WorkPhone}
-              />
+                <Fields
+                  base={defaultForm.WorkPhone}
+                  touched={touched.WorkPhone}
+                  errors={errors.WorkPhone}
+                  values={values.WorkPhone}
+                />
 
-              <Fields
-                base={defaultForm.WorkPlace}
-                touched={touched.WorkPhone}
-                errors={errors.WorkPlace}
-                values={values.WorkPlace}
-              />
+                <Fields
+                  base={defaultForm.WorkPlace}
+                  touched={touched.WorkPhone}
+                  errors={errors.WorkPlace}
+                  values={values.WorkPlace}
+                />
 
-              <Fields
-                base={defaultForm.Profession}
-                touched={touched.Profession}
-                errors={errors.Profession}
-                values={values.Profession}
-              />
+                <Fields
+                  base={defaultForm.Profession}
+                  touched={touched.Profession}
+                  errors={errors.Profession}
+                  values={values.Profession}
+                />
 
-              <Dropdown
-                base={defaultForm.Country}
-                touched={touched.Country}
-                errors={errors.Country}
-                values={values.Country}
-                options={countries}
-                onChange={setFieldValue}
-                selectedValue={value => {
-                  fillCities(value.label);
-                }}
-              />
-              <Dropdown
-                base={defaultForm.City}
-                touched={touched.City}
-                errors={errors.City}
-                values={values.City}
-                options={cities}
-                onChange={setFieldValue}
-                selectedValue={value => {
-                  fillCounties(values.Country, value.label);
-                }}
-                loadingMessage="Yükleniyor..."
-              />
-              <Dropdown
-                base={defaultForm.County}
-                touched={touched.County}
-                errors={errors.County}
-                values={values.County}
-                options={counties}
-                onChange={setFieldValue}
-                loadingMessage="Yükleniyor..."
-              />
+                <Dropdown
+                  base={defaultForm.Country}
+                  touched={touched.Country}
+                  errors={errors.Country}
+                  values={values.Country}
+                  options={countries}
+                  onChange={setFieldValue}
+                  selectedValue={value => {
+                    fillCities(value.label);
+                  }}
+                />
+                <Dropdown
+                  base={defaultForm.City}
+                  touched={touched.City}
+                  errors={errors.City}
+                  values={values.City}
+                  options={cities}
+                  onChange={setFieldValue}
+                  selectedValue={value => {
+                    fillCounties(values.Country, value.label);
+                  }}
+                  loadingMessage="Yükleniyor..."
+                />
+                <Dropdown
+                  base={defaultForm.County}
+                  touched={touched.County}
+                  errors={errors.County}
+                  values={values.County}
+                  options={counties}
+                  onChange={setFieldValue}
+                  loadingMessage="Yükleniyor..."
+                />
 
-              <Fields
-                base={defaultForm.Address}
-                touched={touched.Address}
-                errors={errors.Address}
-                values={values.Address}
-              />
-            </Card>
+                <Fields
+                  base={defaultForm.Address}
+                  touched={touched.Address}
+                  errors={errors.Address}
+                  values={values.Address}
+                />
+              </Card>
 
-            <Card base={customer.driveLicense}>
-              <Dropdown
-                base={defaultForm.DrivingClasses}
-                touched={touched.DrivingClasses}
-                errors={errors.DrivingClasses}
-                values={values.DrivingClasses}
-                options={drivingClasses}
-                onChange={setFieldValue}
-                isMulti={true}
-              />
+              <Card base={customer.driveLicense}>
+                <Dropdown
+                  base={defaultForm.DrivingClasses}
+                  touched={touched.DrivingClasses}
+                  errors={errors.DrivingClasses}
+                  values={values.DrivingClasses}
+                  options={drivingClasses}
+                  onChange={setFieldValue}
+                  isMulti={true}
+                />
 
-              <Fields
-                base={defaultForm.DrivingLicenseNumber}
-                touched={touched.DrivingLicenseNumber}
-                errors={errors.DrivingLicenseNumber}
-                values={values.DrivingLicenseNumber}
-              />
+                <Fields
+                  base={defaultForm.DrivingLicenseNumber}
+                  touched={touched.DrivingLicenseNumber}
+                  errors={errors.DrivingLicenseNumber}
+                  values={values.DrivingLicenseNumber}
+                />
 
-              <Fields
-                base={defaultForm.DrivingLicenseYear}
-                touched={touched.DrivingLicenseYear}
-                errors={errors.DrivingLicenseYear}
-                values={values.DrivingLicenseYear}
-              />
-            </Card>
-          </Form>
-        )}
+                <Fields
+                  base={defaultForm.DrivingLicenseYear}
+                  touched={touched.DrivingLicenseYear}
+                  errors={errors.DrivingLicenseYear}
+                  values={values.DrivingLicenseYear}
+                />
+              </Card>
+            </Form>
+          )}
       </Formik>
     </>
   );

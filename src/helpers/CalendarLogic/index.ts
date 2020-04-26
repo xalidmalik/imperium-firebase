@@ -1,4 +1,5 @@
-import { GetRecords } from "src/database";
+import { GetAllCar } from './../../database/Car';
+import { GetAllBooking } from "src/database/Booking";
 
 const GetCalendar = async () => {
   let groups: any[] = [];
@@ -8,7 +9,7 @@ const GetCalendar = async () => {
     Items: null
   };
 
-  const cars = await GetRecords("Car", "ayazarac");
+  const cars = await GetAllCar("ayazarac");
 
   cars.map((car: any) => {
     groups.push({
@@ -20,17 +21,21 @@ const GetCalendar = async () => {
     });
   });
 
-  var reservation = await GetRecords("Reservation", "ayazarac");
-
-  reservation.map((item: any) => {
-    items.push({
-      id: item.Id,
-      group: item.CarId,
-      start_time: item.BeginDateTime,
-      end_time: item.EndDateTime,
-      title: `Agha Huseynov`
+  const reservation = await GetAllBooking("ayazarac").then((data) => {
+    console.log("calres", data)
+    data.map((f: any) => {
+      console.log(f)
+      items.push({
+        id: f.Id,
+        group: f.CarId,
+        start_time: f.BeginDateTime,
+        end_time: f.EndDateTime,
+        title: f.CustomerId
+      });
     });
   });
+  console.log("rezlesrrrr", reservation)
+
 
   calendar["Groups"] = groups;
   calendar["Items"] = items;

@@ -4,7 +4,7 @@ export const customerListHeader = [
   { col: "Telefon" },
   { col: "Email" },
   { col: "Ehliyet" },
-  { col: "" }
+  { col: "" },
 ];
 export const carListHeader = [
   { col: "Marka/Model" },
@@ -13,7 +13,7 @@ export const carListHeader = [
   { col: "Yakıt" },
   { col: "Durum" },
   { col: "Fiyat" },
-  { col: "" }
+  { col: "" },
 ];
 export const ReservationListHeader = [
   { col: "Müşteri" },
@@ -21,7 +21,7 @@ export const ReservationListHeader = [
   { col: "Tarih" },
   { col: "Tutar" },
   { col: "Durum" },
-  { col: "" }
+  { col: "" },
 ];
 export const AccountingListHeader = [
   { col: "Tarih" },
@@ -29,5 +29,5 @@ export const AccountingListHeader = [
   { col: "Tür" },
   { col: "İşlem" },
   { col: "Tutar" },
-  { col: "" }
+  { col: "" },
 ];

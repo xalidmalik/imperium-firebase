@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 import { Carax } from "../../helpers/Static/Icons";
 import { History } from "../../helpers/Static/History";
@@ -6,129 +7,130 @@ import moment from "moment";
 import Header from "../../components/Header/Header";
 import { CardWrapper } from "../../components/Card/CardWrapper";
 import { ReservationListHeader } from "../../helpers/Static/ListHeader";
-import { IReservation } from "../../helpers/Database/ReservationInterface";
 import {
   HeaderReservationBoard,
-  HeaderCustomerBoard,
 } from "src/helpers/Static/Headers";
-import { GetReservations } from "src/database";
 import SecureStore from "secure-ls";
+import { GetAllBookingActions } from "src/redux/actions/Booking";
 
 const ReservationTable: React.FC<any> = () => {
-  const [reservations, setReservation] = useState<IReservation[]>(
-    new Array<IReservation>()
-  );
+  const dispatch = useDispatch();
+  const booking = useSelector((state => state.booking.booking));
+  console.log("boook", booking)
+
   const sc = new SecureStore();
   const getAllReservation = () => {
-    GetReservations().then((data) => {
-      setReservation(data);
-      console.log(data);
-    });
-  };
+    dispatch(GetAllBookingActions("ayazarac"))
+  }
+
 
   useEffect(() => {
     getAllReservation();
   }, []);
 
-  if (!reservations) return null;
+  // if (!reservations) return null;
   return (
     <>
       <Header
         titleFirst={HeaderReservationBoard.titleFirst}
         btnLink={HeaderReservationBoard.btnLink}
         btnTitle={HeaderReservationBoard.btnTitle}
-        OnChange={(value) => {}}
-        length={reservations.length}
+        OnChange={(value) => { }}
+        length={booking && booking.length}
       />
       <CardWrapper classes="w-card-table bg-white rounded-lg flex shadow-base mb-4 overflow-hidden">
-        <div className="w-full overflow-auto rounded-lg med-table-wrapper">
-          <table className="table-auto med-table">
-            <thead>
-              <tr>
-                {ReservationListHeader.map((i, index) => {
-                  return <th key={index}>{i.col}</th>;
-                })}
-              </tr>
-            </thead>
-            <tbody>
-              {reservations.map((i: IReservation, index: any) => {
-                return (
-                  <tr
-                    className={`border-gray-300 border-b hover:border-orange-400 hover:bg-gray-100 cursor-pointer`}
-                    key={index}
-                    onDoubleClick={() => {
-                      sc.set("SelectedReservation", i);
-                      History.push("/reservation/detail");
-                    }}
-                  >
-                    <td className="flex items-center relative">
-                      <div
-                        className={`rounded-full bg-gray-300 mr-4 p-2 w-12 h-12 min-h-12 min-w-12 flex items-center justify-center text-gray-800`}
-                      >
-                        {i.Customer &&
-                          i.Customer.Name[0] + i.Customer &&
-                          i.Customer.Surname[0]}
-                      </div>
-                      <div className="block">
-                        <h5 className="flex font-bold">{`${
-                          i.Customer && i.Customer.Name
-                        } ${i.Customer && i.Customer.Surname}`}</h5>
-                        <span className="text-sm flex">{`Tel: ${
-                          i.Customer && i.Customer.FirstPhone
-                        }`}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="block">
-                        <h5 className="flex font-bold">
-                          {`${i.Car.BrandName} ${i.Car.ModelName}`}
-                        </h5>
-                        <div className="flex">
-                          <span className="text-sm flex">{`Plaka: ${i.Car.Plate}`}</span>
+        {booking ?
+          <div className="w-full overflow-auto rounded-lg med-table-wrapper">
+            <table className="table-auto med-table">
+              <thead>
+                <tr>
+                  {ReservationListHeader.map((i, index) => {
+                    return <th key={index}>{i.col}</th>;
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {booking.map((data: any, index: any) => {
+                  return (
+                    <tr
+                      className={`border-gray-300 border-b hover:border-orange-400 hover:bg-gray-100 cursor-pointer`}
+                      key={index}
+                      onDoubleClick={() => {
+                        sc.set("SelectedReservation", data);
+                        History.push("/reservation/detail");
+                      }}
+                    >
+                      <td className="flex items-center relative">
+                        <div
+                          className={`rounded-full bg-gray-300 mr-4 p-2 w-12 h-12 min-h-12 min-w-12 flex items-center justify-center text-gray-800`}
+                        >
+                          {data.Customer &&
+                            data.Customer.Name[0] + data.Customer &&
+                            data.Customer.Surname[0]}
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="block">
-                        <h5 className="flex">
-                          {moment(i.BeginDateTime).format("DD.MM.YYYY (HH:mm)")}
-                        </h5>
-                        <h5 className="flex">
-                          {moment(i.EndDateTime).format("DD.MM.YYYY (HH:mm)")}
-                        </h5>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="block">
-                        <h5 className="flex font-bold">
-                          {i.Price || i.CarId.Price} <span>&#8378;</span>
-                        </h5>
-                        <span className="text-sm flex">(KDV Dahil)</span>
-                      </div>
-                    </td>
-                    <td>
-                      <span className="px-3 py-1 bg-blue-400 rounded-lg text-white">
-                        {i.ReservationTypes}
-                      </span>
-                    </td>
-                    <td>
-                      <Link
-                        className="w-12 h-12 text-gray-600 block rounded-lg hover:text-med-500"
-                        onClick={() => {
-                          sc.set("SelectedReservation", i);
-                          History.push("/reservation/detail");
-                        }}
-                        to="/reservation/detail"
-                      >
-                        <span className="w-12 block my-auto">{Carax.More}</span>
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                        <div className="block">
+                          <h5 className="flex font-bold">{`${
+                            data.Customer && data.Customer.Name
+                            } ${data.Customer && data.Customer.Surname}`}</h5>
+                          <span className="text-sm flex">{`Tel: ${
+                            data.Customer && data.Customer.FirstPhone
+                            }`}</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div className="block">
+                          <h5 className="flex font-bold">
+                            {`${data.BrandName && data.BrandName} ${data.ModelName}`}
+                          </h5>
+                          <div className="flex">
+                            <span className="text-sm flex">{`Plaka: ${data.Plate}`}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div className="block">
+                          <h5 className="flex">
+                            {moment(data.BeginDateTime).format("DD.MM.YYYY (HH:mm)")}
+                          </h5>
+                          <h5 className="flex">
+                            {moment(data.EndDateTime).format("DD.MM.YYYY (HH:mm)")}
+                          </h5>
+                        </div>
+                      </td>
+                      <td>
+                        <div className="block">
+                          <h5 className="flex font-bold">
+                            {data.Price || data.CarId.Price} <span>&#8378;</span>
+                          </h5>
+                          <span className="text-sm flex">(KDV Dahil)</span>
+                        </div>
+                      </td>
+                      <td>
+                        <span className="px-3 py-1 bg-blue-400 rounded-lg text-white">
+                          {data.ReservationTypes}
+                        </span>
+                      </td>
+                      <td>
+                        <Link
+                          className="w-12 h-12 text-gray-600 block rounded-lg hover:text-med-500"
+                          onClick={() => {
+                            sc.set("SelectedReservation", data);
+                            History.push("/reservation/detail");
+                          }}
+                          to="/reservation/detail"
+                        >
+                          <span className="w-12 block my-auto">{Carax.More}</span>
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          :
+          <p className="flex justify-center items-center w-full font-bold">Yükleniyor...</p>
+        }
       </CardWrapper>
     </>
   );

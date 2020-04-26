@@ -8,15 +8,14 @@ import { AlertSwalDelete, AlertSwal } from "../../helpers/Alert/Alert";
 import { SearchCustomer } from "../../helpers/Function/Search";
 import { isEmpty } from "lodash";
 import { customerListHeader } from "../../helpers//Static/ListHeader";
-import { GetRecords } from "../../database/";
 import { ICustomer } from "src/helpers/Database/CustomerInterfaces";
 import { HeaderAccountingBoard } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
 import Header from "../../components/Header/Header";
 import moment from "moment";
-import { RemoveRecord } from "../../database/index";
 import CardInfo from "src/components/Card/CardInfo";
 import { AccountingListHeader } from "../../helpers/Static/ListHeader";
+import { GetAllAccounting } from "src/database/Accounting";
 
 const AccountingTable: React.FC = () => {
   const [customers, setCustomers] = useState<ICustomer[]>(
@@ -28,14 +27,8 @@ const AccountingTable: React.FC = () => {
   }, []);
 
   const getAllRecords = () => {
-    GetRecords("Customer", "ayazarac").then((value: any) => {
+    GetAllAccounting("ayazarac").then((value: any) => {
       setCustomers(value);
-    });
-  };
-
-  const RemoveCar = (Id: any) => {
-    AlertSwalDelete(() => {
-      RemoveRecord("Customer", Id, "ayazarac").then(() => getAllRecords());
     });
   };
 

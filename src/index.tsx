@@ -8,13 +8,17 @@ import { History } from "./helpers/Static/History";
 import Login from "./pages/Auth/Login";
 import { auth } from "./firebase/firebaseconfig";
 import SecureStore from "secure-ls";
+import { Provider } from "react-redux"
+import store from "./redux/store";
 
 const sc = new SecureStore();
 
 ReactDOM.render(
-  <BrowserRouter history={History}>
-    {sc.get("userId") ? <App /> : <Login />}
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter history={History}>
+      {sc.get("userId") ? <App /> : <Login />}
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
 

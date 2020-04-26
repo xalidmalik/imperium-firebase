@@ -38,14 +38,14 @@ class Calendar extends Component {
   componentDidMount() {
     GetCalendar().then(calen => {
       let temp: any = [];
-
+      console.log("dawdaw", calen)
       calen.Items.map(c => {
         temp.push({
           id: c.id,
           group: c.group,
           start_time: moment(c.start_time),
           end_time: moment(c.end_time),
-          title: "Agha Huseynov"
+          title: c.title
         });
       });
 
@@ -143,8 +143,8 @@ class Calendar extends Component {
             </Link>
           </div>
         ) : (
-          ""
-        )}
+            ""
+          )}
 
         {itemContext.useResizeHandle ? <div {...rightResizeProps} /> : null}
       </div>
