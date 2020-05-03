@@ -4,7 +4,8 @@ const TypeGenerator = (type) => ({
     FAILED: `${type}_FAILED`,
 });
 
-export const SET_USER = TypeGenerator("SET_USER")
+export const LOGIN_USER = TypeGenerator("LOGIN_USER")
+export const LOGOUT_USER = TypeGenerator("LOGOUT_USER")
 
 export const GET_ALL_CUSTOMERS = TypeGenerator("GET_ALL_CUSTOMERS")
 export const GET_CUSTOMER_BY_ID = TypeGenerator("GET_CUSTOMER_BY_ID")
@@ -23,3 +24,9 @@ export const GET_BOOKING_BY_ID = TypeGenerator("GET_BOOKING_BY_ID")
 export const REMOVE_BOOKING_BY_ID = TypeGenerator("REMOVE_BOOKING_BY_ID")
 export const UPDATE_BOOKING = TypeGenerator("UPDATE_BOOKING")
 export const CREATE_BOOKING = TypeGenerator("CREATE_BOOKING")
+
+export const GET_ALL_TRANSACTION = TypeGenerator("GET_ALL_TRANSACTION")
+export const GET_TRANSACTION_BY_ID = TypeGenerator("GET_TRANSACTION_BY_ID")
+export const REMOVE_TRANSACTION_BY_ID = TypeGenerator("REMOVE_TRANSACTION_BY_ID")
+export const UPDATE_TRANSACTION = TypeGenerator("UPDATE_TRANSACTION")
+export const CREATE_TRANSACTION = TypeGenerator("CREATE_TRANSACTION")

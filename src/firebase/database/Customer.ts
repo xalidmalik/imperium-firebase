@@ -1,9 +1,17 @@
 import { Customer } from './Collection';
-import { CheckUndefined, Save, GetById, GetAll, Delete, Update } from './Helper';
+import { CheckUndefined, Save, GetById, GetAll, Delete, Update, GetAllByTc } from './Helper';
 
-export const CreateCustomer = async (model: object) => {
+export const CreateCustomer = async (model: any) => {
     CheckUndefined(model);
-    return await Save(Customer, model)
+    const tc = model.TCNumber;
+    const allList = await GetAllByTc(Customer, tc)
+    if (allList.length !== 0) {
+        console.log("alalalla", allList)
+        return null
+    }
+    else {
+        return await Save(Customer, model)
+    }
 };
 
 export const GetCustomerById = async (Id: string) => {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux"
 import Fields from "../../components/FormElements/Input/Fields";
 import Checkbox from "../../components/FormElements/Input/Checkbox";
 import Radiobox from "../../components/FormElements/Input/Radiobox";
@@ -19,9 +20,11 @@ import {
   CustomerModel
 } from "src/helpers/Database/CustomerInterfaces";
 import { locations } from "../../helpers/Static/CountriesAndCities";
-import { CreateCustomer, UpdateCustomer } from "src/database/Customer";
+import { CreateCustomer, UpdateCustomer } from "src/firebase/database/Customer";
+import { CreateCustomerActions } from "src/redux/actions/Customer";
 
 const CustomerForm: React.FC<any> = (data: any) => {
+  const dispatch = useDispatch();
   const { activeCustomer } = data;
   const fillCities = countryName => {
     if (countryName) {
@@ -56,9 +59,10 @@ const CustomerForm: React.FC<any> = (data: any) => {
 
   const CreateRecord = (values: ICustomer) => {
     values.Code = "ayazarac";
-    CreateCustomer(values).then(success => {
-      AlertSwal(message.success.title, message.success.type);
-    });
+    dispatch(CreateCustomerActions(values))
+    // .then(success => {
+    //   AlertSwal(message.success.title, message.success.type);
+    // });
   };
 
   const PutRecord = (values: ICustomer) => {

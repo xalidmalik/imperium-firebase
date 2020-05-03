@@ -1,10 +1,10 @@
 import moment from 'moment';
-import { GetAllCar } from 'src/database/Car';
-import { GetAllBooking } from 'src/database/Booking';
-import { DocumentTypes } from "../helpers/Database/DocumentTypes";
-import db from "../firebase/firebaseconfig";
+import { GetAllCar } from 'src/firebase/database/Car';
+import { GetAllBooking } from 'src/firebase/database/Booking';
+import { DocumentTypes } from "../../helpers/Database/DocumentTypes";
+import db from "../firebaseconfig";
 import ls from "secure-ls";
-import { IReservation } from "../helpers/Database/ReservationInterface";
+import { IReservation } from "../../helpers/Database/ReservationInterface";
 import { uniqBy } from "lodash";
 
 export const GetAvailableCars = async (beginDate: any, endDate: any) => {

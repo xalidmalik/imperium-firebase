@@ -1,14 +1,14 @@
-import { GET_ALL_CUSTOMERS, GET_CUSTOMER_BY_ID } from '../actions/TypeGenerator';
+import { GET_ALL_CUSTOMERS, CREATE_CUSTOMER } from '../actions/TypeGenerator';
 
 const INITIAL_STATE_CUSTOMER_LIST = {
     customersIsLoading: false,
     customers: null,
     customerErrorMessage: null
 };
-const INITIAL_STATE_SELECTED_CUSTOMER = {
-    customersIsLoading: false,
-    customers: null,
-    customerErrorMessage: null
+const INITIAL_STATE_CREATE_CUSTOMER = {
+    createCustomerIsLoading: false,
+    createCustomerResponse: null,
+    createCustomerErrorMessage: null
 };
 
 export const getAllCustomersReducer = (state = INITIAL_STATE_CUSTOMER_LIST, action) => {
@@ -39,28 +39,28 @@ export const getAllCustomersReducer = (state = INITIAL_STATE_CUSTOMER_LIST, acti
     }
 
 }
-export const getSelectedCustomer = (state = INITIAL_STATE_SELECTED_CUSTOMER, action) => {
+export const createCustomerReducer = (state = INITIAL_STATE_CREATE_CUSTOMER, action) => {
     switch (action.type) {
-        case GET_CUSTOMER_BY_ID.REQUEST:
+        case CREATE_CUSTOMER.REQUEST:
             return {
                 ...state,
-                selectedCustomer: null,
-                customersIsLoading: true,
-                customerErrorMessage: null
+                createCustomerIsLoading: true,
+                createCustomerResponse: null,
+                createCustomerErrorMessage: null
             }
-        case GET_CUSTOMER_BY_ID.SUCCSESS:
+        case CREATE_CUSTOMER.SUCCSESS:
             return {
                 ...state,
-                selectedCustomer: action.payload,
-                customersIsLoading: false,
-                customerErrorMessage: null
+                createCustomerIsLoading: false,
+                createCustomerResponse: action.payload,
+                createCustomerErrorMessage: null
             }
-        case GET_CUSTOMER_BY_ID.FAILED:
+        case CREATE_CUSTOMER.FAILED:
             return {
                 ...state,
-                selectedCustomer: null,
-                customersIsLoading: false,
-                customerErrorMessage: action.payload,
+                createCustomerIsLoading: false,
+                createCustomerResponse: null,
+                createCustomerErrorMessage: null
             }
         default:
             return state;

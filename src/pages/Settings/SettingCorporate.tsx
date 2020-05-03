@@ -4,7 +4,7 @@ import { RightLayout } from "../../components/Layouts/Layouts";
 import Header from "../../components/Header/Header";
 import DepartmentOverview from "src/containers/Overviews/DepartmentOverview";
 import { IDepartment } from "src/helpers/Database/DepartmentInterface";
-import { GetDepartment } from "src/database/Department";
+import { GetDepartment } from "src/firebase/database/Department";
 
 const SettingCorporate: React.FC = () => {
   const [department, setDepartment] = useState<IDepartment[]>(

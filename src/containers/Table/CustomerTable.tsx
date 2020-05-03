@@ -14,14 +14,14 @@ import { HeaderCustomerBoard } from "src/helpers/Static/Headers";
 import SecureStore from "secure-ls";
 import Header from "../../components/Header/Header";
 import moment from "moment";
-import { GetAllCustomer, RemoveCustomerById } from "src/database/Customer";
+import { GetAllCustomer, RemoveCustomerById } from "src/firebase/database/Customer";
 import { GetAllCustomerActions } from "src/redux/actions/Customer";
 
 
 
 const CustomerTable: React.FC = () => {
   const dispatch = useDispatch();
-  const customers = useSelector((state => state.customers.customers));
+  const customers = useSelector((state => state.getAllCustomers.customers));
   console.log(customers);
 
 

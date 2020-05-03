@@ -14,12 +14,12 @@ import SecureStore from "secure-ls";
 import Img from "react-image";
 import Header from "../../components/Header/Header";
 import { ICar } from "src/helpers/Database/CarInterfaces";
-import { GetAllCar, RemoveCarById } from "src/database/Car";
+import { GetAllCar, RemoveCarById } from "src/firebase/database/Car";
 import { GetAllCarsActions } from "src/redux/actions/Car";
 
 const CarTable: React.FC = () => {
   const dispatch = useDispatch();
-  const cars = useSelector((state => state.cars.cars));
+  const cars = useSelector((state => state.getAllCars.cars));
   console.log(cars);
   const sc = new SecureStore();
   useEffect(() => {

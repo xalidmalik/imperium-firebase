@@ -1,4 +1,5 @@
 import React, { forwardRef, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux"
 import Fields from "../../components/FormElements/Input/Fields";
 import Radiobox from "../../components/FormElements/Input/Radiobox";
 import Dropdown from "../../components/FormElements/Input/Dropdown";
@@ -23,15 +24,15 @@ import { ReservationModel } from "src/helpers/Database/ReservationInterface";
 import { ICustomer } from "../../helpers/Database/CustomerInterfaces";
 import {
   GetAvailableCars,
-} from "../../database/index";
+} from "../../firebase/database/index";
 import { IReservation } from "../../helpers/Database/ReservationInterface";
-import { isEmpty } from "lodash";
-import { ICar } from "src/helpers/Database/CarInterfaces";
-import { CreateBooking, UpdateBooking } from "src/database/Booking";
-import { GetAllCar, GetCarById } from "src/database/Car";
-import { GetAllCustomer, GetCustomerById } from "src/database/Customer";
+import { CreateBooking, UpdateBooking } from "src/firebase/database/Booking";
+import { GetAllCar, GetCarById } from "src/firebase/database/Car";
+import { GetAllCustomer, GetCustomerById } from "src/firebase/database/Customer";
+import { CreateBookingActions } from "src/redux/actions/Booking";
 
 const ReservationForm: React.FC<any> = (data: any) => {
+  const dispatch = useDispatch();
   const { activeReservation } = data;
 
   const [customers, setCustomer] = useState<ICustomer[]>(
@@ -87,9 +88,7 @@ const ReservationForm: React.FC<any> = (data: any) => {
     values.EndDateTime = values.EndDateTime.toString();
 
     console.log("Giderkem", values)
-    CreateBooking(values).then(() => {
-      AlertSwal(message.success.title, message.success.type);
-    });
+    dispatch(CreateBookingActions(values))
   };
 
   const PutRecord = (values: IReservation) => {

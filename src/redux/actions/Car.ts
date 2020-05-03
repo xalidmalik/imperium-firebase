@@ -1,4 +1,4 @@
-import { GetAllCar } from './../../database/Car';
+import { GetAllCar } from '../../firebase/database/Car';
 import { GET_ALL_CARS } from "./TypeGenerator"
 
 export const GetAllCarsActions = (code: any) => (dispatch) => (

@@ -9,7 +9,12 @@ export const CheckUndefined = (model) => {
 };
 
 export const Save = async (collection, model) => {
-    return await collection.doc().set(Object.assign({}, model));
+    const collectionRef = await collection.doc();
+    const saveCollection = await collectionRef.set(Object.assign({}, model))
+    if (saveCollection === undefined) {
+        return await collectionRef.id
+    }
+
 }
 export const GetById = async (collection, Id) => {
     return await collection.doc(Id).get().then((value) => value.data());
@@ -21,7 +26,7 @@ export const Update = async (collection, model) => {
     let findedProduct = collection.doc(model.Id);
     return await findedProduct.update(Object.assign({}, model));
 }
-export const GetAll = async (collection, Code) => {
+export const GetAll = async (collection, Code?) => {
     return await
         collection
             .where("Code", "==", Code)
@@ -30,6 +35,20 @@ export const GetAll = async (collection, Code) => {
                 value.docs.map((doc) => {
                     let d = doc.data();
                     d.Id = doc.id;
+                    return d;
+                })
+            );
+}
+export const GetAllByTc = async (collection, tc?) => {
+    return await
+        collection
+            .where("TCNumber", "==", tc)
+            .get()
+            .then((value) =>
+                value.docs.map((doc) => {
+                    let d = doc.data();
+                    d.Id = doc.id;
+                    console.log("değer", d)
                     return d;
                 })
             );

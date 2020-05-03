@@ -22,7 +22,7 @@ import { History } from "../../helpers/Static/History";
 import Dropdown from "../../components/FormElements/Input/Dropdown";
 import { CarModel, ICar } from "src/helpers/Database/CarInterfaces";
 import CarModelList from "../../helpers/Static/CarList.json";
-import { CreateCar, UpdateCar } from "src/database/Car";
+import { CreateCar, UpdateCar } from "src/firebase/database/Car";
 
 const CarForm: React.FC<any> = (props: any) => {
   const [brandList, setBrandList] = useState<any>([]);

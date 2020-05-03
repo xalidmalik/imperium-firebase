@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { GetAllCar } from './../../database/Car';
-import { GetAllBooking } from "src/database/Booking";
+import { GetAllCar } from '../../firebase/database/Car';
+import { GetAllBooking } from "src/firebase/database/Booking";
 import { useSelector, useDispatch } from "react-redux"
 
 

@@ -15,7 +15,7 @@ import { GetAllBookingActions } from "src/redux/actions/Booking";
 
 const ReservationTable: React.FC<any> = () => {
   const dispatch = useDispatch();
-  const { booking, bookingIsLoading, bookingErrorMessage } = useSelector((state: any) => state.booking);
+  const { booking, bookingIsLoading, bookingErrorMessage } = useSelector((state: any) => state.getAllBooking);
 
   const sc = new SecureStore();
   const getAllReservation = () => {

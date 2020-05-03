@@ -52,7 +52,6 @@ class Calendar extends Component {
 
         calen.Items = temp;
 
-        console.log("calendar:", calen);
         this.setState({
           calendarItems: calen,
           isLoading: false
@@ -86,7 +85,6 @@ class Calendar extends Component {
     getItemProps,
     getResizeProps
   }) => {
-    console.log("context", getItemProps);
     const { left: leftResizeProps, right: rightResizeProps } = getResizeProps();
 
     return (
