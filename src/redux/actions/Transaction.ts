@@ -1,19 +1,21 @@
 import { GetAllTransaction, HandleTotal } from 'src/firebase/database/Transaction';
 import { message } from '../../helpers/Static/System';
 import { AlertSwal } from '../../helpers/Alert/Alert';
-import { CreateBookingTransaction } from 'src/firebase/database/Transaction';
+import { CreateTransaction } from 'src/firebase/database/Transaction';
 import { CREATE_TRANSACTION, GET_ALL_TRANSACTION } from "./TypeGenerator"
 
-export const createTransactionActions = (model: any, id) => (dispatch) => (
+export const createTransactionActions = (model: any) => (dispatch) => (
     dispatch({
         type: CREATE_TRANSACTION.REQUEST,
     }),
-    CreateBookingTransaction(model, id)
-        .then(success =>
+    CreateTransaction(model)
+        .then(success => {
             dispatch({
                 type: CREATE_TRANSACTION.SUCCSESS,
                 payload: success
-            }))
+            })
+            AlertSwal(message.success.title, message.success.type)
+        })
         .catch(error =>
             dispatch({
                 type: CREATE_TRANSACTION.FAILED,

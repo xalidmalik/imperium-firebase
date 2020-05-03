@@ -423,24 +423,31 @@ export const carForm = {
   }
 };
 
-export const accountingForm = {
-  ReservationTypes: {
-    title: "Rezervasyon Durumu",
-    for: "ReservationTypes",
+export const transactionForm = {
+  Type: {
+    title: "Tür",
+    for: "Type",
     placeholder: "Durum Seçiniz"
   },
-
-  Price: {
-    title: "Tutar",
-    placeholder: "Tutar Giriniz",
-    type: "text",
-    for: "Price"
+  Customer: {
+    title: "Müşteri Seçimi",
+    placeholder: "Müşteri seçiniz",
+    for: "Customer"
   },
 
-  CarId: {
-    title: "Araba",
-    placeholder: "Araba Seçiniz",
-    for: "CarId"
+  Ammount: {
+    title: "Tutar",
+    placeholder: "Tutar Giriniz",
+    type: "number",
+    for: "Ammount"
+  },
+
+
+  Desc: {
+    title: "Açıklama",
+    placeholder: "Açıklama Girirniz",
+    type: "text",
+    for: "Desc"
   },
 
   PaymentType: {

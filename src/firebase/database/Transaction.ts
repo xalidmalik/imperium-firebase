@@ -19,6 +19,11 @@ export const CreateBookingTransaction = async (model: any, id: any) => {
     return await Save(Transaction, newModel)
 };
 
+export const CreateTransaction = async (model: any) => {
+    CheckUndefined(model);
+    return await Save(Transaction, model)
+};
+
 export const GetTransactionById = async (Id: string) => {
     return await GetById(Transaction, Id)
 };

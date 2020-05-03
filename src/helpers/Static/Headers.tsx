@@ -55,7 +55,7 @@ export const HeaderAccountingNew: IHeaderValidation = {
   linkFirst: "/accounting",
   titleSecond: "Gelir - gider ekle",
   btnTitle: "Kaydet",
-  btnForm: "AccountingFormSubmit"
+  btnForm: "TransactionFormSubmit"
 };
 
 //* Header overview ---------------------------------------

@@ -1,5 +1,4 @@
 import { CreateBookingTransaction } from './../../firebase/database/Transaction';
-import { createTransactionActions } from './Transaction';
 import { message } from './../../helpers/Static/System';
 import { AlertSwal } from './../../helpers/Alert/Alert';
 import { CreateBooking } from './../../firebase/database/Booking';

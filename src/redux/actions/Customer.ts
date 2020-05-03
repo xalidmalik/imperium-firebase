@@ -1,3 +1,4 @@
+import { History } from './../../helpers/Static/History';
 import { message } from './../../helpers/Static/System';
 import { AlertSwal } from './../../helpers/Alert/Alert';
 import { CreateCustomer } from './../../firebase/database/Customer';
@@ -37,6 +38,7 @@ export const CreateCustomerActions = (values: any) => (dispatch) => (
                     payload: "success"
                 });
                 AlertSwal(message.success.title, message.success.type)
+                History.push("/customer")
             }
         })
         .catch(error =>

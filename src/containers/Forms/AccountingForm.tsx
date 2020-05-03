@@ -3,9 +3,10 @@ import Fields from "../../components/FormElements/Input/Fields";
 import Checkbox from "../../components/FormElements/Input/Checkbox";
 import Radiobox from "../../components/FormElements/Input/Radiobox";
 import Dropdown from "../../components/FormElements/Input/Dropdown";
-import { accountingForm } from "../../helpers/Static/FormFields";
+import { transactionForm } from "../../helpers/Static/FormFields";
 import { reservation } from "../../helpers/Static/System";
 import Card from "../../components/Card/Card";
+import { useSelector, useDispatch } from "react-redux"
 import { Formik, Form } from "formik";
 import { message } from "../../helpers/Static/System";
 import { AlertSwal } from "../../helpers/Alert/Alert";
@@ -23,30 +24,41 @@ import {
   gender,
   color
 } from "../../helpers/Static/Options";
-import { ReservationModel } from "src/helpers/Database/ReservationInterface";
-import { ICustomer } from "../../helpers/Database/CustomerInterfaces";
+import { TransactionModel } from "src/helpers/Database/TransactionInterface";
+import { ITransaction } from "../../helpers/Database/TransactionInterface";
+import { createTransactionActions } from "src/redux/actions/Transaction";
 
-const AccountingForm: React.FC<any> = (data: any) => {
-  //   const { activeReservation } = data;
-  //   console.log("active :", activeReservation);
+const AccountingForm: React.FC<any> = (props: any) => {
+  const dispatch = useDispatch();
 
-  //   const [customers, setCustomer] = useState<ICustomer[]>(
-  //     new Array<ICustomer>()
-  //   );
+  const { activeTransaction } = props;
 
-  //   const [selectedCarId, setSelectedCarId] = useState<any>();
-  //   const [selectedCustomerId, setSelectedCustomerId] = useState<any>();
+  // const putRecord = (model: any) => {
+  //   model.Code = "ayazarac";
+  //   if (!ImageUrl) {
+  //     model.Image = activeCar.Image;
+  //   } else {
+  //     model.Image = ImageUrl;
+  //   }
+  //   UpdateCar(model).then(() => {
+  //     AlertSwal(message.success.title, message.success.type);
+  //   });
+  // };
 
-  //   const [availableCars, setAvailableCars] = useState<any>();
-
-  //   useEffect(() => {
-  //     setCustomersList();
-  //   }, []);
+  const CreateRecord = (values: any) => {
+    dispatch(createTransactionActions(values))
+  };
   return (
     <>
       <Formik
-        initialValues={new ReservationModel()}
-        onSubmit={(values, { setSubmitting }) => {}}
+        initialValues={new TransactionModel()}
+        onSubmit={(values, { setSubmitting }) => {
+          // if (activeTransaction) {
+          //   // putRecord(values);
+          // } else {
+          // }
+          CreateRecord(values);
+        }}
       >
         {({
           errors,
@@ -57,32 +69,38 @@ const AccountingForm: React.FC<any> = (data: any) => {
           setFieldValue,
           setFieldTouched
         }) => (
-          <Form id="ReservationFormSubmit">
-            <Card base={reservation.payment}>
-              <Dropdown
-                onChange={setFieldValue}
-                base={accountingForm.ReservationTypes}
-                touched={touched.ReservationTypes}
-                errors={errors.ReservationTypes}
-                values={values.ReservationTypes}
-                options={accountingType}
-              />
-              <Fields
-                base={accountingForm.Price}
-                touched={touched.Price}
-                errors={errors.Price}
-                values={values.Price}
-              />
-              <Radiobox
-                base={accountingForm.PaymentType}
-                touched={touched.PaymentType}
-                errors={errors.PaymentType}
-                values={values.PaymentType}
-                options={paymentType}
-              />
-            </Card>
-          </Form>
-        )}
+            <Form id="TransactionFormSubmit">
+              <Card base={reservation.payment}>
+                <Dropdown
+                  onChange={setFieldValue}
+                  base={transactionForm.Type}
+                  touched={touched.Type}
+                  errors={errors.Type}
+                  values={values.Type}
+                  options={accountingType}
+                />
+                <Fields
+                  base={transactionForm.Ammount}
+                  touched={touched.Ammount}
+                  errors={errors.Ammount}
+                  values={values.Ammount}
+                />
+                <Radiobox
+                  base={transactionForm.PaymentType}
+                  touched={touched.PaymentType}
+                  errors={errors.PaymentType}
+                  values={values.PaymentType}
+                  options={paymentType}
+                />
+                <Fields
+                  base={transactionForm.Desc}
+                  touched={touched.Desc}
+                  errors={errors.Desc}
+                  values={values.Desc}
+                />
+              </Card>
+            </Form>
+          )}
       </Formik>
     </>
   );

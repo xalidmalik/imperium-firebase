@@ -35,6 +35,7 @@ const ReservationForm: React.FC<any> = (data: any) => {
   const dispatch = useDispatch();
   const { activeReservation } = data;
 
+  const [pageIndex, setPageIndex] = useState(0);
   const [customers, setCustomer] = useState<ICustomer[]>(
     new Array<ICustomer>()
   );
@@ -207,35 +208,6 @@ const ReservationForm: React.FC<any> = (data: any) => {
                     }
                   }}
                 />
-                {/* <Dropdown
-                onChange={setFieldValue}
-                onCustomerChange={value => {
-                  if (value) {
-                    values.AdditionalCustomerId = value.value;
-                  }
-                }}
-                base={reservationForm.AdditionalCustomerId}
-                touched={touched.AdditionalCustomerId}
-                errors={errors.AdditionalCustomerId}
-                // options={this.state.additionalCustomer}
-                // values={
-                //   this.state.IsAdditionalDriver
-                //     ? this.props.customers[this.props.customers.length - 1].Id
-                //     : values.AdditionalCustomerId
-                // }
-                // selectedValue={value => {
-                //   if (value.value == "addNew") {
-                //     this.setState(
-                //       {
-                //         IsAdditionalDriver: true
-                //       },
-                //       () => {
-                //         this.OpenModal();
-                //       }
-                //     );
-                //   }
-                // }}
-              /> */}
               </Card>
               <Card base={reservation.payment}>
                 <Fields
